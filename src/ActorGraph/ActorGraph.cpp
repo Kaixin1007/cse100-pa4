@@ -84,10 +84,19 @@ bool ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges,
         }
         auto curActor = ac.actor_map.find(actor);
         auto curMovie = ac.movie_map.find(str);
+        int weight = 1 + 2019 - year;
         for (ActorNode* nodeInMovie : curMovie->second->actors) {
-            Edge e = Edge(curActor->second, nodeInMovie, curMovie->second, 1);
-            nodeInMovie->edges.push_back(e);
-            curActor->second->edges.push_back(e);
+            if (!use_weighted_edges) {
+                Edge e =
+                    Edge(curActor->second, nodeInMovie, curMovie->second, 1);
+                nodeInMovie->edges.push_back(e);
+                curActor->second->edges.push_back(e);
+            } else {
+                Edge e = Edge(curActor->second, nodeInMovie, curMovie->second,
+                              weight);
+                nodeInMovie->edges.push_back(e);
+                curActor->second->edges.push_back(e);
+            }
         }
         curMovie->second->actors.push_back(curActor->second);
     }

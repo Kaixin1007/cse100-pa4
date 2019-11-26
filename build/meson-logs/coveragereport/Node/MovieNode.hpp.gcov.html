@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 08:40:50</td>
+            <td class="headerValue">2019-11-26 19:37:28</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -76,35 +76,43 @@
       <td>
 <pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>                :            : #ifndef MOVIENODE_HPP</a>
-<span class="lineNum">       2 </span>                :            : #define MOVIENODE_HPP
-<span class="lineNum">       3 </span>                :            : #include &lt;algorithm&gt;
-<span class="lineNum">       4 </span>                :            : #include &lt;memory&gt;
-<span class="lineNum">       5 </span>                :            : #include &lt;queue&gt;
-<span class="lineNum">       6 </span>                :            : #include &lt;string&gt;
-<span class="lineNum">       7 </span>                :            : #include &lt;unordered_map&gt;
-<span class="lineNum">       8 </span>                :            : #include &lt;utility&gt;
-<span class="lineNum">       9 </span>                :            : #include &lt;vector&gt;
-<span class="lineNum">      10 </span>                :            : #include &quot;ActorNode.hpp&quot;
-<span class="lineNum">      11 </span>                :            : #include &quot;Edge.hpp&quot;
-<span class="lineNum">      12 </span>                :            : using namespace std;
-<span class="lineNum">      13 </span>                :            : class ActorNode;
-<span class="lineNum">      14 </span>                :            : class Edge;
-<span class="lineNum">      15 </span>                :            : class MovieNode {
-<span class="lineNum">      16 </span>                :            :   private:
-<span class="lineNum">      17 </span>                :            :   public:
-<span class="lineNum">      18 </span>                :            :     string name;
-<a name="19"><span class="lineNum">      19 </span>                :            :     int year;</a>
-<span class="lineNum">      20 </span>                :            :     /* Constructor that initialize a MovieNode */
-<span class="lineNum">      21 </span>                :<span class="lineCov">         30 :     MovieNode(string name, int year) : name(name), year(year) {}</span>
-<span class="lineNum">      22 </span>                :            :     vector&lt;ActorNode*&gt; actors;
-<span class="lineNum">      23 </span>                :            :     // Edge edges;
-<a name="24"><span class="lineNum">      24 </span>                :            :     vector&lt;Edge&gt; edges;</a>
-<span class="lineNum">      25 </span>                :            : 
-<span class="lineNum">      26 </span>                :<span class="lineCov">         30 :     ~MovieNode() {}</span>
-<span class="lineNum">      27 </span>                :            : };
-<span class="lineNum">      28 </span>                :            : 
-<span class="lineNum">      29 </span>                :            : #endif  // MOVIENODE_HPP
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * @Descripttion:MovieNode to store movie's information and actor who plays in
+<span class="lineNum">       3 </span>                :            :  * this movie
+<span class="lineNum">       4 </span>                :            :  * @version: 1.0
+<span class="lineNum">       5 </span>                :            :  * @Author: Kaixin Lin
+<span class="lineNum">       6 </span>                :            :  */
+<span class="lineNum">       7 </span>                :            : #ifndef MOVIENODE_HPP
+<span class="lineNum">       8 </span>                :            : #define MOVIENODE_HPP
+<span class="lineNum">       9 </span>                :            : #include &lt;memory&gt;
+<span class="lineNum">      10 </span>                :            : #include &lt;queue&gt;
+<span class="lineNum">      11 </span>                :            : #include &lt;string&gt;
+<span class="lineNum">      12 </span>                :            : #include &lt;unordered_map&gt;
+<span class="lineNum">      13 </span>                :            : #include &lt;utility&gt;
+<span class="lineNum">      14 </span>                :            : #include &lt;vector&gt;
+<span class="lineNum">      15 </span>                :            : #include &quot;ActorNode.hpp&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;Edge.hpp&quot;
+<span class="lineNum">      17 </span>                :            : using namespace std;
+<span class="lineNum">      18 </span>                :            : class ActorNode;
+<span class="lineNum">      19 </span>                :            : class Edge;
+<span class="lineNum">      20 </span>                :            : 
+<span class="lineNum">      21 </span>                :            : /**
+<span class="lineNum">      22 </span>                :            :  * @name: MovieNode
+<span class="lineNum">      23 </span>                :            :  * @msg:  the class of Movie node for graph operation
+<span class="lineNum">      24 </span>                :            :  */
+<span class="lineNum">      25 </span>                :            : class MovieNode {
+<span class="lineNum">      26 </span>                :            :   public:
+<span class="lineNum">      27 </span>                :            :     string name;
+<span class="lineNum">      28 </span>                :            :     int year;
+<span class="lineNum">      29 </span>                :            :     vector&lt;ActorNode*&gt; actors;
+<a name="30"><span class="lineNum">      30 </span>                :            :     vector&lt;Edge&gt; edges;</a>
+<span class="lineNum">      31 </span>                :            :     /* Constructor that initialize a MovieNode */
+<a name="32"><span class="lineNum">      32 </span>                :<span class="lineCov">         44 :     MovieNode(string name, int year) : name(name), year(year) {}</span></a>
+<span class="lineNum">      33 </span>                :            :     /* deconstruction for MovieNode */
+<span class="lineNum">      34 </span>                :<span class="lineCov">         44 :     ~MovieNode() {}</span>
+<span class="lineNum">      35 </span>                :            : };
+<span class="lineNum">      36 </span>                :            : 
+<span class="lineNum">      37 </span>                :            : #endif  // MOVIENODE_HPP
 </pre>
       </td>
     </tr>

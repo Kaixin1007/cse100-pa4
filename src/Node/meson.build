@@ -1,13 +1,11 @@
-ActorNode_files = files(['ActorNode.cpp', 'ActorNode.hpp','MovieNode.hpp'])
-ActorNode_includes = include_directories('.')
 
 MovieNode_files = files(['MovieNode.hpp','ActorNode.hpp'])
 MovieNode_includes = include_directories('.')
 
-ActorNode_files = files(['ActorNode.cpp', 'ActorNode.hpp','MovieNode.hpp'])
+ActorNode_files = files([ 'ActorNode.hpp','MovieNode.hpp'])
 ActorNode_includes = include_directories('.')
 
-edge_files = files(['Edge.hpp','ActorNode.cpp', 'ActorNode.hpp','MovieNode.hpp'])
+edge_files = files(['Edge.hpp', 'ActorNode.hpp','MovieNode.hpp'])
 edge_includes = include_directories('.')
 
 ActorNode = library('ActorNode', sources: ActorNode_files)

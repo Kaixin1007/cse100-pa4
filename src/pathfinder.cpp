@@ -23,17 +23,26 @@ int main(int argc, char** argv) {
     auto userOptions = options.parse(argc, argv);
     ActorGraph ag;
     Actor at;
-
-    // if ((!fl.isValidFile(sourceFileName)) || (!fl.isValidFile(inFileName)))
-    //     return 0;
+    ag.readFile(inFileName);
+    vector<pair<string, stack<pair<string, string>>>> res;
     if (flag == 'u') {
         ag.loadFromFile(sourceFileName.c_str(), false, at);
-        ag.readFile(inFileName);
-        vector<pair<string, stack<pair<string, string>>>> res;
+        // vector<pair<string, stack<pair<string, string>>>> res;
         for (int i = 0; i < ag.input.size(); i++) {
             string src = ag.input[i].first;
             string dst = ag.input[i].second;
             at.unweightedPathfinder(src, dst);
+            res.push_back(make_pair(src, at.result));
+            at.clear();
+        }
+        ag.writeFile(res, outFileName);
+    } else if (flag == 'w') {
+        ag.loadFromFile(sourceFileName.c_str(), true, at);
+
+        for (int i = 0; i < ag.input.size(); i++) {
+            string src = ag.input[i].first;
+            string dst = ag.input[i].second;
+            at.weightedPathfinder(src, dst);
             res.push_back(make_pair(src, at.result));
             at.clear();
         }

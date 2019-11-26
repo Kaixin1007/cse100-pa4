@@ -41,13 +41,9 @@ build PHONY: phony
 
 # Build rules for targets
 
-build src/Node/2576e22@@ActorNode@sha/ActorNode.cpp.o: cpp_COMPILER ../src/Node/ActorNode.cpp
- DEPFILE = src/Node/2576e22@@ActorNode@sha/ActorNode.cpp.o.d
- ARGS = -Isrc/Node/2576e22@@ActorNode@sha -Isrc/Node -I../src/Node -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -fPIC
-
 build src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols: SHSYM src/Node/libActorNode.so
 
-build src/Node/libActorNode.so: cpp_LINKER src/Node/2576e22@@ActorNode@sha/ActorNode.cpp.o
+build src/Node/libActorNode.so: cpp_LINKER 
  LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -shared -fPIC -Wl,--start-group -Wl,-soname,libActorNode.so -Wl,--end-group
 
 build src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols: SHSYM src/Node/libMovieNode.so
@@ -55,13 +51,9 @@ build src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols: SHSYM src/Node/li
 build src/Node/libMovieNode.so: cpp_LINKER 
  LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -shared -fPIC -Wl,--start-group -Wl,-soname,libMovieNode.so -Wl,--end-group
 
-build src/Node/2576e22@@Edge@sha/ActorNode.cpp.o: cpp_COMPILER ../src/Node/ActorNode.cpp
- DEPFILE = src/Node/2576e22@@Edge@sha/ActorNode.cpp.o.d
- ARGS = -Isrc/Node/2576e22@@Edge@sha -Isrc/Node -I../src/Node -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -fPIC
-
 build src/Node/2576e22@@Edge@sha/libEdge.so.symbols: SHSYM src/Node/libEdge.so
 
-build src/Node/libEdge.so: cpp_LINKER src/Node/2576e22@@Edge@sha/ActorNode.cpp.o
+build src/Node/libEdge.so: cpp_LINKER 
  LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -shared -fPIC -Wl,--start-group -Wl,-soname,libEdge.so -Wl,--end-group
 
 build src/25a6634@@Actor@sha/Actor.cpp.o: cpp_COMPILER ../src/Actor.cpp
@@ -250,6 +242,12 @@ build meson-scan-build: CUSTOM_COMMAND PHONY
 
 build scan-build: phony meson-scan-build
 
+build meson-clang-format: CUSTOM_COMMAND PHONY
+ COMMAND = /usr/local/bin/meson --internal clangformat /Code/cse100_pa4 /Code/cse100_pa4/build
+ pool = console
+
+build clang-format: phony meson-clang-format
+
 build meson-uninstall: CUSTOM_COMMAND PHONY
  COMMAND = /usr/local/bin/meson --internal uninstall
  pool = console
@@ -276,13 +274,13 @@ build meson-clean: CUSTOM_COMMAND PHONY | clean-gcda clean-gcno
  COMMAND = /usr/local/bin/ninja -t clean
  description = Cleaning.
 
-build build.ninja: REGENERATE_BUILD ../subprojects/googletest-release-1.8.1/meson.build ../subprojects/googletest-release-1.8.1/googlemock/meson.build ../subprojects/cxxopts/meson.build ../subprojects/googletest-release-1.8.1/googletest/meson.build ../meson.build ../src/Node/meson.build ../src/meson.build ../src/ActorGraph/meson.build ../test/meson.build meson-private/coredata.dat
+build build.ninja: REGENERATE_BUILD ../meson.build ../src/ActorGraph/meson.build ../subprojects/cxxopts/meson.build ../src/Node/meson.build ../subprojects/googletest-release-1.8.1/googletest/meson.build ../src/meson.build ../subprojects/googletest-release-1.8.1/googlemock/meson.build ../subprojects/googletest-release-1.8.1/meson.build ../test/meson.build meson-private/coredata.dat
  pool = console
 
 build reconfigure: REGENERATE_BUILD PHONY
  pool = console
 
-build ../subprojects/googletest-release-1.8.1/meson.build ../subprojects/googletest-release-1.8.1/googlemock/meson.build ../subprojects/cxxopts/meson.build ../subprojects/googletest-release-1.8.1/googletest/meson.build ../meson.build ../src/Node/meson.build ../src/meson.build ../src/ActorGraph/meson.build ../test/meson.build meson-private/coredata.dat: phony 
+build ../meson.build ../src/ActorGraph/meson.build ../subprojects/cxxopts/meson.build ../src/Node/meson.build ../subprojects/googletest-release-1.8.1/googletest/meson.build ../src/meson.build ../subprojects/googletest-release-1.8.1/googlemock/meson.build ../subprojects/googletest-release-1.8.1/meson.build ../test/meson.build meson-private/coredata.dat: phony 
 
 default all
 

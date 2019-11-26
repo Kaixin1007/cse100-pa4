@@ -1,6 +1,7 @@
 #include "Actor.hpp"
 #include <climits>
 #include <iostream>
+#include <queue>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -11,6 +12,48 @@ Actor::~Actor() {
     }
     for (auto j = movie_map.begin(); j != movie_map.end(); ++j) {
         delete (j->second);
+    }
+}
+void Actor::weightedPathfinder(string& source, string& target) {
+    if (actor_map.find(source) == actor_map.end() ||
+        actor_map.find(target) == actor_map.end())
+        return;
+    // get source and target actor
+    ActorNode* src = actor_map.find(source)->second;
+    ActorNode* dst = actor_map.find(target)->second;
+
+    priority_queue<ActorNode*, vector<ActorNode*>, ActorDisComp> toExplore;
+    bool Found = false;
+    src->dis = 0;
+    toExplore.push(src);
+    while (!toExplore.empty()) {
+        ActorNode* cur = toExplore.top();
+        toExplore.pop();
+        if (cur->name == target) {
+            Found = true;
+            break;
+        }
+        if (!cur->isDone) {
+            cur->isDone = true;
+            for (Edge edge : cur->edges) {
+                ActorNode* another =
+                    (cur == edge.actor1) ? edge.actor2 : edge.actor1;
+                unsigned int distance = cur->dis + edge.weight;
+                if (distance < another->dis) {
+                    another->dis = distance;
+                    another->preActor = cur;
+                    another->preMovie = edge.movie;
+                    toExplore.push(another);
+                }
+            }
+        }
+    }
+    if (Found == true) {
+        ActorNode* prev = dst;
+        while (prev != src) {
+            result.push(make_pair(prev->name, prev->preMovie->name));
+            prev = prev->preActor;
+        }
     }
 }
 void Actor::unweightedPathfinder(string& source, string& target) {
@@ -60,6 +103,7 @@ void Actor::clear() {
             temp->preActor = nullptr;
             temp->preMovie = nullptr;
             temp->priority = 0;
+            temp->isDone = false;
         }
     }
     while (!result.empty()) {

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 08:40:50</td>
+            <td class="headerValue">2019-11-26 19:37:28</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -96,23 +96,24 @@
 <span class="lineNum">      18 </span>                :            :     stack&lt;pair&lt;string, string&gt;&gt; result;  // actor -- movie||year
 <span class="lineNum">      19 </span>                :            :     typedef priority_queue&lt;ActorNode*, vector&lt;ActorNode*&gt;, ActorNodeComp&gt;
 <a name="20"><span class="lineNum">      20 </span>                :            :         my_quene;</a>
-<span class="lineNum">      21 </span>                :            :     // vector&lt;Edge&gt; edges;
-<span class="lineNum">      22 </span>        [<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :     Actor() {}</span>
+<span class="lineNum">      21 </span>                :            : 
+<span class="lineNum">      22 </span>        [<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :     Actor() {}</span>
 <span class="lineNum">      23 </span>                :            :     ~Actor();
 <span class="lineNum">      24 </span>                :            :     void unweightedPathfinder(string&amp; source, string&amp; target);
-<span class="lineNum">      25 </span>                :            :     void levelBFS(string&amp; source, unordered_map&lt;string, ActorNode*&gt;&amp; firstlevel,
-<span class="lineNum">      26 </span>                :            :                   unordered_map&lt;string, ActorNode*&gt;&amp; secondlevel);
-<span class="lineNum">      27 </span>                :            :     void linkpredictor(vector&lt;string&gt;&amp; input, vector&lt;vector&lt;string&gt;&gt;&amp; res1,
-<span class="lineNum">      28 </span>                :            :                        vector&lt;vector&lt;string&gt;&gt;&amp; res2);
-<span class="lineNum">      29 </span>                :            : 
-<span class="lineNum">      30 </span>                :            :        void outputHelper(my_quene&amp; quene_res, vector&lt;vector&lt;string&gt;&gt;&amp; result);
-<span class="lineNum">      31 </span>                :            :     void updatePQ(ActorNode*&amp; candiate, my_quene&amp; quene_res);
-<span class="lineNum">      32 </span>                :            :     void clear();
-<span class="lineNum">      33 </span>                :            : 
-<span class="lineNum">      34 </span>                :            :     // void clearPriority(string source);
-<span class="lineNum">      35 </span>                :            : };
-<span class="lineNum">      36 </span>                :            : 
-<span class="lineNum">      37 </span>                :            : #endif
+<span class="lineNum">      25 </span>                :            :     void weightedPathfinder(string&amp; source, string&amp; target);
+<span class="lineNum">      26 </span>                :            :     void levelBFS(string&amp; source, unordered_map&lt;string, ActorNode*&gt;&amp; firstlevel,
+<span class="lineNum">      27 </span>                :            :                   unordered_map&lt;string, ActorNode*&gt;&amp; secondlevel);
+<span class="lineNum">      28 </span>                :            :     void linkpredictor(vector&lt;string&gt;&amp; input, vector&lt;vector&lt;string&gt;&gt;&amp; res1,
+<span class="lineNum">      29 </span>                :            :                        vector&lt;vector&lt;string&gt;&gt;&amp; res2);
+<span class="lineNum">      30 </span>                :            : 
+<span class="lineNum">      31 </span>                :            :        void outputHelper(my_quene&amp; quene_res, vector&lt;vector&lt;string&gt;&gt;&amp; result);
+<span class="lineNum">      32 </span>                :            :     void updatePQ(ActorNode*&amp; candiate, my_quene&amp; quene_res);
+<span class="lineNum">      33 </span>                :            :     void clear();
+<span class="lineNum">      34 </span>                :            : 
+<span class="lineNum">      35 </span>                :            :     // void clearPriority(string source);
+<span class="lineNum">      36 </span>                :            : };
+<span class="lineNum">      37 </span>                :            : 
+<span class="lineNum">      38 </span>                :            : #endif
 </pre>
       </td>
     </tr>

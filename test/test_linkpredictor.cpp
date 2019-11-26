@@ -18,7 +18,6 @@ TEST(LINKPREDICTOR_TEST, simple_TEST) {
     at.linkpredictor(input, result, result1);
     ASSERT_EQ(result1[0].front(), "Katherine Waterston");
 
-    // vector<string> res = result1[0];
     // ASSERT_EQ(res, "James McAvoy");
     // input.push_back("Michael Fassbender");
     // at.linkpredictor(input, result, result1);

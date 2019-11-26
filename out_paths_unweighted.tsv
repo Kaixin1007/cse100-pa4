@@ -1,10 +1,10 @@
 (actor)--[movie#@year]-->(actor)--...
-(Robert Downey Jr.)--[Captain America: Civil War#@2016]-->(Chris Evans)
-
-
-(James McAvoy)--[X-Men: First Class#@2011]-->(Michael Fassbender)
-(Embeth Davidtz)--[The Gingerbread Man#@1998]-->(Robert Downey Jr.)--[The Singing Detective#@2003]-->(Robin Wright)
-(Robert Downey Jr.)--[Avengers: Endgame#@2019]-->(Samuel L. Jackson)
-(Robert Downey Jr.)--[The Gingerbread Man#@1998]-->(Embeth Davidtz)--[Murder in the First#@1995]-->(Kevin Bacon)--[Elephant White#@2011]-->(Djimon Hounsou)
-(Robert Downey Jr.)--[The Singing Detective#@2003]-->(Robin Wright)--[The Conspirator#@2010]-->(James McAvoy)--[It Chapter Two#@2019]-->(Bill Skarsgard)--[It#@2017]-->(Finn Wolfhard)
+(Robert Downey Jr.)--[Avengers: Endgame#@2019]-->(Chris Evans)
+(Amy Adams)--[The Woman in the Window#@2019]-->(Anthony Mackie)--[The Banker#@2019]-->(Nicholas Hoult)--[The True History of the Kelly Gang#@2019]-->(Russell Crowe)--[Boy Erased#@2018]-->(Nicole Kidman)
+(Will Smith)--[Spies in Disguise#@2019]-->(Ben Mendelsohn)--[Captain Marvel#@2019]-->(Samuel L. Jackson)--[Glass#@2019]-->(Bruce Willis)
+(James McAvoy)--[X-Men: Apocalypse#@2016]-->(Michael Fassbender)
+(Embeth Davidtz)--[Europa Report#@2013]-->(Michael Nyqvist)--[A Hidden Life#@2019]-->(Matthias Schoenaerts)--[The Laundromat#@2019]-->(Gary Oldman)--[Criminal#@2016]-->(Gal Gadot)--[Wonder Woman#@2017]-->(Robin Wright)
+(Robert Downey Jr.)--[Avengers: Endgame#@2019]-->(Chris Hemsworth)--[Jay and Silent Bob Reboot#@2019]-->(Joe Manganiello)--[Drunk Parents#@2019]-->(Jim Gaffigan)--[Playmobil: The Movie#@2019]-->(Anya Taylor-Joy)--[Glass#@2019]-->(Samuel L. Jackson)
+(Robert Downey Jr.)--[Avengers: Endgame#@2019]-->(Mark Ruffalo)--[Untitled Todd Haynes Project#@2019]-->(Anne Hathaway)--[The Last Thing He Wanted#@2019]-->(Ben Affleck)--[Triple Frontier#@2019]-->(Charlie Hunnam)--[King Arthur: Legend of the Sword#@2017]-->(Djimon Hounsou)
+(Robert Downey Jr.)--[Avengers: Endgame#@2019]-->(Mark Ruffalo)--[Newsflash#@2019]-->(Seth Rogen)--[Long Shot#@2019]-->(Charlize Theron)--[Untitled Roger Ailes Project#@2019]-->(Nicole Kidman)--[The Goldfinch#@2019]-->(Finn Wolfhard)
 

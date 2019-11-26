@@ -1,6 +1,11 @@
+/*
+ * @Descripttion:MovieNode to store movie's information and actor who plays in
+ * this movie
+ * @version: 1.0
+ * @Author: Kaixin Lin
+ */
 #ifndef MOVIENODE_HPP
 #define MOVIENODE_HPP
-#include <algorithm>
 #include <memory>
 #include <queue>
 #include <string>
@@ -12,17 +17,20 @@
 using namespace std;
 class ActorNode;
 class Edge;
+
+/**
+ * @name: MovieNode
+ * @msg:  the class of Movie node for graph operation
+ */
 class MovieNode {
-  private:
   public:
     string name;
     int year;
+    vector<ActorNode*> actors;
+    vector<Edge> edges;
     /* Constructor that initialize a MovieNode */
     MovieNode(string name, int year) : name(name), year(year) {}
-    vector<ActorNode*> actors;
-    // Edge edges;
-    vector<Edge> edges;
-
+    /* deconstruction for MovieNode */
     ~MovieNode() {}
 };
 

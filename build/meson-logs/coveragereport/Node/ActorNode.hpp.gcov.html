@@ -31,17 +31,17 @@
             <td class="headerValue">Code coverage</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">5</td>
-            <td class="headerCovTableEntry">6</td>
-            <td class="headerCovTableEntryMed">83.3 %</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryMed">80.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 08:40:50</td>
+            <td class="headerValue">2019-11-26 19:37:28</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">3</td>
-            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
@@ -56,8 +56,8 @@
 </td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">2</td>
-            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">6</td>
             <td class="headerCovTableEntryLo">50.0 %</td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
@@ -76,44 +76,62 @@
       <td>
 <pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>                :            : #ifndef ACTORNODE_HPP</a>
-<span class="lineNum">       2 </span>                :            : #define ACTORNODE_HPP
-<span class="lineNum">       3 </span>                :            : #include &lt;algorithm&gt;
-<span class="lineNum">       4 </span>                :            : #include &lt;climits&gt;
-<span class="lineNum">       5 </span>                :            : #include &lt;memory&gt;
-<span class="lineNum">       6 </span>                :            : #include &lt;stack&gt;
-<span class="lineNum">       7 </span>                :            : #include &lt;string&gt;
-<span class="lineNum">       8 </span>                :            : #include &lt;utility&gt;
-<span class="lineNum">       9 </span>                :            : #include &lt;vector&gt;
-<span class="lineNum">      10 </span>                :            : #include &quot;ActorNode.hpp&quot;
-<span class="lineNum">      11 </span>                :            : #include &quot;Edge.hpp&quot;
-<span class="lineNum">      12 </span>                :            : #include &quot;MovieNode.hpp&quot;
-<span class="lineNum">      13 </span>                :            : using namespace std;
-<span class="lineNum">      14 </span>                :            : class MovieNode;
-<span class="lineNum">      15 </span>                :            : class Edge;
-<span class="lineNum">      16 </span>                :            : class ActorNode {
-<span class="lineNum">      17 </span>                :            :   public:
-<span class="lineNum">      18 </span>                :            :     string name;
-<span class="lineNum">      19 </span>                :            :     int dis;
-<span class="lineNum">      20 </span>                :            :     bool isDone;
-<a name="21"><span class="lineNum">      21 </span>                :            :     int priority;</a>
-<span class="lineNum">      22 </span>                :            :     /* Constructor that initialize a MovieNode */
-<span class="lineNum">      23 </span>        [<span class="branchCov" title="Branch 3 was taken 16 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         16 :     ActorNode(string name) : name(name), dis(INT_MAX), priority(0) {}</span>
-<span class="lineNum">      24 </span>                :            :     vector&lt;Edge&gt; edges;
-<span class="lineNum">      25 </span>                :            :     ActorNode* preActor;
-<a name="26"><span class="lineNum">      26 </span>                :            :     MovieNode* preMovie;</a>
-<span class="lineNum">      27 </span>                :            :     stack&lt;string, string&gt; result;
-<span class="lineNum">      28 </span>                :<span class="lineCov">         32 :     ~ActorNode() {}</span>
-<a name="29"><span class="lineNum">      29 </span>                :            : };</a>
-<span class="lineNum">      30 </span>                :            : struct ActorNodeComp {
-<span class="lineNum">      31 </span>                :<span class="lineCov">          2 :     bool operator()(ActorNode*&amp; lhs, ActorNode*&amp; rhs) const {</span>
-<span class="lineNum">      32 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         if (lhs-&gt;priority == rhs-&gt;priority)</span>
-<span class="lineNum">      33 </span>                :<span class="lineCov">          2 :             return lhs-&gt;name &lt; rhs-&gt;name;</span>
-<span class="lineNum">      34 </span>                :            :         else
-<span class="lineNum">      35 </span>                :<span class="lineNoCov">          0 :             return lhs-&gt;priority &gt; rhs-&gt;priority;</span>
-<span class="lineNum">      36 </span>                :            :     }
-<span class="lineNum">      37 </span>                :            : };
-<span class="lineNum">      38 </span>                :            : #endif  // ACTORNODE_HPP
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * @Descripttion:ActorNode to store Actor's information and the actor's movie
+<span class="lineNum">       3 </span>                :            :  * information
+<span class="lineNum">       4 </span>                :            :  * @version: 1.0
+<span class="lineNum">       5 </span>                :            :  * @Author: Kaixin Lin
+<span class="lineNum">       6 </span>                :            :  */
+<span class="lineNum">       7 </span>                :            : #ifndef ACTORNODE_HPP
+<span class="lineNum">       8 </span>                :            : #define ACTORNODE_HPP
+<span class="lineNum">       9 </span>                :            : #include &lt;climits&gt;
+<span class="lineNum">      10 </span>                :            : #include &lt;memory&gt;
+<span class="lineNum">      11 </span>                :            : #include &lt;stack&gt;
+<span class="lineNum">      12 </span>                :            : #include &lt;string&gt;
+<span class="lineNum">      13 </span>                :            : #include &lt;utility&gt;
+<span class="lineNum">      14 </span>                :            : #include &lt;vector&gt;
+<span class="lineNum">      15 </span>                :            : #include &quot;ActorNode.hpp&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;Edge.hpp&quot;
+<span class="lineNum">      17 </span>                :            : #include &quot;MovieNode.hpp&quot;
+<span class="lineNum">      18 </span>                :            : using namespace std;
+<span class="lineNum">      19 </span>                :            : class MovieNode;
+<span class="lineNum">      20 </span>                :            : class Edge;
+<span class="lineNum">      21 </span>                :            : /**
+<span class="lineNum">      22 </span>                :            :  * @name: ActorNode
+<span class="lineNum">      23 </span>                :            :  * @msg:  the class of Actor node for graph operation
+<span class="lineNum">      24 </span>                :            :  */
+<span class="lineNum">      25 </span>                :            : class ActorNode {
+<span class="lineNum">      26 </span>                :            :   public:
+<span class="lineNum">      27 </span>                :            :     string name;
+<span class="lineNum">      28 </span>                :            :     int dis;
+<span class="lineNum">      29 </span>                :            :     bool isDone;
+<span class="lineNum">      30 </span>                :            :     int priority;
+<span class="lineNum">      31 </span>                :            :     vector&lt;Edge&gt; edges;
+<span class="lineNum">      32 </span>                :            :     ActorNode* preActor;
+<span class="lineNum">      33 </span>                :            :     MovieNode* preMovie;
+<a name="34"><span class="lineNum">      34 </span>                :            :     stack&lt;string, string&gt; result;</a>
+<span class="lineNum">      35 </span>                :            :     /* Constructor that initialize a MovieNode */
+<a name="36"><span class="lineNum">      36 </span>        [<span class="branchCov" title="Branch 3 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         23 :     ActorNode(string name) : name(name), dis(INT_MAX), priority(0) {}</span></a>
+<span class="lineNum">      37 </span>                :            :     /* deconstruction for ActorNode */
+<span class="lineNum">      38 </span>                :<span class="lineCov">         46 :     ~ActorNode() {}</span>
+<a name="39"><span class="lineNum">      39 </span>                :            : };</a>
+<span class="lineNum">      40 </span>                :            : struct ActorNodeComp {
+<span class="lineNum">      41 </span>                :<span class="lineCov">          2 :     bool operator()(ActorNode*&amp; lhs, ActorNode*&amp; rhs) const {</span>
+<span class="lineNum">      42 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         if (lhs-&gt;priority == rhs-&gt;priority)</span>
+<span class="lineNum">      43 </span>                :<span class="lineCov">          2 :             return lhs-&gt;name &lt; rhs-&gt;name;</span>
+<span class="lineNum">      44 </span>                :            :         else
+<span class="lineNum">      45 </span>                :<span class="lineNoCov">          0 :             return lhs-&gt;priority &gt; rhs-&gt;priority;</span>
+<span class="lineNum">      46 </span>                :            :     }
+<a name="47"><span class="lineNum">      47 </span>                :            : };</a>
+<span class="lineNum">      48 </span>                :            : struct ActorDisComp {
+<span class="lineNum">      49 </span>                :<span class="lineCov">          1 :     bool operator()(ActorNode*&amp; lhs, ActorNode*&amp; rhs) const {</span>
+<span class="lineNum">      50 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :         if (lhs-&gt;dis == rhs-&gt;dis)</span>
+<span class="lineNum">      51 </span>                :<span class="lineCov">          1 :             return lhs-&gt;name &gt; rhs-&gt;name;</span>
+<span class="lineNum">      52 </span>                :            :         else
+<span class="lineNum">      53 </span>                :<span class="lineNoCov">          0 :             return lhs-&gt;dis &gt; rhs-&gt;dis;</span>
+<span class="lineNum">      54 </span>                :            :     }
+<span class="lineNum">      55 </span>                :            : };
+<span class="lineNum">      56 </span>                :            : #endif  // ACTORNODE_HPP
 </pre>
       </td>
     </tr>

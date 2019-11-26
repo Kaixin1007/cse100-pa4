@@ -18,10 +18,11 @@ class Actor {
     stack<pair<string, string>> result;  // actor -- movie||year
     typedef priority_queue<ActorNode*, vector<ActorNode*>, ActorNodeComp>
         my_quene;
-    // vector<Edge> edges;
+
     Actor() {}
     ~Actor();
     void unweightedPathfinder(string& source, string& target);
+    void weightedPathfinder(string& source, string& target);
     void levelBFS(string& source, unordered_map<string, ActorNode*>& firstlevel,
                   unordered_map<string, ActorNode*>& secondlevel);
     void linkpredictor(vector<string>& input, vector<vector<string>>& res1,

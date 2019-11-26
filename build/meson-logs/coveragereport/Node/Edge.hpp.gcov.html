@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 08:40:50</td>
+            <td class="headerValue">2019-11-26 19:37:28</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -76,24 +76,36 @@
       <td>
 <pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>                :            : #ifndef EDGE_HPP</a>
-<span class="lineNum">       2 </span>                :            : #define EDGE_HPP
-<span class="lineNum">       3 </span>                :            : #include &lt;utility&gt;
-<span class="lineNum">       4 </span>                :            : #include &lt;vector&gt;
-<span class="lineNum">       5 </span>                :            : #include &quot;ActorNode.hpp&quot;
-<span class="lineNum">       6 </span>                :            : #include &quot;MovieNode.hpp&quot;
-<span class="lineNum">       7 </span>                :            : class MovieNode;
-<span class="lineNum">       8 </span>                :            : class ActorNode;
-<span class="lineNum">       9 </span>                :            : class Edge {
-<span class="lineNum">      10 </span>                :            :   public:
-<span class="lineNum">      11 </span>                :            :     ActorNode* actor1;
-<span class="lineNum">      12 </span>                :            :     ActorNode* actor2;
-<a name="13"><span class="lineNum">      13 </span>                :            :     MovieNode* movie;</a>
-<span class="lineNum">      14 </span>                :            :     int weight;
-<span class="lineNum">      15 </span>                :<span class="lineCov">         19 :     Edge(ActorNode* actor1, ActorNode* actor2, MovieNode* movie, int weight)</span>
-<span class="lineNum">      16 </span>                :<span class="lineCov">         19 :         : actor1(actor1), actor2(actor2), movie(movie), weight(weight) {}</span>
-<span class="lineNum">      17 </span>                :            : };
-<span class="lineNum">      18 </span>                :            : #endif
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * @Descripttion:define edge to connect movie and actor in graph
+<span class="lineNum">       3 </span>                :            :  * @version: 1.0
+<span class="lineNum">       4 </span>                :            :  * @Author: Kaixin Lin
+<span class="lineNum">       5 </span>                :            :  */
+<span class="lineNum">       6 </span>                :            : #ifndef EDGE_HPP
+<span class="lineNum">       7 </span>                :            : #define EDGE_HPP
+<span class="lineNum">       8 </span>                :            : #include &lt;utility&gt;
+<span class="lineNum">       9 </span>                :            : #include &lt;vector&gt;
+<span class="lineNum">      10 </span>                :            : #include &quot;ActorNode.hpp&quot;
+<span class="lineNum">      11 </span>                :            : #include &quot;MovieNode.hpp&quot;
+<span class="lineNum">      12 </span>                :            : class MovieNode;
+<span class="lineNum">      13 </span>                :            : class ActorNode;
+<span class="lineNum">      14 </span>                :            : /**
+<span class="lineNum">      15 </span>                :            :  * @name: Edge
+<span class="lineNum">      16 </span>                :            :  * @msg:  the class of Edge for graph operation
+<span class="lineNum">      17 </span>                :            :  */
+<span class="lineNum">      18 </span>                :            : class Edge {
+<span class="lineNum">      19 </span>                :            :   public:
+<span class="lineNum">      20 </span>                :            :     // store two actor, movie and weight
+<span class="lineNum">      21 </span>                :            :     ActorNode* actor1;
+<span class="lineNum">      22 </span>                :            :     ActorNode* actor2;
+<span class="lineNum">      23 </span>                :            :     MovieNode* movie;
+<span class="lineNum">      24 </span>                :            :     int weight;  // in wnweighted graph, weight = 1
+<a name="25"><span class="lineNum">      25 </span>                :            : </a>
+<span class="lineNum">      26 </span>                :            :     /* Constructor that initialize a Edge */
+<span class="lineNum">      27 </span>                :<span class="lineCov">         28 :     Edge(ActorNode* actor1, ActorNode* actor2, MovieNode* movie, int weight)</span>
+<span class="lineNum">      28 </span>                :<span class="lineCov">         28 :         : actor1(actor1), actor2(actor2), movie(movie), weight(weight) {}</span>
+<span class="lineNum">      29 </span>                :            : };
+<span class="lineNum">      30 </span>                :            : #endif  // EDGE_HPP
 </pre>
       </td>
     </tr>

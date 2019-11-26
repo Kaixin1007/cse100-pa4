@@ -1,18 +1,6 @@
 [
   {
     "directory": "/Code/cse100_pa4/build",
-    "command": "c++ -Isrc/Node/2576e22@@ActorNode@sha -Isrc/Node -I../src/Node -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -fPIC -MD -MQ 'src/Node/2576e22@@ActorNode@sha/ActorNode.cpp.o' -MF 'src/Node/2576e22@@ActorNode@sha/ActorNode.cpp.o.d' -o 'src/Node/2576e22@@ActorNode@sha/ActorNode.cpp.o' -c ../src/Node/ActorNode.cpp",
-    "file": "../src/Node/ActorNode.cpp",
-    "output": "src/Node/2576e22@@ActorNode@sha/ActorNode.cpp.o"
-  },
-  {
-    "directory": "/Code/cse100_pa4/build",
-    "command": "c++ -Isrc/Node/2576e22@@Edge@sha -Isrc/Node -I../src/Node -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -fPIC -MD -MQ 'src/Node/2576e22@@Edge@sha/ActorNode.cpp.o' -MF 'src/Node/2576e22@@Edge@sha/ActorNode.cpp.o.d' -o 'src/Node/2576e22@@Edge@sha/ActorNode.cpp.o' -c ../src/Node/ActorNode.cpp",
-    "file": "../src/Node/ActorNode.cpp",
-    "output": "src/Node/2576e22@@Edge@sha/ActorNode.cpp.o"
-  },
-  {
-    "directory": "/Code/cse100_pa4/build",
     "command": "c++ -Isrc/25a6634@@Actor@sha -Isrc -I../src -Isrc/Node -I../src/Node -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -fPIC -MD -MQ 'src/25a6634@@Actor@sha/Actor.cpp.o' -MF 'src/25a6634@@Actor@sha/Actor.cpp.o.d' -o 'src/25a6634@@Actor@sha/Actor.cpp.o' -c ../src/Actor.cpp",
     "file": "../src/Actor.cpp",
     "output": "src/25a6634@@Actor@sha/Actor.cpp.o"
