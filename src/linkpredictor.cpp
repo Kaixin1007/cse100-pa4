@@ -1,3 +1,13 @@
+/*
+ * @Descripttion: it predict whether two actors would act together in the future
+ * in an unweighted graph.This part again will have two subparts - the first
+ * where you predict future collaborations between actors who have collaborated
+ * in the past and the second where you predict new collaborations between
+ * actors.
+ * @version: 1.0
+ * @Author: Kaixin Lin
+ */
+
 #include <stack>
 #include <string>
 #include <unordered_map>
@@ -7,6 +17,7 @@
 #include "MovieNode.hpp"
 #include "cxxopts.hpp"
 using namespace std;
+/* Main program that runs the linkpredictor */
 int main(int argc, char** argv) {
     cxxopts::Options options("./linkpredictor", "linkpredictor files");
     options.positional_help(
@@ -26,11 +37,13 @@ int main(int argc, char** argv) {
     ActorGraph ag;
     Actor at;
     vector<vector<string>> result, result1;
+    // load file from dataset
     ag.loadFromFile(sourceFileName.c_str(), false, at);
+    // load file from input Actor data
     ag.readActorFile(inFileName);
-    
+    // linkpredictor
     at.linkpredictor(ag.actor_input, result, result1);
-
+    // write result to the file
     ag.writeFile(result, result1, outFileName1, outFileName2);
 
     return 0;

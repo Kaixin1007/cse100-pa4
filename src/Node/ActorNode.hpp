@@ -34,9 +34,13 @@ class ActorNode {
     stack<string, string> result;
     /* Constructor that initialize a MovieNode */
     ActorNode(string name) : name(name), dis(INT_MAX), priority(0) {}
-    /* deconstruction for ActorNode */
+    /* deconstructor for ActorNode */
     ~ActorNode() {}
 };
+/* Comparator of ActorNode pointer for linkpredictor. In priority queue,
+ * ActorNode ptr with higher priority has higher priority, and if priority is
+ * the same, ActorNode ptr order alphabetically.
+ */
 struct ActorNodeComp {
     bool operator()(ActorNode*& lhs, ActorNode*& rhs) const {
         if (lhs->priority == rhs->priority)
@@ -45,6 +49,10 @@ struct ActorNodeComp {
             return lhs->priority > rhs->priority;
     }
 };
+/* Comparator of ActorNode pointer for pathfinder. In priority queue,
+ * ActorNode ptr with less distance has higher priority, and if priority is
+ * the same, ActorNode ptr order alphabetically.
+ */
 struct ActorDisComp {
     bool operator()(ActorNode*& lhs, ActorNode*& rhs) const {
         if (lhs->dis == rhs->dis)

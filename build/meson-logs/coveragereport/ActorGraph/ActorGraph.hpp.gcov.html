@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 19:37:28</td>
+            <td class="headerValue">2019-11-26 23:52:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -78,8 +78,8 @@
 <pre class="source">
 <a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
 <span class="lineNum">       2 </span>                :            :  * ActorGraph.hpp
-<span class="lineNum">       3 </span>                :            :  * Author: &lt;YOUR NAME HERE&gt;
-<span class="lineNum">       4 </span>                :            :  * Date:   &lt;DATE HERE&gt;
+<span class="lineNum">       3 </span>                :            :  * Author: Kaixin Lin
+<span class="lineNum">       4 </span>                :            :  * Date:   2019.11.26
 <span class="lineNum">       5 </span>                :            :  *
 <span class="lineNum">       6 </span>                :            :  * This file is meant to exist as a container for starter code that you can use
 <span class="lineNum">       7 </span>                :            :  * to read the input file format defined imdb_2019.tsv. Feel free to modify
@@ -97,44 +97,47 @@
 <span class="lineNum">      19 </span>                :            : #include &quot;ActorNode.hpp&quot;
 <span class="lineNum">      20 </span>                :            : #include &quot;Edge.hpp&quot;
 <span class="lineNum">      21 </span>                :            : #include &quot;MovieNode.hpp&quot;
-<span class="lineNum">      22 </span>                :            : // Maybe include some data structures here
-<span class="lineNum">      23 </span>                :            : 
-<span class="lineNum">      24 </span>                :            : using namespace std;
-<span class="lineNum">      25 </span>                :            : 
-<span class="lineNum">      26 </span>                :            : /**
-<a name="27"><span class="lineNum">      27 </span>                :            :  * TODO: add class header</a>
-<span class="lineNum">      28 </span>                :            :  */
-<span class="lineNum">      29 </span>                :<span class="lineCov">          8 : class ActorGraph {</span>
-<span class="lineNum">      30 </span>                :            :   protected:
-<span class="lineNum">      31 </span>                :            :   public:
-<span class="lineNum">      32 </span>                :            :     /**
-<span class="lineNum">      33 </span>                :            :      * Constuctor of the Actor graph
-<span class="lineNum">      34 </span>                :            :      */
-<span class="lineNum">      35 </span>                :            :     ActorGraph(void);
-<span class="lineNum">      36 </span>                :            :     // Maybe add some more methods here
-<span class="lineNum">      37 </span>                :            :     vector&lt;pair&lt;string, string&gt;&gt; input;
-<span class="lineNum">      38 </span>                :            :     vector&lt;string&gt; actor_input;
-<span class="lineNum">      39 </span>                :            :     /** You can modify this method definition as you wish
-<span class="lineNum">      40 </span>                :            :      *
-<span class="lineNum">      41 </span>                :            :      * Load the graph from a tab-delimited file of actor-&gt;movie relationships.
-<span class="lineNum">      42 </span>                :            :      *
-<span class="lineNum">      43 </span>                :            :      * in_filename - input filename
-<span class="lineNum">      44 </span>                :            :      * use_weighted_edges - if true, compute edge weights as 1 + (2019 -
-<span class="lineNum">      45 </span>                :            :      * movie_year), otherwise all edge weights will be 1
-<span class="lineNum">      46 </span>                :            :      *
-<span class="lineNum">      47 </span>                :            :      * return true if file was loaded sucessfully, false otherwise
-<span class="lineNum">      48 </span>                :            :      */
-<span class="lineNum">      49 </span>                :            :     bool loadFromFile(const char* in_filename, bool use_weighted_edges,
-<span class="lineNum">      50 </span>                :            :                       Actor&amp; ac);
+<span class="lineNum">      22 </span>                :            : 
+<span class="lineNum">      23 </span>                :            : using namespace std;
+<span class="lineNum">      24 </span>                :            : /**
+<span class="lineNum">      25 </span>                :            :  * @name: ActorGraph
+<a name="26"><span class="lineNum">      26 </span>                :            :  * @msg:  the class of ActorGraph for read and write data</a>
+<span class="lineNum">      27 </span>                :            :  */
+<span class="lineNum">      28 </span>                :<span class="lineCov">          8 : class ActorGraph {</span>
+<span class="lineNum">      29 </span>                :            :   protected:
+<span class="lineNum">      30 </span>                :            :   public:
+<span class="lineNum">      31 </span>                :            :     /**
+<span class="lineNum">      32 </span>                :            :      * Constuctor of the Actor graph
+<span class="lineNum">      33 </span>                :            :      */
+<span class="lineNum">      34 </span>                :            :     ActorGraph(void);
+<span class="lineNum">      35 </span>                :            : 
+<span class="lineNum">      36 </span>                :            :     vector&lt;pair&lt;string, string&gt;&gt; input;
+<span class="lineNum">      37 </span>                :            :     vector&lt;string&gt; actor_input;
+<span class="lineNum">      38 </span>                :            :     /** You can modify this method definition as you wish
+<span class="lineNum">      39 </span>                :            :      *
+<span class="lineNum">      40 </span>                :            :      * Load the graph from a tab-delimited file of actor-&gt;movie relationships.
+<span class="lineNum">      41 </span>                :            :      *
+<span class="lineNum">      42 </span>                :            :      * in_filename - input filename
+<span class="lineNum">      43 </span>                :            :      * use_weighted_edges - if true, compute edge weights as 1 + (2019 -
+<span class="lineNum">      44 </span>                :            :      * movie_year), otherwise all edge weights will be 1
+<span class="lineNum">      45 </span>                :            :      *
+<span class="lineNum">      46 </span>                :            :      * return true if file was loaded sucessfully, false otherwise
+<span class="lineNum">      47 </span>                :            :      */
+<span class="lineNum">      48 </span>                :            :     bool loadFromFile(const char* in_filename, bool use_weighted_edges,
+<span class="lineNum">      49 </span>                :            :                       Actor&amp; ac);
+<span class="lineNum">      50 </span>                :            : 
 <span class="lineNum">      51 </span>                :            :     void writeFile(vector&lt;pair&lt;string, stack&lt;pair&lt;string, string&gt;&gt;&gt;&gt;&amp; result,
 <span class="lineNum">      52 </span>                :            :                    string filename);
-<span class="lineNum">      53 </span>                :            :     void writeFile(vector&lt;vector&lt;string&gt;&gt;&amp; res1, vector&lt;vector&lt;string&gt;&gt;&amp; res2,
-<span class="lineNum">      54 </span>                :            :                    string filename1, string filename2);
-<span class="lineNum">      55 </span>                :            :     bool readFile(string filename);
-<span class="lineNum">      56 </span>                :            :     bool readActorFile(string filename);
-<span class="lineNum">      57 </span>                :            : };
+<span class="lineNum">      53 </span>                :            : 
+<span class="lineNum">      54 </span>                :            :     void writeFile(vector&lt;vector&lt;string&gt;&gt;&amp; res1, vector&lt;vector&lt;string&gt;&gt;&amp; res2,
+<span class="lineNum">      55 </span>                :            :                    string filename1, string filename2);
+<span class="lineNum">      56 </span>                :            : 
+<span class="lineNum">      57 </span>                :            :     bool readFile(string filename);
 <span class="lineNum">      58 </span>                :            : 
-<span class="lineNum">      59 </span>                :            : #endif  // ACTORGRAPH_HPP
+<span class="lineNum">      59 </span>                :            :     bool readActorFile(string filename);
+<span class="lineNum">      60 </span>                :            : };
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            : #endif  // ACTORGRAPH_HPP
 </pre>
       </td>
     </tr>

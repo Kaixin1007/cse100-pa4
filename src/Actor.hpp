@@ -18,8 +18,9 @@ class Actor {
     stack<pair<string, string>> result;  // actor -- movie||year
     typedef priority_queue<ActorNode*, vector<ActorNode*>, ActorNodeComp>
         my_quene;
-
+    /* Constructor that initialize a Actor */
     Actor() {}
+    /* deconstructor for Actor */
     ~Actor();
     void unweightedPathfinder(string& source, string& target);
     void weightedPathfinder(string& source, string& target);
@@ -28,7 +29,7 @@ class Actor {
     void linkpredictor(vector<string>& input, vector<vector<string>>& res1,
                        vector<vector<string>>& res2);
 
-       void outputHelper(my_quene& quene_res, vector<vector<string>>& result);
+    void outputHelper(my_quene& quene_res, vector<vector<string>>& result);
     void updatePQ(ActorNode*& candiate, my_quene& quene_res);
     void clear();
 

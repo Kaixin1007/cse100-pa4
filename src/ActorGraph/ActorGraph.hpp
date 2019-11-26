@@ -1,7 +1,7 @@
 /*
  * ActorGraph.hpp
- * Author: <YOUR NAME HERE>
- * Date:   <DATE HERE>
+ * Author: Kaixin Lin
+ * Date:   2019.11.26
  *
  * This file is meant to exist as a container for starter code that you can use
  * to read the input file format defined imdb_2019.tsv. Feel free to modify
@@ -19,12 +19,11 @@
 #include "ActorNode.hpp"
 #include "Edge.hpp"
 #include "MovieNode.hpp"
-// Maybe include some data structures here
 
 using namespace std;
-
 /**
- * TODO: add class header
+ * @name: ActorGraph
+ * @msg:  the class of ActorGraph for read and write data
  */
 class ActorGraph {
   protected:
@@ -33,7 +32,7 @@ class ActorGraph {
      * Constuctor of the Actor graph
      */
     ActorGraph(void);
-    // Maybe add some more methods here
+
     vector<pair<string, string>> input;
     vector<string> actor_input;
     /** You can modify this method definition as you wish
@@ -48,11 +47,15 @@ class ActorGraph {
      */
     bool loadFromFile(const char* in_filename, bool use_weighted_edges,
                       Actor& ac);
+
     void writeFile(vector<pair<string, stack<pair<string, string>>>>& result,
                    string filename);
+
     void writeFile(vector<vector<string>>& res1, vector<vector<string>>& res2,
                    string filename1, string filename2);
+
     bool readFile(string filename);
+
     bool readActorFile(string filename);
 };
 

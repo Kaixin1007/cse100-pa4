@@ -1,7 +1,7 @@
 /*
  * ActorGraph.cpp
- * Author: <YOUR NAME HERE>
- * Date:   <DATE HERE>
+ * Author: Kaixin Lin
+ * Date:   2019.11.26
  *
  * This file is meant to exist as a container for starter code that you can use
  * to read the input file format defined in imdb_2019.tsv. Feel free to modify

@@ -1,3 +1,8 @@
+/*
+ * @Descripttion: Actor file to finish Pathfinder, linkpredictor for PA4
+ * @version: 1.0
+ * @Author: Kaixin Lin
+ */
 #include "Actor.hpp"
 #include <climits>
 #include <iostream>
@@ -6,6 +11,7 @@
 #include <unordered_map>
 #include <vector>
 using namespace std;
+/* deconstructor for Actor */
 Actor::~Actor() {
     for (auto i = actor_map.begin(); i != actor_map.end(); ++i) {
         delete (i->second);

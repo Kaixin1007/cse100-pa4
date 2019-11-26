@@ -31,13 +31,13 @@
             <td class="headerValue">Code coverage</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">171</td>
+            <td class="headerCovTableEntry">179</td>
             <td class="headerCovTableEntry">181</td>
-            <td class="headerCovTableEntryHi">94.5 %</td>
+            <td class="headerCovTableEntryHi">98.9 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 19:37:28</td>
+            <td class="headerValue">2019-11-26 23:52:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">10</td>
@@ -56,9 +56,9 @@
 </td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">152</td>
+            <td class="headerCovTableEntry">161</td>
             <td class="headerCovTableEntry">240</td>
-            <td class="headerCovTableEntryLo">63.3 %</td>
+            <td class="headerCovTableEntryLo">67.1 %</td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -76,291 +76,297 @@
       <td>
 <pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>                :            : #include &quot;Actor.hpp&quot;</a>
-<span class="lineNum">       2 </span>                :            : #include &lt;climits&gt;
-<span class="lineNum">       3 </span>                :            : #include &lt;iostream&gt;
-<span class="lineNum">       4 </span>                :            : #include &lt;queue&gt;
-<span class="lineNum">       5 </span>                :            : #include &lt;string&gt;
-<span class="lineNum">       6 </span>                :            : #include &lt;unordered_map&gt;
-<a name="7"><span class="lineNum">       7 </span>                :            : #include &lt;vector&gt;</a>
-<span class="lineNum">       8 </span>                :            : using namespace std;
-<span class="lineNum">       9 </span>                :<span class="lineCov">          8 : Actor::~Actor() {</span>
-<span class="lineNum">      10 </span>        [<span class="branchCov" title="Branch 3 was taken 23 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]:<span class="lineCov">         27 :     for (auto i = actor_map.begin(); i != actor_map.end(); ++i) {</span>
-<span class="lineNum">      11 </span>        [<span class="branchCov" title="Branch 1 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         23 :         delete (i-&gt;second);</span>
-<span class="lineNum">      12 </span>                :            :     }
-<span class="lineNum">      13 </span>        [<span class="branchCov" title="Branch 3 was taken 22 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]:<span class="lineCov">         26 :     for (auto j = movie_map.begin(); j != movie_map.end(); ++j) {</span>
-<span class="lineNum">      14 </span>        [<span class="branchCov" title="Branch 1 was taken 22 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         22 :         delete (j-&gt;second);</span>
-<a name="15"><span class="lineNum">      15 </span>                :            :     }</a>
-<span class="lineNum">      16 </span>                :<span class="lineCov">          4 : }</span>
-<span class="lineNum">      17 </span>                :<span class="lineCov">          1 : void Actor::weightedPathfinder(string&amp; source, string&amp; target) {</span>
-<span class="lineNum">      18 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :     if (actor_map.find(source) == actor_map.end() ||</span>
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * @Descripttion: Actor file to finish Pathfinder, linkpredictor for PA4
+<span class="lineNum">       3 </span>                :            :  * @version: 1.0
+<span class="lineNum">       4 </span>                :            :  * @Author: Kaixin Lin
+<span class="lineNum">       5 </span>                :            :  */
+<span class="lineNum">       6 </span>                :            : #include &quot;Actor.hpp&quot;
+<span class="lineNum">       7 </span>                :            : #include &lt;climits&gt;
+<span class="lineNum">       8 </span>                :            : #include &lt;iostream&gt;
+<span class="lineNum">       9 </span>                :            : #include &lt;queue&gt;
+<span class="lineNum">      10 </span>                :            : #include &lt;string&gt;
+<span class="lineNum">      11 </span>                :            : #include &lt;unordered_map&gt;
+<span class="lineNum">      12 </span>                :            : #include &lt;vector&gt;
+<a name="13"><span class="lineNum">      13 </span>                :            : using namespace std;</a>
+<span class="lineNum">      14 </span>                :            : /* deconstructor for Actor */
+<span class="lineNum">      15 </span>                :<span class="lineCov">          8 : Actor::~Actor() {</span>
+<span class="lineNum">      16 </span>        [<span class="branchCov" title="Branch 3 was taken 1913 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]:<span class="lineCov">       1917 :     for (auto i = actor_map.begin(); i != actor_map.end(); ++i) {</span>
+<span class="lineNum">      17 </span>        [<span class="branchCov" title="Branch 1 was taken 1913 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       1913 :         delete (i-&gt;second);</span>
+<span class="lineNum">      18 </span>                :            :     }
+<span class="lineNum">      19 </span>        [<span class="branchCov" title="Branch 3 was taken 898 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]:<span class="lineCov">        902 :     for (auto j = movie_map.begin(); j != movie_map.end(); ++j) {</span>
+<span class="lineNum">      20 </span>        [<span class="branchCov" title="Branch 1 was taken 898 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        898 :         delete (j-&gt;second);</span>
+<a name="21"><span class="lineNum">      21 </span>                :            :     }</a>
+<span class="lineNum">      22 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">      23 </span>                :<span class="lineCov">          1 : void Actor::weightedPathfinder(string&amp; source, string&amp; target) {</span>
+<span class="lineNum">      24 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :     if (actor_map.find(source) == actor_map.end() ||</span>
 <span class="lineNum">         </span>  [<span class="branchCov" title="Branch 5 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span><span class="branchCov" title="Branch 8 was taken 1 time"> + </span>]
 <span class="lineNum">         </span>        [<span class="branchNoCov" title="Branch 9 was not taken"> - </span><span class="branchCov" title="Branch 10 was taken 1 time"> + </span>]
-<span class="lineNum">      19 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          1 :         actor_map.find(target) == actor_map.end())</span>
-<span class="lineNum">      20 </span>                :<span class="lineNoCov">          0 :         return;</span>
-<span class="lineNum">      21 </span>                :            :     // get source and target actor
-<span class="lineNum">      22 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* src = actor_map.find(source)-&gt;second;</span>
-<span class="lineNum">      23 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* dst = actor_map.find(target)-&gt;second;</span>
-<span class="lineNum">      24 </span>                :            : 
-<span class="lineNum">      25 </span>                :<span class="lineCov">          2 :     priority_queue&lt;ActorNode*, vector&lt;ActorNode*&gt;, ActorDisComp&gt; toExplore;</span>
-<span class="lineNum">      26 </span>                :<span class="lineCov">          1 :     bool Found = false;</span>
-<span class="lineNum">      27 </span>                :<span class="lineCov">          1 :     src-&gt;dis = 0;</span>
-<span class="lineNum">      28 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     toExplore.push(src);</span>
-<span class="lineNum">      29 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     while (!toExplore.empty()) {</span>
-<span class="lineNum">      30 </span>                :<span class="lineCov">          2 :         ActorNode* cur = toExplore.top();</span>
-<span class="lineNum">      31 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         toExplore.pop();</span>
-<span class="lineNum">      32 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         if (cur-&gt;name == target) {</span>
-<span class="lineNum">      33 </span>                :<span class="lineCov">          1 :             Found = true;</span>
-<span class="lineNum">      34 </span>                :<span class="lineCov">          1 :             break;</span>
-<span class="lineNum">      35 </span>                :            :         }
-<span class="lineNum">      36 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :         if (!cur-&gt;isDone) {</span>
-<span class="lineNum">      37 </span>                :<span class="lineCov">          1 :             cur-&gt;isDone = true;</span>
-<span class="lineNum">      38 </span>        [<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">          3 :             for (Edge edge : cur-&gt;edges) {</span>
-<span class="lineNum">      39 </span>                :<span class="lineCov">          2 :                 ActorNode* another =</span>
-<span class="lineNum">      40 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          2 :                     (cur == edge.actor1) ? edge.actor2 : edge.actor1;</span>
-<span class="lineNum">      41 </span>                :<span class="lineCov">          2 :                 unsigned int distance = cur-&gt;dis + edge.weight;</span>
-<span class="lineNum">      42 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                 if (distance &lt; another-&gt;dis) {</span>
-<span class="lineNum">      43 </span>                :<span class="lineCov">          2 :                     another-&gt;dis = distance;</span>
-<span class="lineNum">      44 </span>                :<span class="lineCov">          2 :                     another-&gt;preActor = cur;</span>
-<span class="lineNum">      45 </span>                :<span class="lineCov">          2 :                     another-&gt;preMovie = edge.movie;</span>
-<span class="lineNum">      46 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :                     toExplore.push(another);</span>
-<span class="lineNum">      47 </span>                :            :                 }
-<span class="lineNum">      48 </span>                :            :             }
-<span class="lineNum">      49 </span>                :            :         }
-<span class="lineNum">      50 </span>                :            :     }
-<span class="lineNum">      51 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     if (Found == true) {</span>
-<span class="lineNum">      52 </span>                :<span class="lineCov">          1 :         ActorNode* prev = dst;</span>
-<span class="lineNum">      53 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         while (prev != src) {</span>
-<span class="lineNum">      54 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :             result.push(make_pair(prev-&gt;name, prev-&gt;preMovie-&gt;name));</span>
-<span class="lineNum">      55 </span>                :<span class="lineCov">          1 :             prev = prev-&gt;preActor;</span>
-<span class="lineNum">      56 </span>                :            :         }
-<a name="57"><span class="lineNum">      57 </span>                :            :     }</a>
-<span class="lineNum">      58 </span>                :            : }
-<span class="lineNum">      59 </span>                :<span class="lineCov">          1 : void Actor::unweightedPathfinder(string&amp; source, string&amp; target) {</span>
-<span class="lineNum">      60 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :     if (actor_map.find(source) == actor_map.end() ||</span>
+<span class="lineNum">      25 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          1 :         actor_map.find(target) == actor_map.end())</span>
+<span class="lineNum">      26 </span>                :<span class="lineNoCov">          0 :         return;</span>
+<span class="lineNum">      27 </span>                :            :     // get source and target actor
+<span class="lineNum">      28 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* src = actor_map.find(source)-&gt;second;</span>
+<span class="lineNum">      29 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* dst = actor_map.find(target)-&gt;second;</span>
+<span class="lineNum">      30 </span>                :            : 
+<span class="lineNum">      31 </span>                :<span class="lineCov">          2 :     priority_queue&lt;ActorNode*, vector&lt;ActorNode*&gt;, ActorDisComp&gt; toExplore;</span>
+<span class="lineNum">      32 </span>                :<span class="lineCov">          1 :     bool Found = false;</span>
+<span class="lineNum">      33 </span>                :<span class="lineCov">          1 :     src-&gt;dis = 0;</span>
+<span class="lineNum">      34 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     toExplore.push(src);</span>
+<span class="lineNum">      35 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     while (!toExplore.empty()) {</span>
+<span class="lineNum">      36 </span>                :<span class="lineCov">          2 :         ActorNode* cur = toExplore.top();</span>
+<span class="lineNum">      37 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         toExplore.pop();</span>
+<span class="lineNum">      38 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         if (cur-&gt;name == target) {</span>
+<span class="lineNum">      39 </span>                :<span class="lineCov">          1 :             Found = true;</span>
+<span class="lineNum">      40 </span>                :<span class="lineCov">          1 :             break;</span>
+<span class="lineNum">      41 </span>                :            :         }
+<span class="lineNum">      42 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :         if (!cur-&gt;isDone) {</span>
+<span class="lineNum">      43 </span>                :<span class="lineCov">          1 :             cur-&gt;isDone = true;</span>
+<span class="lineNum">      44 </span>        [<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">          3 :             for (Edge edge : cur-&gt;edges) {</span>
+<span class="lineNum">      45 </span>                :<span class="lineCov">          2 :                 ActorNode* another =</span>
+<span class="lineNum">      46 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          2 :                     (cur == edge.actor1) ? edge.actor2 : edge.actor1;</span>
+<span class="lineNum">      47 </span>                :<span class="lineCov">          2 :                 unsigned int distance = cur-&gt;dis + edge.weight;</span>
+<span class="lineNum">      48 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                 if (distance &lt; another-&gt;dis) {</span>
+<span class="lineNum">      49 </span>                :<span class="lineCov">          2 :                     another-&gt;dis = distance;</span>
+<span class="lineNum">      50 </span>                :<span class="lineCov">          2 :                     another-&gt;preActor = cur;</span>
+<span class="lineNum">      51 </span>                :<span class="lineCov">          2 :                     another-&gt;preMovie = edge.movie;</span>
+<span class="lineNum">      52 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :                     toExplore.push(another);</span>
+<span class="lineNum">      53 </span>                :            :                 }
+<span class="lineNum">      54 </span>                :            :             }
+<span class="lineNum">      55 </span>                :            :         }
+<span class="lineNum">      56 </span>                :            :     }
+<span class="lineNum">      57 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     if (Found == true) {</span>
+<span class="lineNum">      58 </span>                :<span class="lineCov">          1 :         ActorNode* prev = dst;</span>
+<span class="lineNum">      59 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         while (prev != src) {</span>
+<span class="lineNum">      60 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :             result.push(make_pair(prev-&gt;name, prev-&gt;preMovie-&gt;name));</span>
+<span class="lineNum">      61 </span>                :<span class="lineCov">          1 :             prev = prev-&gt;preActor;</span>
+<span class="lineNum">      62 </span>                :            :         }
+<a name="63"><span class="lineNum">      63 </span>                :            :     }</a>
+<span class="lineNum">      64 </span>                :            : }
+<span class="lineNum">      65 </span>                :<span class="lineCov">          1 : void Actor::unweightedPathfinder(string&amp; source, string&amp; target) {</span>
+<span class="lineNum">      66 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :     if (actor_map.find(source) == actor_map.end() ||</span>
 <span class="lineNum">         </span>  [<span class="branchCov" title="Branch 5 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span><span class="branchCov" title="Branch 8 was taken 1 time"> + </span>]
 <span class="lineNum">         </span>        [<span class="branchNoCov" title="Branch 9 was not taken"> - </span><span class="branchCov" title="Branch 10 was taken 1 time"> + </span>]
-<span class="lineNum">      61 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          1 :         actor_map.find(target) == actor_map.end())</span>
-<span class="lineNum">      62 </span>                :<span class="lineNoCov">          0 :         return;</span>
-<span class="lineNum">      63 </span>                :            :     // get source and target actor
-<span class="lineNum">      64 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* src = actor_map.find(source)-&gt;second;</span>
-<span class="lineNum">      65 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* dst = actor_map.find(target)-&gt;second;</span>
-<span class="lineNum">      66 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     queue&lt;ActorNode*&gt; toExplore;</span>
-<span class="lineNum">      67 </span>                :<span class="lineCov">          1 :     bool Found = false;</span>
-<span class="lineNum">      68 </span>                :            : 
-<span class="lineNum">      69 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     toExplore.push(src);</span>
-<span class="lineNum">      70 </span>                :<span class="lineCov">          1 :     src-&gt;dis = 1;</span>
-<span class="lineNum">      71 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     while (!toExplore.empty()) {</span>
-<span class="lineNum">      72 </span>                :<span class="lineCov">          2 :         ActorNode* cur = toExplore.front();</span>
-<span class="lineNum">      73 </span>                :<span class="lineCov">          2 :         toExplore.pop();</span>
-<span class="lineNum">      74 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         if (cur-&gt;name == target) {</span>
-<span class="lineNum">      75 </span>                :<span class="lineCov">          1 :             Found = true;</span>
-<span class="lineNum">      76 </span>                :<span class="lineCov">          1 :             break;</span>
-<span class="lineNum">      77 </span>                :            :         }
-<span class="lineNum">      78 </span>                :            : 
-<span class="lineNum">      79 </span>        [<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         for (Edge edge : cur-&gt;edges) {</span>
-<span class="lineNum">      80 </span>                :<span class="lineCov">          1 :             ActorNode* another =</span>
-<span class="lineNum">      81 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                 (cur == edge.actor1) ? edge.actor2 : edge.actor1;</span>
-<span class="lineNum">      82 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :             if (another-&gt;dis == INT_MAX) {</span>
-<span class="lineNum">      83 </span>                :<span class="lineCov">          1 :                 another-&gt;dis = 1;</span>
-<span class="lineNum">      84 </span>                :<span class="lineCov">          1 :                 another-&gt;preActor = cur;</span>
-<span class="lineNum">      85 </span>                :<span class="lineCov">          1 :                 another-&gt;preMovie = edge.movie;</span>
-<span class="lineNum">      86 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :                 toExplore.push(another);</span>
-<span class="lineNum">      87 </span>                :            :             }
-<span class="lineNum">      88 </span>                :            :         }
-<span class="lineNum">      89 </span>                :            :     }
-<span class="lineNum">      90 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     if (Found == true) {</span>
-<span class="lineNum">      91 </span>                :<span class="lineCov">          1 :         ActorNode* prev = dst;</span>
-<span class="lineNum">      92 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         while (prev != src) {</span>
-<span class="lineNum">      93 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :             result.push(make_pair(prev-&gt;name, prev-&gt;preMovie-&gt;name));</span>
-<span class="lineNum">      94 </span>                :<span class="lineCov">          1 :             prev = prev-&gt;preActor;</span>
-<span class="lineNum">      95 </span>                :            :         }
-<a name="96"><span class="lineNum">      96 </span>                :            :     }</a>
-<span class="lineNum">      97 </span>                :            : }
-<span class="lineNum">      98 </span>                :<span class="lineCov">          1 : void Actor::clear() {</span>
-<span class="lineNum">      99 </span>[<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]:<span class="lineCov">          3 :     for (auto it : actor_map) {</span>
-<span class="lineNum">     100 </span>                :<span class="lineCov">          2 :         ActorNode* temp = it.second;</span>
-<span class="lineNum">     101 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         if (temp-&gt;dis != INT_MAX) {</span>
-<span class="lineNum">     102 </span>                :<span class="lineCov">          2 :             temp-&gt;dis = INT_MAX;</span>
-<span class="lineNum">     103 </span>                :<span class="lineCov">          2 :             temp-&gt;preActor = nullptr;</span>
-<span class="lineNum">     104 </span>                :<span class="lineCov">          2 :             temp-&gt;preMovie = nullptr;</span>
-<span class="lineNum">     105 </span>                :<span class="lineCov">          2 :             temp-&gt;priority = 0;</span>
-<span class="lineNum">     106 </span>                :<span class="lineCov">          2 :             temp-&gt;isDone = false;</span>
-<span class="lineNum">     107 </span>                :            :         }
-<span class="lineNum">     108 </span>                :            :     }
-<span class="lineNum">     109 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>]:<span class="lineCov">          2 :     while (!result.empty()) {</span>
-<span class="lineNum">     110 </span>                :<span class="lineCov">          1 :         result.pop();</span>
-<a name="111"><span class="lineNum">     111 </span>                :            :     }</a>
-<span class="lineNum">     112 </span>                :<span class="lineCov">          1 : }</span>
-<span class="lineNum">     113 </span>                :<span class="lineCov">          1 : void Actor::levelBFS(string&amp; source,</span>
-<span class="lineNum">     114 </span>                :            :                      unordered_map&lt;string, ActorNode*&gt;&amp; firstlevel,
-<span class="lineNum">     115 </span>                :            :                      unordered_map&lt;string, ActorNode*&gt;&amp; secondlevel) {
-<span class="lineNum">     116 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     queue&lt;ActorNode*&gt; toExplore;</span>
-<span class="lineNum">     117 </span>[<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchCov" title="Branch 6 was taken 1 time"> + </span>]:<span class="lineCov">          1 :     if (actor_map.find(source) == actor_map.end()) return;</span>
-<span class="lineNum">     118 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* src = actor_map.find(source)-&gt;second;</span>
-<span class="lineNum">     119 </span>                :<span class="lineCov">          1 :     src-&gt;dis = 1;</span>
-<span class="lineNum">     120 </span>                :            :     // 1st level BFS
-<span class="lineNum">     121 </span>        [<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">          3 :     for (Edge edge : src-&gt;edges) {</span>
-<span class="lineNum">     122 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          2 :         ActorNode* another = (src == edge.actor1) ? edge.actor2 : edge.actor1;</span>
-<span class="lineNum">     123 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :         firstlevel.insert(make_pair(another-&gt;name, another));</span>
-<span class="lineNum">     124 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         toExplore.push(another);</span>
-<span class="lineNum">     125 </span>                :<span class="lineCov">          2 :         another-&gt;dis = 1;</span>
-<span class="lineNum">     126 </span>                :            :     }
-<span class="lineNum">     127 </span>                :            :     // 2rd level BFS
-<span class="lineNum">     128 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          3 :     while (!toExplore.empty()) {</span>
-<span class="lineNum">     129 </span>                :<span class="lineCov">          2 :         ActorNode* cur = toExplore.front();</span>
-<span class="lineNum">     130 </span>                :<span class="lineCov">          2 :         toExplore.pop();</span>
-<span class="lineNum">     131 </span>        [<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         10 :         for (Edge edge : cur-&gt;edges) {</span>
-<span class="lineNum">     132 </span>                :<span class="lineCov">          8 :             ActorNode* another =</span>
-<span class="lineNum">     133 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          8 :                 (cur == edge.actor1) ? edge.actor2 : edge.actor1;</span>
-<span class="lineNum">     134 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">          8 :             if (another-&gt;dis == INT_MAX)</span>
-<span class="lineNum">     135 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :                 secondlevel.insert(make_pair(another-&gt;name, another));</span>
-<span class="lineNum">     136 </span>                :            :         }
-<span class="lineNum">     137 </span>                :            :     }
-<a name="138"><span class="lineNum">     138 </span>                :            : }</a>
-<span class="lineNum">     139 </span>                :            : 
-<span class="lineNum">     140 </span>                :<span class="lineCov">          2 : void Actor::outputHelper(my_quene&amp; quene_res, vector&lt;vector&lt;string&gt;&gt;&amp; result) {</span>
-<span class="lineNum">     141 </span>                :<span class="lineCov">          4 :     vector&lt;string&gt; collaborated;</span>
-<span class="lineNum">     142 </span>                :<span class="lineCov">          2 :     int size = quene_res.size();</span>
-<span class="lineNum">     143 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          4 :     stack&lt;string&gt; temp1;</span>
-<span class="lineNum">     144 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          6 :     for (int i = size - 1; i &gt;= 0; i--) {</span>
-<span class="lineNum">     145 </span>        [<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :         temp1.push(quene_res.top()-&gt;name);</span>
-<span class="lineNum">     146 </span>        [<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          4 :         quene_res.pop();</span>
-<span class="lineNum">     147 </span>                :            :     }
-<span class="lineNum">     148 </span>        [<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>]:<span class="lineCov">          6 :     while (!temp1.empty()) {</span>
-<span class="lineNum">     149 </span>        [<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :         collaborated.push_back(temp1.top());</span>
-<span class="lineNum">     150 </span>                :<span class="lineCov">          4 :         temp1.pop();</span>
-<span class="lineNum">     151 </span>                :            :     }
-<a name="152"><span class="lineNum">     152 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     result.push_back(collaborated);</span></a>
-<span class="lineNum">     153 </span>                :<span class="lineCov">          2 : }</span>
-<span class="lineNum">     154 </span>                :<span class="lineCov">          4 : void Actor::updatePQ(ActorNode*&amp; candiate, my_quene&amp; quene_res) {</span>
-<span class="lineNum">     155 </span>                :<span class="lineCov">          4 :     bool update = false;</span>
-<span class="lineNum">     156 </span>        [<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          4 :     if (quene_res.size() &lt; OUTPUT_NUMBER) {</span>
-<span class="lineNum">     157 </span>                :<span class="lineCov">          4 :         quene_res.push(candiate);</span>
-<span class="lineNum">     158 </span>                :            :     } else {
-<span class="lineNum">     159 </span>                :<span class="lineNoCov">          0 :         ActorNode* temp = quene_res.top();</span>
-<span class="lineNum">     160 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if (candiate-&gt;priority &gt; temp-&gt;priority) {</span>
-<span class="lineNum">     161 </span>                :<span class="lineNoCov">          0 :             update = true;</span>
-<span class="lineNum">     162 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         } else if (candiate-&gt;priority == temp-&gt;priority) {</span>
-<span class="lineNum">     163 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :             if (candiate-&gt;name &lt; temp-&gt;name) update = true;</span>
-<span class="lineNum">     164 </span>                :            :         }
-<span class="lineNum">     165 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if (update) {</span>
-<span class="lineNum">     166 </span>                :<span class="lineNoCov">          0 :             quene_res.pop();</span>
-<span class="lineNum">     167 </span>                :<span class="lineNoCov">          0 :             quene_res.push(candiate);</span>
-<span class="lineNum">     168 </span>                :            :         }
-<a name="169"><span class="lineNum">     169 </span>                :            :     }</a>
-<span class="lineNum">     170 </span>                :<span class="lineCov">          4 : }</span>
-<span class="lineNum">     171 </span>                :<span class="lineCov">          1 : void Actor::linkpredictor(vector&lt;string&gt;&amp; input, vector&lt;vector&lt;string&gt;&gt;&amp; res1,</span>
-<span class="lineNum">     172 </span>                :            :                           vector&lt;vector&lt;string&gt;&gt;&amp; res2) {
-<span class="lineNum">     173 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     string source;</span>
-<span class="lineNum">     174 </span>                :<span class="lineCov">          2 :     my_quene collaborated_res, uncollaborated_res;</span>
-<span class="lineNum">     175 </span>                :<span class="lineCov">          1 :     int commonCast = 0;</span>
-<span class="lineNum">     176 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     queue&lt;ActorNode*&gt; toExplore;</span>
-<span class="lineNum">     177 </span>[<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]:<span class="lineCov">          2 :     for (auto it : input) {</span>
-<span class="lineNum">     178 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         source = it;</span>
-<span class="lineNum">     179 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :         unordered_map&lt;string, ActorNode*&gt; firstlevel;</span>
-<span class="lineNum">     180 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :         unordered_map&lt;string, ActorNode*&gt; secondlevel;</span>
-<span class="lineNum">     181 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         levelBFS(source, firstlevel, secondlevel);</span>
-<span class="lineNum">     182 </span>[<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchCov" title="Branch 6 was taken 1 time"> + </span>]:<span class="lineCov">          1 :         if (actor_map.find(source) == actor_map.end()) continue;</span>
-<span class="lineNum">     183 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         ActorNode* src = actor_map.find(source)-&gt;second;</span>
-<span class="lineNum">     184 </span>                :            : 
-<span class="lineNum">     185 </span>[<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]:<span class="lineCov">          3 :         for (auto it : firstlevel) {  // node == candiate</span>
-<span class="lineNum">     186 </span>                :<span class="lineCov">          2 :             ActorNode* candiate = it.second;</span>
-<span class="lineNum">     187 </span>                :            :             // collaboratedlinkpredictor(firstlevel, candiate, src);
-<span class="lineNum">     188 </span>                :            : 
-<span class="lineNum">     189 </span>        [<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         10 :             for (Edge CandiateEdge : candiate-&gt;edges) {</span>
-<span class="lineNum">     190 </span>                :            :                 // cast point
-<span class="lineNum">     191 </span>                :<span class="lineCov">         16 :                 ActorNode* another = (candiate == CandiateEdge.actor1)</span>
-<span class="lineNum">     192 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          8 :                                          ? CandiateEdge.actor2</span>
-<span class="lineNum">     193 </span>                :            :                                          : CandiateEdge.actor1;
+<span class="lineNum">      67 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          1 :         actor_map.find(target) == actor_map.end())</span>
+<span class="lineNum">      68 </span>                :<span class="lineNoCov">          0 :         return;</span>
+<span class="lineNum">      69 </span>                :            :     // get source and target actor
+<span class="lineNum">      70 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* src = actor_map.find(source)-&gt;second;</span>
+<span class="lineNum">      71 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* dst = actor_map.find(target)-&gt;second;</span>
+<span class="lineNum">      72 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     queue&lt;ActorNode*&gt; toExplore;</span>
+<span class="lineNum">      73 </span>                :<span class="lineCov">          1 :     bool Found = false;</span>
+<span class="lineNum">      74 </span>                :            : 
+<span class="lineNum">      75 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     toExplore.push(src);</span>
+<span class="lineNum">      76 </span>                :<span class="lineCov">          1 :     src-&gt;dis = 1;</span>
+<span class="lineNum">      77 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     while (!toExplore.empty()) {</span>
+<span class="lineNum">      78 </span>                :<span class="lineCov">          2 :         ActorNode* cur = toExplore.front();</span>
+<span class="lineNum">      79 </span>                :<span class="lineCov">          2 :         toExplore.pop();</span>
+<span class="lineNum">      80 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         if (cur-&gt;name == target) {</span>
+<span class="lineNum">      81 </span>                :<span class="lineCov">          1 :             Found = true;</span>
+<span class="lineNum">      82 </span>                :<span class="lineCov">          1 :             break;</span>
+<span class="lineNum">      83 </span>                :            :         }
+<span class="lineNum">      84 </span>                :            : 
+<span class="lineNum">      85 </span>        [<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         for (Edge edge : cur-&gt;edges) {</span>
+<span class="lineNum">      86 </span>                :<span class="lineCov">          1 :             ActorNode* another =</span>
+<span class="lineNum">      87 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                 (cur == edge.actor1) ? edge.actor2 : edge.actor1;</span>
+<span class="lineNum">      88 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :             if (another-&gt;dis == INT_MAX) {</span>
+<span class="lineNum">      89 </span>                :<span class="lineCov">          1 :                 another-&gt;dis = 1;</span>
+<span class="lineNum">      90 </span>                :<span class="lineCov">          1 :                 another-&gt;preActor = cur;</span>
+<span class="lineNum">      91 </span>                :<span class="lineCov">          1 :                 another-&gt;preMovie = edge.movie;</span>
+<span class="lineNum">      92 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :                 toExplore.push(another);</span>
+<span class="lineNum">      93 </span>                :            :             }
+<span class="lineNum">      94 </span>                :            :         }
+<span class="lineNum">      95 </span>                :            :     }
+<span class="lineNum">      96 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     if (Found == true) {</span>
+<span class="lineNum">      97 </span>                :<span class="lineCov">          1 :         ActorNode* prev = dst;</span>
+<span class="lineNum">      98 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         while (prev != src) {</span>
+<span class="lineNum">      99 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :             result.push(make_pair(prev-&gt;name, prev-&gt;preMovie-&gt;name));</span>
+<span class="lineNum">     100 </span>                :<span class="lineCov">          1 :             prev = prev-&gt;preActor;</span>
+<span class="lineNum">     101 </span>                :            :         }
+<a name="102"><span class="lineNum">     102 </span>                :            :     }</a>
+<span class="lineNum">     103 </span>                :            : }
+<span class="lineNum">     104 </span>                :<span class="lineCov">          1 : void Actor::clear() {</span>
+<span class="lineNum">     105 </span>[<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]:<span class="lineCov">          3 :     for (auto it : actor_map) {</span>
+<span class="lineNum">     106 </span>                :<span class="lineCov">          2 :         ActorNode* temp = it.second;</span>
+<span class="lineNum">     107 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         if (temp-&gt;dis != INT_MAX) {</span>
+<span class="lineNum">     108 </span>                :<span class="lineCov">          2 :             temp-&gt;dis = INT_MAX;</span>
+<span class="lineNum">     109 </span>                :<span class="lineCov">          2 :             temp-&gt;preActor = nullptr;</span>
+<span class="lineNum">     110 </span>                :<span class="lineCov">          2 :             temp-&gt;preMovie = nullptr;</span>
+<span class="lineNum">     111 </span>                :<span class="lineCov">          2 :             temp-&gt;priority = 0;</span>
+<span class="lineNum">     112 </span>                :<span class="lineCov">          2 :             temp-&gt;isDone = false;</span>
+<span class="lineNum">     113 </span>                :            :         }
+<span class="lineNum">     114 </span>                :            :     }
+<span class="lineNum">     115 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>]:<span class="lineCov">          2 :     while (!result.empty()) {</span>
+<span class="lineNum">     116 </span>                :<span class="lineCov">          1 :         result.pop();</span>
+<a name="117"><span class="lineNum">     117 </span>                :            :     }</a>
+<span class="lineNum">     118 </span>                :<span class="lineCov">          1 : }</span>
+<span class="lineNum">     119 </span>                :<span class="lineCov">          1 : void Actor::levelBFS(string&amp; source,</span>
+<span class="lineNum">     120 </span>                :            :                      unordered_map&lt;string, ActorNode*&gt;&amp; firstlevel,
+<span class="lineNum">     121 </span>                :            :                      unordered_map&lt;string, ActorNode*&gt;&amp; secondlevel) {
+<span class="lineNum">     122 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     queue&lt;ActorNode*&gt; toExplore;</span>
+<span class="lineNum">     123 </span>[<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchCov" title="Branch 6 was taken 1 time"> + </span>]:<span class="lineCov">          1 :     if (actor_map.find(source) == actor_map.end()) return;</span>
+<span class="lineNum">     124 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :     ActorNode* src = actor_map.find(source)-&gt;second;</span>
+<span class="lineNum">     125 </span>                :<span class="lineCov">          1 :     src-&gt;dis = 1;</span>
+<span class="lineNum">     126 </span>                :            :     // 1st level BFS
+<span class="lineNum">     127 </span>        [<span class="branchCov" title="Branch 3 was taken 21 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">         22 :     for (Edge edge : src-&gt;edges) {</span>
+<span class="lineNum">     128 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 21 times"> + </span>]:<span class="lineCov">         21 :         ActorNode* another = (src == edge.actor1) ? edge.actor2 : edge.actor1;</span>
+<span class="lineNum">     129 </span>[<span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 21 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         21 :         firstlevel.insert(make_pair(another-&gt;name, another));</span>
+<span class="lineNum">     130 </span>        [<span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         21 :         toExplore.push(another);</span>
+<span class="lineNum">     131 </span>                :<span class="lineCov">         21 :         another-&gt;dis = 1;</span>
+<span class="lineNum">     132 </span>                :            :     }
+<span class="lineNum">     133 </span>                :            :     // 2rd level BFS
+<span class="lineNum">     134 </span>[<span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         22 :     while (!toExplore.empty()) {</span>
+<span class="lineNum">     135 </span>                :<span class="lineCov">         21 :         ActorNode* cur = toExplore.front();</span>
+<span class="lineNum">     136 </span>                :<span class="lineCov">         21 :         toExplore.pop();</span>
+<span class="lineNum">     137 </span>        [<span class="branchCov" title="Branch 3 was taken 271 times"> + </span><span class="branchCov" title="Branch 4 was taken 21 times"> + </span>]:<span class="lineCov">        292 :         for (Edge edge : cur-&gt;edges) {</span>
+<span class="lineNum">     138 </span>                :<span class="lineCov">        271 :             ActorNode* another =</span>
+<span class="lineNum">     139 </span>        [<span class="branchCov" title="Branch 0 was taken 44 times"> + </span><span class="branchCov" title="Branch 1 was taken 227 times"> + </span>]:<span class="lineCov">        271 :                 (cur == edge.actor1) ? edge.actor2 : edge.actor1;</span>
+<span class="lineNum">     140 </span>        [<span class="branchCov" title="Branch 0 was taken 206 times"> + </span><span class="branchCov" title="Branch 1 was taken 65 times"> + </span>]:<span class="lineCov">        271 :             if (another-&gt;dis == INT_MAX)</span>
+<span class="lineNum">     141 </span>[<span class="branchCov" title="Branch 1 was taken 206 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 206 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        206 :                 secondlevel.insert(make_pair(another-&gt;name, another));</span>
+<span class="lineNum">     142 </span>                :            :         }
+<span class="lineNum">     143 </span>                :            :     }
+<a name="144"><span class="lineNum">     144 </span>                :            : }</a>
+<span class="lineNum">     145 </span>                :            : 
+<span class="lineNum">     146 </span>                :<span class="lineCov">          2 : void Actor::outputHelper(my_quene&amp; quene_res, vector&lt;vector&lt;string&gt;&gt;&amp; result) {</span>
+<span class="lineNum">     147 </span>                :<span class="lineCov">          4 :     vector&lt;string&gt; collaborated;</span>
+<span class="lineNum">     148 </span>                :<span class="lineCov">          2 :     int size = quene_res.size();</span>
+<span class="lineNum">     149 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          4 :     stack&lt;string&gt; temp1;</span>
+<span class="lineNum">     150 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         10 :     for (int i = size - 1; i &gt;= 0; i--) {</span>
+<span class="lineNum">     151 </span>        [<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :         temp1.push(quene_res.top()-&gt;name);</span>
+<span class="lineNum">     152 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         quene_res.pop();</span>
+<span class="lineNum">     153 </span>                :            :     }
+<span class="lineNum">     154 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>]:<span class="lineCov">         10 :     while (!temp1.empty()) {</span>
+<span class="lineNum">     155 </span>        [<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :         collaborated.push_back(temp1.top());</span>
+<span class="lineNum">     156 </span>                :<span class="lineCov">          8 :         temp1.pop();</span>
+<span class="lineNum">     157 </span>                :            :     }
+<a name="158"><span class="lineNum">     158 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     result.push_back(collaborated);</span></a>
+<span class="lineNum">     159 </span>                :<span class="lineCov">          2 : }</span>
+<span class="lineNum">     160 </span>                :<span class="lineCov">        213 : void Actor::updatePQ(ActorNode*&amp; candiate, my_quene&amp; quene_res) {</span>
+<span class="lineNum">     161 </span>                :<span class="lineCov">        213 :     bool update = false;</span>
+<span class="lineNum">     162 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchCov" title="Branch 2 was taken 205 times"> + </span>]:<span class="lineCov">        213 :     if (quene_res.size() &lt; OUTPUT_NUMBER) {</span>
+<span class="lineNum">     163 </span>                :<span class="lineCov">          8 :         quene_res.push(candiate);</span>
+<span class="lineNum">     164 </span>                :            :     } else {
+<span class="lineNum">     165 </span>                :<span class="lineCov">        205 :         ActorNode* temp = quene_res.top();</span>
+<span class="lineNum">     166 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 200 times"> + </span>]:<span class="lineCov">        205 :         if (candiate-&gt;priority &gt; temp-&gt;priority) {</span>
+<span class="lineNum">     167 </span>                :<span class="lineCov">          5 :             update = true;</span>
+<span class="lineNum">     168 </span>        [<span class="branchCov" title="Branch 0 was taken 122 times"> + </span><span class="branchCov" title="Branch 1 was taken 78 times"> + </span>]:<span class="lineCov">        200 :         } else if (candiate-&gt;priority == temp-&gt;priority) {</span>
+<span class="lineNum">     169 </span>        [<span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchCov" title="Branch 2 was taken 101 times"> + </span>]:<span class="lineCov">        122 :             if (candiate-&gt;name &lt; temp-&gt;name) update = true;</span>
+<span class="lineNum">     170 </span>                :            :         }
+<span class="lineNum">     171 </span>        [<span class="branchCov" title="Branch 0 was taken 26 times"> + </span><span class="branchCov" title="Branch 1 was taken 179 times"> + </span>]:<span class="lineCov">        205 :         if (update) {</span>
+<span class="lineNum">     172 </span>                :<span class="lineCov">         26 :             quene_res.pop();</span>
+<span class="lineNum">     173 </span>                :<span class="lineCov">         26 :             quene_res.push(candiate);</span>
+<span class="lineNum">     174 </span>                :            :         }
+<a name="175"><span class="lineNum">     175 </span>                :            :     }</a>
+<span class="lineNum">     176 </span>                :<span class="lineCov">        213 : }</span>
+<span class="lineNum">     177 </span>                :<span class="lineCov">          1 : void Actor::linkpredictor(vector&lt;string&gt;&amp; input, vector&lt;vector&lt;string&gt;&gt;&amp; res1,</span>
+<span class="lineNum">     178 </span>                :            :                           vector&lt;vector&lt;string&gt;&gt;&amp; res2) {
+<span class="lineNum">     179 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     string source;</span>
+<span class="lineNum">     180 </span>                :<span class="lineCov">          2 :     my_quene collaborated_res, uncollaborated_res;</span>
+<span class="lineNum">     181 </span>                :<span class="lineCov">          1 :     int commonCast = 0;</span>
+<span class="lineNum">     182 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     queue&lt;ActorNode*&gt; toExplore;</span>
+<span class="lineNum">     183 </span>[<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]:<span class="lineCov">          2 :     for (auto it : input) {</span>
+<span class="lineNum">     184 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         source = it;</span>
+<span class="lineNum">     185 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :         unordered_map&lt;string, ActorNode*&gt; firstlevel;</span>
+<span class="lineNum">     186 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :         unordered_map&lt;string, ActorNode*&gt; secondlevel;</span>
+<span class="lineNum">     187 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         levelBFS(source, firstlevel, secondlevel);</span>
+<span class="lineNum">     188 </span>[<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchCov" title="Branch 6 was taken 1 time"> + </span>]:<span class="lineCov">          1 :         if (actor_map.find(source) == actor_map.end()) continue;</span>
+<span class="lineNum">     189 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         ActorNode* src = actor_map.find(source)-&gt;second;</span>
+<span class="lineNum">     190 </span>                :            : 
+<span class="lineNum">     191 </span>[<span class="branchCov" title="Branch 3 was taken 21 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 21 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]:<span class="lineCov">         22 :         for (auto it : firstlevel) {  // node == candiate</span>
+<span class="lineNum">     192 </span>                :<span class="lineCov">         21 :             ActorNode* candiate = it.second;</span>
+<span class="lineNum">     193 </span>                :            :             // collaboratedlinkpredictor(firstlevel, candiate, src);
 <span class="lineNum">     194 </span>                :            : 
-<span class="lineNum">     195 </span>                :            :                 //在同一层
-<span class="lineNum">     196 </span>[<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 4 times"> + </span><span class="branchCov" title="Branch 6 was taken 4 times"> + </span>]:<span class="lineCov">          8 :                 if (firstlevel.find(another-&gt;name) != firstlevel.end()) {</span>
-<span class="lineNum">     197 </span>                :            :                     ActorNode* castPoint =
-<span class="lineNum">     198 </span>        [<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          4 :                         firstlevel.find(another-&gt;name)-&gt;second;</span>
-<span class="lineNum">     199 </span>        [<span class="branchCov" title="Branch 3 was taken 16 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]:<span class="lineCov">         20 :                     for (Edge e : castPoint-&gt;edges) {</span>
-<span class="lineNum">     200 </span>                :<span class="lineCov">         16 :                         ActorNode* anothercastPoint =</span>
-<span class="lineNum">     201 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 8 times"> + </span>]:<span class="lineCov">         16 :                             (castPoint == e.actor1) ? e.actor2 : e.actor1;</span>
-<span class="lineNum">     202 </span>                :            :                         // 另一个是source 则说明有一个邻居
-<span class="lineNum">     203 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 12 times"> + </span>]:<span class="lineCov">         16 :                         if (anothercastPoint == src) {</span>
-<span class="lineNum">     204 </span>                :<span class="lineCov">          4 :                             commonCast++;</span>
-<span class="lineNum">     205 </span>                :            :                         }
-<span class="lineNum">     206 </span>                :            :                     }
-<span class="lineNum">     207 </span>                :<span class="lineCov">          4 :                     candiate-&gt;priority += commonCast;</span>
-<span class="lineNum">     208 </span>                :            :                 }
-<span class="lineNum">     209 </span>                :<span class="lineCov">          8 :                 commonCast = 0;</span>
-<span class="lineNum">     210 </span>                :            :             }
-<span class="lineNum">     211 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :             updatePQ(candiate, collaborated_res);</span>
-<span class="lineNum">     212 </span>                :            :         }
-<span class="lineNum">     213 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         outputHelper(collaborated_res, res1);</span>
-<span class="lineNum">     214 </span>                :            :         //------------------------
-<span class="lineNum">     215 </span>                :<span class="lineCov">          1 :         src-&gt;dis = INT_MAX;</span>
-<span class="lineNum">     216 </span>        [<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">          3 :         for (Edge edge : src-&gt;edges) {</span>
-<span class="lineNum">     217 </span>                :<span class="lineCov">          2 :             ActorNode* another =</span>
-<span class="lineNum">     218 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          2 :                 (src == edge.actor1) ? edge.actor2 : edge.actor1;</span>
-<span class="lineNum">     219 </span>                :<span class="lineCov">          2 :             another-&gt;priority = 0;</span>
-<span class="lineNum">     220 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :             toExplore.push(another);</span>
-<span class="lineNum">     221 </span>                :<span class="lineCov">          2 :             another-&gt;dis = INT_MAX;</span>
-<span class="lineNum">     222 </span>                :            :         }
-<span class="lineNum">     223 </span>                :            :         //--------------------------
-<span class="lineNum">     224 </span>[<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]:<span class="lineCov">          3 :         for (auto it : secondlevel) {</span>
-<span class="lineNum">     225 </span>                :<span class="lineCov">          2 :             ActorNode* candiate = it.second;</span>
-<span class="lineNum">     226 </span>        [<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">          6 :             for (Edge CandiateEdge : candiate-&gt;edges) {</span>
-<span class="lineNum">     227 </span>                :            :                 // cast point
-<span class="lineNum">     228 </span>                :<span class="lineCov">          8 :                 ActorNode* another = (candiate == CandiateEdge.actor1)</span>
-<span class="lineNum">     229 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          4 :                                          ? CandiateEdge.actor2</span>
-<span class="lineNum">     230 </span>                :            :                                          : CandiateEdge.actor1;
-<span class="lineNum">     231 </span>                :            :                 //在 1st level
-<span class="lineNum">     232 </span>[<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 2 times"> + </span><span class="branchCov" title="Branch 6 was taken 2 times"> + </span>]:<span class="lineCov">          4 :                 if (firstlevel.find(another-&gt;name) != firstlevel.end()) {</span>
-<span class="lineNum">     233 </span>                :            :                     ActorNode* castPoint =
-<span class="lineNum">     234 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :                         firstlevel.find(another-&gt;name)-&gt;second;</span>
-<span class="lineNum">     235 </span>        [<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         10 :                     for (Edge e : castPoint-&gt;edges) {</span>
-<span class="lineNum">     236 </span>                :<span class="lineCov">          8 :                         ActorNode* anothercastPoint =</span>
-<span class="lineNum">     237 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          8 :                             (castPoint == e.actor1) ? e.actor2 : e.actor1;</span>
-<span class="lineNum">     238 </span>                :            :                         // 另一个是source 则说明有一个邻居
-<span class="lineNum">     239 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">          8 :                         if (anothercastPoint == src) commonCast++;</span>
-<span class="lineNum">     240 </span>                :            :                     }
-<span class="lineNum">     241 </span>                :<span class="lineCov">          2 :                     candiate-&gt;priority += commonCast;</span>
-<span class="lineNum">     242 </span>                :            :                 }
-<span class="lineNum">     243 </span>                :<span class="lineCov">          4 :                 commonCast = 0;</span>
-<span class="lineNum">     244 </span>                :            :             }
-<span class="lineNum">     245 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :             updatePQ(candiate, uncollaborated_res);</span>
-<span class="lineNum">     246 </span>                :            :         }
-<span class="lineNum">     247 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         outputHelper(uncollaborated_res, res2);</span>
-<span class="lineNum">     248 </span>                :            : 
-<span class="lineNum">     249 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          3 :         while (!toExplore.empty()) {</span>
-<span class="lineNum">     250 </span>                :<span class="lineCov">          2 :             ActorNode* cur = toExplore.front();</span>
-<span class="lineNum">     251 </span>                :<span class="lineCov">          2 :             toExplore.pop();</span>
-<span class="lineNum">     252 </span>        [<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         10 :             for (Edge edge : cur-&gt;edges) {</span>
-<span class="lineNum">     253 </span>                :<span class="lineCov">          8 :                 ActorNode* another =</span>
-<span class="lineNum">     254 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          8 :                     (cur == edge.actor1) ? edge.actor2 : edge.actor1;</span>
-<span class="lineNum">     255 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 8 times"> + </span>]:<span class="lineCov">          8 :                 if (another-&gt;dis != INT_MAX) another-&gt;dis = INT_MAX;</span>
-<span class="lineNum">     256 </span>                :<span class="lineCov">          8 :                 another-&gt;priority = 0;</span>
-<span class="lineNum">     257 </span>                :            :             }
-<a name="258"><span class="lineNum">     258 </span>                :            :         }</a>
-<span class="lineNum">     259 </span>                :            :     }
-<span class="lineNum">     260 </span>[<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         17 : }</span>
-<span class="lineNum">     261 </span>                :            : 
-<span class="lineNum">     262 </span>                :            : // void Actor::clearPriority(string source) {
-<span class="lineNum">     263 </span>                :            : //     ActorNode* src = actor_map.find(source)-&gt;second;
-<span class="lineNum">     264 </span>                :            : //     src-&gt;dis = INT_MAX;
-<span class="lineNum">     265 </span>                :            : //     queue&lt;ActorNode*&gt; toExplore;
-<span class="lineNum">     266 </span>                :            : //     for (Edge edge : src-&gt;edges) {
-<span class="lineNum">     267 </span>                :            : //         ActorNode* another = (src == edge.actor1) ? edge.actor2 :
-<span class="lineNum">     268 </span>                :            : //         edge.actor1; another-&gt;priority = 0; toExplore.push(another);
-<span class="lineNum">     269 </span>                :            : //         another-&gt;dis = INT_MAX;
-<span class="lineNum">     270 </span>                :            : //     }
-<span class="lineNum">     271 </span>                :            : //     while (!toExplore.empty()) {
-<span class="lineNum">     272 </span>                :            : //         ActorNode* cur = toExplore.front();
-<span class="lineNum">     273 </span>                :            : //         toExplore.pop();
-<span class="lineNum">     274 </span>                :            : //         for (Edge edge : cur-&gt;edges) {
-<span class="lineNum">     275 </span>                :            : //             ActorNode* another =
-<span class="lineNum">     276 </span>                :            : //                 (cur == edge.actor1) ? edge.actor2 : edge.actor1;
-<span class="lineNum">     277 </span>                :            : //             if (another-&gt;dis != INT_MAX) another-&gt;dis = INT_MAX;
-<span class="lineNum">     278 </span>                :            : //             another-&gt;priority = 0;
-<span class="lineNum">     279 </span>                :            : //         }
-<span class="lineNum">     280 </span>                :            : //     }
-<span class="lineNum">     281 </span>                :            : // }
+<span class="lineNum">     195 </span>        [<span class="branchCov" title="Branch 3 was taken 271 times"> + </span><span class="branchCov" title="Branch 4 was taken 21 times"> + </span>]:<span class="lineCov">        292 :             for (Edge CandiateEdge : candiate-&gt;edges) {</span>
+<span class="lineNum">     196 </span>                :            :                 // cast point
+<span class="lineNum">     197 </span>                :<span class="lineCov">        542 :                 ActorNode* another = (candiate == CandiateEdge.actor1)</span>
+<span class="lineNum">     198 </span>        [<span class="branchCov" title="Branch 0 was taken 44 times"> + </span><span class="branchCov" title="Branch 1 was taken 227 times"> + </span>]:<span class="lineCov">        271 :                                          ? CandiateEdge.actor2</span>
+<span class="lineNum">     199 </span>                :            :                                          : CandiateEdge.actor1;
+<span class="lineNum">     200 </span>                :            : 
+<span class="lineNum">     201 </span>                :            :                 //在同一层
+<span class="lineNum">     202 </span>[<span class="branchCov" title="Branch 2 was taken 271 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 44 times"> + </span><span class="branchCov" title="Branch 6 was taken 227 times"> + </span>]:<span class="lineCov">        271 :                 if (firstlevel.find(another-&gt;name) != firstlevel.end()) {</span>
+<span class="lineNum">     203 </span>                :            :                     ActorNode* castPoint =
+<span class="lineNum">     204 </span>        [<span class="branchCov" title="Branch 1 was taken 44 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         44 :                         firstlevel.find(another-&gt;name)-&gt;second;</span>
+<span class="lineNum">     205 </span>        [<span class="branchCov" title="Branch 3 was taken 586 times"> + </span><span class="branchCov" title="Branch 4 was taken 44 times"> + </span>]:<span class="lineCov">        630 :                     for (Edge e : castPoint-&gt;edges) {</span>
+<span class="lineNum">     206 </span>                :<span class="lineCov">        586 :                         ActorNode* anothercastPoint =</span>
+<span class="lineNum">     207 </span>        [<span class="branchCov" title="Branch 0 was taken 96 times"> + </span><span class="branchCov" title="Branch 1 was taken 490 times"> + </span>]:<span class="lineCov">        586 :                             (castPoint == e.actor1) ? e.actor2 : e.actor1;</span>
+<span class="lineNum">     208 </span>                :            :                         // 另一个是source 则说明有一个邻居
+<span class="lineNum">     209 </span>        [<span class="branchCov" title="Branch 0 was taken 44 times"> + </span><span class="branchCov" title="Branch 1 was taken 542 times"> + </span>]:<span class="lineCov">        586 :                         if (anothercastPoint == src) {</span>
+<span class="lineNum">     210 </span>                :<span class="lineCov">         44 :                             commonCast++;</span>
+<span class="lineNum">     211 </span>                :            :                         }
+<span class="lineNum">     212 </span>                :            :                     }
+<span class="lineNum">     213 </span>                :<span class="lineCov">         44 :                     candiate-&gt;priority += commonCast;</span>
+<span class="lineNum">     214 </span>                :            :                 }
+<span class="lineNum">     215 </span>                :<span class="lineCov">        271 :                 commonCast = 0;</span>
+<span class="lineNum">     216 </span>                :            :             }
+<span class="lineNum">     217 </span>        [<span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         21 :             updatePQ(candiate, collaborated_res);</span>
+<span class="lineNum">     218 </span>                :            :         }
+<span class="lineNum">     219 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         outputHelper(collaborated_res, res1);</span>
+<span class="lineNum">     220 </span>                :            :         //------------------------
+<span class="lineNum">     221 </span>                :<span class="lineCov">          1 :         src-&gt;dis = INT_MAX;</span>
+<span class="lineNum">     222 </span>        [<span class="branchCov" title="Branch 3 was taken 21 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">         22 :         for (Edge edge : src-&gt;edges) {</span>
+<span class="lineNum">     223 </span>                :<span class="lineCov">         21 :             ActorNode* another =</span>
+<span class="lineNum">     224 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 21 times"> + </span>]:<span class="lineCov">         21 :                 (src == edge.actor1) ? edge.actor2 : edge.actor1;</span>
+<span class="lineNum">     225 </span>                :<span class="lineCov">         21 :             another-&gt;priority = 0;</span>
+<span class="lineNum">     226 </span>        [<span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         21 :             toExplore.push(another);</span>
+<span class="lineNum">     227 </span>                :<span class="lineCov">         21 :             another-&gt;dis = INT_MAX;</span>
+<span class="lineNum">     228 </span>                :            :         }
+<span class="lineNum">     229 </span>                :            :         //--------------------------
+<span class="lineNum">     230 </span>[<span class="branchCov" title="Branch 3 was taken 192 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 192 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]:<span class="lineCov">        193 :         for (auto it : secondlevel) {</span>
+<span class="lineNum">     231 </span>                :<span class="lineCov">        192 :             ActorNode* candiate = it.second;</span>
+<span class="lineNum">     232 </span>        [<span class="branchCov" title="Branch 3 was taken 2683 times"> + </span><span class="branchCov" title="Branch 4 was taken 192 times"> + </span>]:<span class="lineCov">       2875 :             for (Edge CandiateEdge : candiate-&gt;edges) {</span>
+<span class="lineNum">     233 </span>                :            :                 // cast point
+<span class="lineNum">     234 </span>                :<span class="lineCov">       5366 :                 ActorNode* another = (candiate == CandiateEdge.actor1)</span>
+<span class="lineNum">     235 </span>        [<span class="branchCov" title="Branch 0 was taken 485 times"> + </span><span class="branchCov" title="Branch 1 was taken 2198 times"> + </span>]:<span class="lineCov">       2683 :                                          ? CandiateEdge.actor2</span>
+<span class="lineNum">     236 </span>                :            :                                          : CandiateEdge.actor1;
+<span class="lineNum">     237 </span>                :            :                 //在 1st level
+<span class="lineNum">     238 </span>[<span class="branchCov" title="Branch 2 was taken 2683 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 206 times"> + </span><span class="branchCov" title="Branch 6 was taken 2477 times"> + </span>]:<span class="lineCov">       2683 :                 if (firstlevel.find(another-&gt;name) != firstlevel.end()) {</span>
+<span class="lineNum">     239 </span>                :            :                     ActorNode* castPoint =
+<span class="lineNum">     240 </span>        [<span class="branchCov" title="Branch 1 was taken 206 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        206 :                         firstlevel.find(another-&gt;name)-&gt;second;</span>
+<span class="lineNum">     241 </span>        [<span class="branchCov" title="Branch 3 was taken 4482 times"> + </span><span class="branchCov" title="Branch 4 was taken 206 times"> + </span>]:<span class="lineCov">       4688 :                     for (Edge e : castPoint-&gt;edges) {</span>
+<span class="lineNum">     242 </span>                :<span class="lineCov">       4482 :                         ActorNode* anothercastPoint =</span>
+<span class="lineNum">     243 </span>        [<span class="branchCov" title="Branch 0 was taken 509 times"> + </span><span class="branchCov" title="Branch 1 was taken 3973 times"> + </span>]:<span class="lineCov">       4482 :                             (castPoint == e.actor1) ? e.actor2 : e.actor1;</span>
+<span class="lineNum">     244 </span>                :            :                         // 另一个是source 则说明有一个邻居
+<span class="lineNum">     245 </span>        [<span class="branchCov" title="Branch 0 was taken 206 times"> + </span><span class="branchCov" title="Branch 1 was taken 4276 times"> + </span>]:<span class="lineCov">       4482 :                         if (anothercastPoint == src) commonCast++;</span>
+<span class="lineNum">     246 </span>                :            :                     }
+<span class="lineNum">     247 </span>                :<span class="lineCov">        206 :                     candiate-&gt;priority += commonCast;</span>
+<span class="lineNum">     248 </span>                :            :                 }
+<span class="lineNum">     249 </span>                :<span class="lineCov">       2683 :                 commonCast = 0;</span>
+<span class="lineNum">     250 </span>                :            :             }
+<span class="lineNum">     251 </span>        [<span class="branchCov" title="Branch 1 was taken 192 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        192 :             updatePQ(candiate, uncollaborated_res);</span>
+<span class="lineNum">     252 </span>                :            :         }
+<span class="lineNum">     253 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         outputHelper(uncollaborated_res, res2);</span>
+<span class="lineNum">     254 </span>                :            : 
+<span class="lineNum">     255 </span>[<span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         22 :         while (!toExplore.empty()) {</span>
+<span class="lineNum">     256 </span>                :<span class="lineCov">         21 :             ActorNode* cur = toExplore.front();</span>
+<span class="lineNum">     257 </span>                :<span class="lineCov">         21 :             toExplore.pop();</span>
+<span class="lineNum">     258 </span>        [<span class="branchCov" title="Branch 3 was taken 271 times"> + </span><span class="branchCov" title="Branch 4 was taken 21 times"> + </span>]:<span class="lineCov">        292 :             for (Edge edge : cur-&gt;edges) {</span>
+<span class="lineNum">     259 </span>                :<span class="lineCov">        271 :                 ActorNode* another =</span>
+<span class="lineNum">     260 </span>        [<span class="branchCov" title="Branch 0 was taken 44 times"> + </span><span class="branchCov" title="Branch 1 was taken 227 times"> + </span>]:<span class="lineCov">        271 :                     (cur == edge.actor1) ? edge.actor2 : edge.actor1;</span>
+<span class="lineNum">     261 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 271 times"> + </span>]:<span class="lineCov">        271 :                 if (another-&gt;dis != INT_MAX) another-&gt;dis = INT_MAX;</span>
+<span class="lineNum">     262 </span>                :<span class="lineCov">        271 :                 another-&gt;priority = 0;</span>
+<span class="lineNum">     263 </span>                :            :             }
+<a name="264"><span class="lineNum">     264 </span>                :            :         }</a>
+<span class="lineNum">     265 </span>                :            :     }
+<span class="lineNum">     266 </span>[<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         17 : }</span>
+<span class="lineNum">     267 </span>                :            : 
+<span class="lineNum">     268 </span>                :            : // void Actor::clearPriority(string source) {
+<span class="lineNum">     269 </span>                :            : //     ActorNode* src = actor_map.find(source)-&gt;second;
+<span class="lineNum">     270 </span>                :            : //     src-&gt;dis = INT_MAX;
+<span class="lineNum">     271 </span>                :            : //     queue&lt;ActorNode*&gt; toExplore;
+<span class="lineNum">     272 </span>                :            : //     for (Edge edge : src-&gt;edges) {
+<span class="lineNum">     273 </span>                :            : //         ActorNode* another = (src == edge.actor1) ? edge.actor2 :
+<span class="lineNum">     274 </span>                :            : //         edge.actor1; another-&gt;priority = 0; toExplore.push(another);
+<span class="lineNum">     275 </span>                :            : //         another-&gt;dis = INT_MAX;
+<span class="lineNum">     276 </span>                :            : //     }
+<span class="lineNum">     277 </span>                :            : //     while (!toExplore.empty()) {
+<span class="lineNum">     278 </span>                :            : //         ActorNode* cur = toExplore.front();
+<span class="lineNum">     279 </span>                :            : //         toExplore.pop();
+<span class="lineNum">     280 </span>                :            : //         for (Edge edge : cur-&gt;edges) {
+<span class="lineNum">     281 </span>                :            : //             ActorNode* another =
+<span class="lineNum">     282 </span>                :            : //                 (cur == edge.actor1) ? edge.actor2 : edge.actor1;
+<span class="lineNum">     283 </span>                :            : //             if (another-&gt;dis != INT_MAX) another-&gt;dis = INT_MAX;
+<span class="lineNum">     284 </span>                :            : //             another-&gt;priority = 0;
+<span class="lineNum">     285 </span>                :            : //         }
+<span class="lineNum">     286 </span>                :            : //     }
+<span class="lineNum">     287 </span>                :            : // }
 </pre>
       </td>
     </tr>

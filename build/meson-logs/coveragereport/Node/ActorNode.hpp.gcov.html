@@ -31,13 +31,13 @@
             <td class="headerValue">Code coverage</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">9</td>
             <td class="headerCovTableEntry">10</td>
-            <td class="headerCovTableEntryMed">80.0 %</td>
+            <td class="headerCovTableEntryHi">90.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 19:37:28</td>
+            <td class="headerValue">2019-11-26 23:52:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -56,9 +56,9 @@
 </td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">4</td>
             <td class="headerCovTableEntry">6</td>
-            <td class="headerCovTableEntryLo">50.0 %</td>
+            <td class="headerCovTableEntryLo">66.7 %</td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -111,27 +111,35 @@
 <span class="lineNum">      33 </span>                :            :     MovieNode* preMovie;
 <a name="34"><span class="lineNum">      34 </span>                :            :     stack&lt;string, string&gt; result;</a>
 <span class="lineNum">      35 </span>                :            :     /* Constructor that initialize a MovieNode */
-<a name="36"><span class="lineNum">      36 </span>        [<span class="branchCov" title="Branch 3 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         23 :     ActorNode(string name) : name(name), dis(INT_MAX), priority(0) {}</span></a>
-<span class="lineNum">      37 </span>                :            :     /* deconstruction for ActorNode */
-<span class="lineNum">      38 </span>                :<span class="lineCov">         46 :     ~ActorNode() {}</span>
-<a name="39"><span class="lineNum">      39 </span>                :            : };</a>
-<span class="lineNum">      40 </span>                :            : struct ActorNodeComp {
-<span class="lineNum">      41 </span>                :<span class="lineCov">          2 :     bool operator()(ActorNode*&amp; lhs, ActorNode*&amp; rhs) const {</span>
-<span class="lineNum">      42 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         if (lhs-&gt;priority == rhs-&gt;priority)</span>
-<span class="lineNum">      43 </span>                :<span class="lineCov">          2 :             return lhs-&gt;name &lt; rhs-&gt;name;</span>
-<span class="lineNum">      44 </span>                :            :         else
-<span class="lineNum">      45 </span>                :<span class="lineNoCov">          0 :             return lhs-&gt;priority &gt; rhs-&gt;priority;</span>
-<span class="lineNum">      46 </span>                :            :     }
-<a name="47"><span class="lineNum">      47 </span>                :            : };</a>
-<span class="lineNum">      48 </span>                :            : struct ActorDisComp {
-<span class="lineNum">      49 </span>                :<span class="lineCov">          1 :     bool operator()(ActorNode*&amp; lhs, ActorNode*&amp; rhs) const {</span>
-<span class="lineNum">      50 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :         if (lhs-&gt;dis == rhs-&gt;dis)</span>
-<span class="lineNum">      51 </span>                :<span class="lineCov">          1 :             return lhs-&gt;name &gt; rhs-&gt;name;</span>
-<span class="lineNum">      52 </span>                :            :         else
-<span class="lineNum">      53 </span>                :<span class="lineNoCov">          0 :             return lhs-&gt;dis &gt; rhs-&gt;dis;</span>
-<span class="lineNum">      54 </span>                :            :     }
-<span class="lineNum">      55 </span>                :            : };
-<span class="lineNum">      56 </span>                :            : #endif  // ACTORNODE_HPP
+<a name="36"><span class="lineNum">      36 </span>        [<span class="branchCov" title="Branch 3 was taken 1913 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">       1913 :     ActorNode(string name) : name(name), dis(INT_MAX), priority(0) {}</span></a>
+<span class="lineNum">      37 </span>                :            :     /* deconstructor for ActorNode */
+<span class="lineNum">      38 </span>                :<span class="lineCov">       3826 :     ~ActorNode() {}</span>
+<span class="lineNum">      39 </span>                :            : };
+<span class="lineNum">      40 </span>                :            : /* Comparator of ActorNode pointer for linkpredictor. In priority queue,
+<span class="lineNum">      41 </span>                :            :  * ActorNode ptr with higher priority has higher priority, and if priority is
+<span class="lineNum">      42 </span>                :            :  * the same, ActorNode ptr order alphabetically.
+<a name="43"><span class="lineNum">      43 </span>                :            :  */</a>
+<span class="lineNum">      44 </span>                :            : struct ActorNodeComp {
+<span class="lineNum">      45 </span>                :<span class="lineCov">        103 :     bool operator()(ActorNode*&amp; lhs, ActorNode*&amp; rhs) const {</span>
+<span class="lineNum">      46 </span>        [<span class="branchCov" title="Branch 0 was taken 81 times"> + </span><span class="branchCov" title="Branch 1 was taken 22 times"> + </span>]:<span class="lineCov">        103 :         if (lhs-&gt;priority == rhs-&gt;priority)</span>
+<span class="lineNum">      47 </span>                :<span class="lineCov">         81 :             return lhs-&gt;name &lt; rhs-&gt;name;</span>
+<span class="lineNum">      48 </span>                :            :         else
+<span class="lineNum">      49 </span>                :<span class="lineCov">         22 :             return lhs-&gt;priority &gt; rhs-&gt;priority;</span>
+<span class="lineNum">      50 </span>                :            :     }
+<span class="lineNum">      51 </span>                :            : };
+<span class="lineNum">      52 </span>                :            : /* Comparator of ActorNode pointer for pathfinder. In priority queue,
+<span class="lineNum">      53 </span>                :            :  * ActorNode ptr with less distance has higher priority, and if priority is
+<span class="lineNum">      54 </span>                :            :  * the same, ActorNode ptr order alphabetically.
+<a name="55"><span class="lineNum">      55 </span>                :            :  */</a>
+<span class="lineNum">      56 </span>                :            : struct ActorDisComp {
+<span class="lineNum">      57 </span>                :<span class="lineCov">          1 :     bool operator()(ActorNode*&amp; lhs, ActorNode*&amp; rhs) const {</span>
+<span class="lineNum">      58 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :         if (lhs-&gt;dis == rhs-&gt;dis)</span>
+<span class="lineNum">      59 </span>                :<span class="lineCov">          1 :             return lhs-&gt;name &gt; rhs-&gt;name;</span>
+<span class="lineNum">      60 </span>                :            :         else
+<span class="lineNum">      61 </span>                :<span class="lineNoCov">          0 :             return lhs-&gt;dis &gt; rhs-&gt;dis;</span>
+<span class="lineNum">      62 </span>                :            :     }
+<span class="lineNum">      63 </span>                :            : };
+<span class="lineNum">      64 </span>                :            : #endif  // ACTORNODE_HPP
 </pre>
       </td>
     </tr>
