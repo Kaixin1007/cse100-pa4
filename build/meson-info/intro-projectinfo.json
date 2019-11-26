@@ -1,0 +1,1 @@
+{"version": "0.0.1", "descriptive_name": "pa4_graph", "subproject_dir": "subprojects", "subprojects": [{"name": "cxxopts", "version": "2.2.0", "descriptive_name": "cxxopts"}, {"name": "gtest", "version": "1.8.1", "descriptive_name": "gtest"}]}

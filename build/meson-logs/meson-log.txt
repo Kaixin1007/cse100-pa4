@@ -1,0 +1,65 @@
+Build started at 2019-11-25T18:05:54.999861
+Main binary: /usr/bin/python3
+Python system: Linux
+The Meson build system
+Version: 0.51.2
+Source dir: /Code/cse100_pa4
+Build dir: /Code/cse100_pa4/build
+Build type: native build
+Project name: pa4_graph
+Project version: 0.0.1
+C++ compiler for the host machine: c++ (gcc 7.3.1 "c++ (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)")
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+
+Executing subproject cxxopts method meson 
+
+Project name: cxxopts
+Project version: 2.2.0
+C++ compiler for the host machine: c++ (gcc 7.3.1 "c++ (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)")
+Build targets in project: 0
+Subproject cxxopts finished.
+
+
+Executing subproject gtest method meson 
+
+Project name: gtest
+Project version: 1.8.1
+C++ compiler for the host machine: c++ (gcc 7.3.1 "c++ (GCC) 7.3.1 20180303 (Red Hat 7.3.1-5)")
+Dependency threads found: YES (cached)
+Dependency threads found: YES (cached)
+Dependency threads found: YES (cached)
+Dependency threads found: YES (cached)
+Build targets in project: 7
+Subproject gtest finished.
+
+Adding test "my ActorGraph test"
+Adding test "my pathfinder test"
+Adding test "my Actor test"
+Adding test "my linkpredictor test"
+Build targets in project: 15
+Found ninja-1.9.0.git.kitware.dyndep-1.jobserver-1 at /usr/local/bin/ninja
+Running compile:
+Working directory:  /tmp/tmpxquozfgc
+Command line:  c++ /tmp/tmpxquozfgc/testfile.cpp -o /tmp/tmpxquozfgc/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++14 
+
+Code:
+ int i = static_cast<int>(0);
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler accepts -std=c++14: YES
+Running compile:
+Working directory:  /tmp/tmp65gwqwwc
+Command line:  c++ /tmp/tmp65gwqwwc/testfile.cpp -o /tmp/tmp65gwqwwc/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/
+programs: =/opt/rh/devtoolset-7/root/usr/libexec/gcc/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/libexec/gcc/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/libexec/gcc/x86_64-redhat-linux/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/bin/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/bin/
+libraries: =/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/lib/x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/lib/../lib64/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../x86_64-redhat-linux/7/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/:/lib/x86_64-redhat-linux/7/:/lib/../lib64/:/usr/lib/x86_64-redhat-linux/7/:/usr/lib/../lib64/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../../x86_64-redhat-linux/lib/:/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/../../../:/lib/:/usr/lib/
+
+Compiler stderr:
+ 

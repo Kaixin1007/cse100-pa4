@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - Code coverage - /Code/cse100_pa4/src/pathfinder.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">Code/cse100_pa4/src</a> - pathfinder.cpp<span style="font-size: 80%;"> (source / <a href="pathfinder.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">Code coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">28</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2019-11-26 08:40:50</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+            | Branches:
+            <span class="coverLegendCov">+</span> taken
+            <span class="coverLegendNoCov">-</span> not taken
+            <span class="coverLegendNoCov">#</span> not executed
+</td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : #include &lt;stack&gt;</a>
+<span class="lineNum">       2 </span>                :            : #include &lt;string&gt;
+<span class="lineNum">       3 </span>                :            : #include &lt;unordered_map&gt;
+<span class="lineNum">       4 </span>                :            : #include &quot;Actor.hpp&quot;
+<span class="lineNum">       5 </span>                :            : #include &quot;ActorGraph.hpp&quot;
+<span class="lineNum">       6 </span>                :            : #include &quot;ActorNode.hpp&quot;
+<span class="lineNum">       7 </span>                :            : #include &quot;MovieNode.hpp&quot;
+<a name="8"><span class="lineNum">       8 </span>                :            : #include &quot;cxxopts.hpp&quot;</a>
+<span class="lineNum">       9 </span>                :            : using namespace std;
+<span class="lineNum">      10 </span>                :<span class="lineNoCov">          0 : int main(int argc, char** argv) {</span>
+<span class="lineNum">      11 </span>                :<span class="lineNoCov">          0 :     cxxopts::Options options(&quot;./pathfinder&quot;, &quot;pathfinder files&quot;);</span>
+<span class="lineNum">      12 </span>                :<span class="lineNoCov">          0 :     options.positional_help(</span>
+<span class="lineNum">      13 </span>                :<span class="lineNoCov">          0 :         &quot;./source_file u/v ./path_to_input_file ./path_to_output_file&quot;);</span>
+<span class="lineNum">      14 </span>                :<span class="lineNoCov">          0 :     string sourceFileName, inFileName, outFileName;</span>
+<span class="lineNum">      15 </span>                :            :     char flag;
+<span class="lineNum">      16 </span>                :<span class="lineNoCov">          0 :     options.allow_unrecognised_options().add_options()(</span>
+<span class="lineNum">      17 </span>                :<span class="lineNoCov">          0 :         &quot;source&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(sourceFileName))(</span>
+<span class="lineNum">      18 </span>                :<span class="lineNoCov">          0 :         &quot;flag&quot;, &quot;&quot;, cxxopts::value&lt;char&gt;(flag))(</span>
+<span class="lineNum">      19 </span>                :<span class="lineNoCov">          0 :         &quot;input&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(inFileName))(</span>
+<span class="lineNum">      20 </span>                :<span class="lineNoCov">          0 :         &quot;output&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(outFileName))(</span>
+<span class="lineNum">      21 </span>                :<span class="lineNoCov">          0 :         &quot;h,help&quot;, &quot;Print help and exit&quot;);</span>
+<span class="lineNum">      22 </span>                :<span class="lineNoCov">          0 :     options.parse_positional({&quot;source&quot;, &quot;flag&quot;, &quot;input&quot;, &quot;output&quot;});</span>
+<span class="lineNum">      23 </span>                :<span class="lineNoCov">          0 :     auto userOptions = options.parse(argc, argv);</span>
+<span class="lineNum">      24 </span>                :<span class="lineNoCov">          0 :     ActorGraph ag;</span>
+<span class="lineNum">      25 </span>                :<span class="lineNoCov">          0 :     Actor at;</span>
+<span class="lineNum">      26 </span>                :            : 
+<span class="lineNum">      27 </span>                :            :     // if ((!fl.isValidFile(sourceFileName)) || (!fl.isValidFile(inFileName)))
+<span class="lineNum">      28 </span>                :            :     //     return 0;
+<span class="lineNum">      29 </span>                :<span class="lineNoCov">          0 :     if (flag == 'u') {</span>
+<span class="lineNum">      30 </span>                :<span class="lineNoCov">          0 :         ag.loadFromFile(sourceFileName.c_str(), false, at);</span>
+<span class="lineNum">      31 </span>                :<span class="lineNoCov">          0 :         ag.readFile(inFileName);</span>
+<span class="lineNum">      32 </span>                :<span class="lineNoCov">          0 :         vector&lt;pair&lt;string, stack&lt;pair&lt;string, string&gt;&gt;&gt;&gt; res;</span>
+<span class="lineNum">      33 </span>                :<span class="lineNoCov">          0 :         for (int i = 0; i &lt; ag.input.size(); i++) {</span>
+<span class="lineNum">      34 </span>                :<span class="lineNoCov">          0 :             string src = ag.input[i].first;</span>
+<span class="lineNum">      35 </span>                :<span class="lineNoCov">          0 :             string dst = ag.input[i].second;</span>
+<span class="lineNum">      36 </span>                :<span class="lineNoCov">          0 :             at.unweightedPathfinder(src, dst);</span>
+<span class="lineNum">      37 </span>                :<span class="lineNoCov">          0 :             res.push_back(make_pair(src, at.result));</span>
+<span class="lineNum">      38 </span>                :<span class="lineNoCov">          0 :             at.clear();</span>
+<span class="lineNum">      39 </span>                :            :         }
+<span class="lineNum">      40 </span>                :<span class="lineNoCov">          0 :         ag.writeFile(res, outFileName);</span>
+<span class="lineNum">      41 </span>                :            :     }
+<a name="42"><span class="lineNum">      42 </span>                :            : </a>
+<span class="lineNum">      43 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
+<span class="lineNum">      44 </span>                :<span class="lineNoCov">          0 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -2,12 +2,12 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "ninja build autocomplete",
+            "label": "ninja build pathfinder",
             "command": "ninja",
             "args": [
                 "-C",
                 "build",
-                "test/autocomplete.cpp.executable"
+                "src/linkpredictor.cpp.executable"
             ],
         },
         {

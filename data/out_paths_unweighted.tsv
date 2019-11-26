@@ -1,6 +1,10 @@
 (actor)--[movie#@year]-->(actor)--...
-(Robert Downey Jr.)--[Avengers: Age of Ultron#@2015]-->(Chris Evans)
-(Amy Adams)--[Leap Year#@2010]-->(Matthew Goode)--[Stoker#@2013]-->(Nicole Kidman)
-(Will Smith)--[Gemini Man#@2019]-->(Clive Owen)--[Sin City#@2005]-->(Bruce Willis)
+(Robert Downey Jr.)--[Captain America: Civil War#@2016]-->(Chris Evans)
+
+
 (James McAvoy)--[X-Men: First Class#@2011]-->(Michael Fassbender)
-(Djimon Hounsou)--[Biker Boyz#@2003]-->(Derek Luke)--[Antwone Fisher#@2002]-->(Joy Bryant)--[Get Rich or Die Tryin'#@2005]-->(50 Cent)
+(Embeth Davidtz)--[The Gingerbread Man#@1998]-->(Robert Downey Jr.)--[The Singing Detective#@2003]-->(Robin Wright)
+(Robert Downey Jr.)--[Avengers: Endgame#@2019]-->(Samuel L. Jackson)
+(Robert Downey Jr.)--[The Gingerbread Man#@1998]-->(Embeth Davidtz)--[Murder in the First#@1995]-->(Kevin Bacon)--[Elephant White#@2011]-->(Djimon Hounsou)
+(Robert Downey Jr.)--[Avengers: Endgame#@2019]-->(Samuel L. Jackson)--[Glass#@2019]-->(James McAvoy)--[It Chapter Two#@2019]-->(Sophia Lillis)--[It#@2017]-->(Finn Wolfhard)
+

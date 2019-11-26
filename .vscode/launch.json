@@ -9,7 +9,16 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/${relativeFile}.executable",
-            "args": [],
+            "args": [
+                // "data/imdb_small_sample.tsv",
+                // // "data/imdb_2019.tsv",
+                // // "u",
+                // // "data/test1.tsv",
+                // // "out_paths_unweighted.tsv"
+                // "data/test_actors.tsv",
+                // "out_link_collaborated.tsv",
+                // "out_link_uncollaborated.tsv"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -23,6 +32,35 @@
                 }
             ],
             "preLaunchTask": "ninja build active file",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }{
+            "name": "c++ debug pathfinder",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/src/linkpredictor.cpp.executable",
+            "args": [
+                "data/imdb_small_sample.tsv",
+                // "data/imdb_2019.tsv",
+                // "u",
+                // "data/test1.tsv",
+                // "out_paths_unweighted.tsv"
+                "data/test_actors.tsv",
+                "out_link_collaborated1.tsv",
+                "out_link_uncollaborated1.tsv"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "ninja build pathfinder",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ]

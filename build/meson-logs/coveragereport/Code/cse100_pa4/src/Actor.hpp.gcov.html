@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - Code coverage - /Code/cse100_pa4/src/Actor.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">Code/cse100_pa4/src</a> - Actor.hpp<span style="font-size: 80%;"> (source / <a href="Actor.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">Code coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2019-11-26 08:40:50</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+            | Branches:
+            <span class="coverLegendCov">+</span> taken
+            <span class="coverLegendNoCov">-</span> not taken
+            <span class="coverLegendNoCov">#</span> not executed
+</td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : #ifndef Actor_HPP</a>
+<span class="lineNum">       2 </span>                :            : #define Actor_HPP
+<span class="lineNum">       3 </span>                :            : #include &lt;algorithm&gt;
+<span class="lineNum">       4 </span>                :            : #include &lt;queue&gt;
+<span class="lineNum">       5 </span>                :            : #include &lt;string&gt;
+<span class="lineNum">       6 </span>                :            : #include &lt;unordered_map&gt;
+<span class="lineNum">       7 </span>                :            : #include &lt;utility&gt;
+<span class="lineNum">       8 </span>                :            : #include &lt;vector&gt;
+<span class="lineNum">       9 </span>                :            : #include &quot;ActorNode.hpp&quot;
+<span class="lineNum">      10 </span>                :            : #include &quot;Edge.hpp&quot;
+<span class="lineNum">      11 </span>                :            : #include &quot;MovieNode.hpp&quot;
+<span class="lineNum">      12 </span>                :            : using namespace std;
+<span class="lineNum">      13 </span>                :            : #define OUTPUT_NUMBER 4
+<span class="lineNum">      14 </span>                :            : class Actor {
+<span class="lineNum">      15 </span>                :            :   public:
+<span class="lineNum">      16 </span>                :            :     unordered_map&lt;string, ActorNode*&gt; actor_map;
+<span class="lineNum">      17 </span>                :            :     unordered_map&lt;string, MovieNode*&gt; movie_map;
+<span class="lineNum">      18 </span>                :            :     stack&lt;pair&lt;string, string&gt;&gt; result;  // actor -- movie||year
+<span class="lineNum">      19 </span>                :            :     typedef priority_queue&lt;ActorNode*, vector&lt;ActorNode*&gt;, ActorNodeComp&gt;
+<a name="20"><span class="lineNum">      20 </span>                :            :         my_quene;</a>
+<span class="lineNum">      21 </span>                :            :     // vector&lt;Edge&gt; edges;
+<span class="lineNum">      22 </span>        [<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :     Actor() {}</span>
+<span class="lineNum">      23 </span>                :            :     ~Actor();
+<span class="lineNum">      24 </span>                :            :     void unweightedPathfinder(string&amp; source, string&amp; target);
+<span class="lineNum">      25 </span>                :            :     void levelBFS(string&amp; source, unordered_map&lt;string, ActorNode*&gt;&amp; firstlevel,
+<span class="lineNum">      26 </span>                :            :                   unordered_map&lt;string, ActorNode*&gt;&amp; secondlevel);
+<span class="lineNum">      27 </span>                :            :     void linkpredictor(vector&lt;string&gt;&amp; input, vector&lt;vector&lt;string&gt;&gt;&amp; res1,
+<span class="lineNum">      28 </span>                :            :                        vector&lt;vector&lt;string&gt;&gt;&amp; res2);
+<span class="lineNum">      29 </span>                :            : 
+<span class="lineNum">      30 </span>                :            :        void outputHelper(my_quene&amp; quene_res, vector&lt;vector&lt;string&gt;&gt;&amp; result);
+<span class="lineNum">      31 </span>                :            :     void updatePQ(ActorNode*&amp; candiate, my_quene&amp; quene_res);
+<span class="lineNum">      32 </span>                :            :     void clear();
+<span class="lineNum">      33 </span>                :            : 
+<span class="lineNum">      34 </span>                :            :     // void clearPriority(string source);
+<span class="lineNum">      35 </span>                :            : };
+<span class="lineNum">      36 </span>                :            : 
+<span class="lineNum">      37 </span>                :            : #endif
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
