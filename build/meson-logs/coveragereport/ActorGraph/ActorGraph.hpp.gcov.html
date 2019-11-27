@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-27 07:56:24</td>
+            <td class="headerValue">2019-11-27 23:47:25</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -110,7 +110,7 @@
 <span class="lineNum">      32 </span>                :            :      * Constuctor of the Actor graph
 <span class="lineNum">      33 </span>                :            :      */
 <span class="lineNum">      34 </span>                :            :     ActorGraph(void);
-<span class="lineNum">      35 </span>                :            : 
+<span class="lineNum">      35 </span>                :            :     // store input data
 <span class="lineNum">      36 </span>                :            :     vector&lt;pair&lt;string, string&gt;&gt; input;
 <span class="lineNum">      37 </span>                :            :     vector&lt;string&gt; actor_input;
 <span class="lineNum">      38 </span>                :            :     /** You can modify this method definition as you wish
@@ -126,18 +126,47 @@
 <span class="lineNum">      48 </span>                :            :     bool loadFromFile(const char* in_filename, bool use_weighted_edges,
 <span class="lineNum">      49 </span>                :            :                       Actor&amp; ac);
 <span class="lineNum">      50 </span>                :            : 
-<span class="lineNum">      51 </span>                :            :     void writeFile(vector&lt;pair&lt;string, stack&lt;pair&lt;string, string&gt;&gt;&gt;&gt;&amp; result,
-<span class="lineNum">      52 </span>                :            :                    string filename);
-<span class="lineNum">      53 </span>                :            : 
-<span class="lineNum">      54 </span>                :            :     void writeFile(vector&lt;vector&lt;string&gt;&gt;&amp; res1, vector&lt;vector&lt;string&gt;&gt;&amp; res2,
-<span class="lineNum">      55 </span>                :            :                    string filename1, string filename2);
-<span class="lineNum">      56 </span>                :            :     void writeTravelerFile(string filename,vector&lt;Edge&gt;&amp; edge,int totalWeight);
-<span class="lineNum">      57 </span>                :            :     bool readFile(string filename);
+<span class="lineNum">      51 </span>                :            :     /**
+<span class="lineNum">      52 </span>                :            :      * @name:   writeFile
+<span class="lineNum">      53 </span>                :            :      * @brief:  write result to the file in pathfinder according to the required
+<span class="lineNum">      54 </span>                :            :      * format
+<span class="lineNum">      55 </span>                :            :      */
+<span class="lineNum">      56 </span>                :            :     void writeFile(vector&lt;pair&lt;string, stack&lt;pair&lt;string, string&gt;&gt;&gt;&gt;&amp; result,
+<span class="lineNum">      57 </span>                :            :                    string filename);
 <span class="lineNum">      58 </span>                :            : 
-<span class="lineNum">      59 </span>                :            :     bool readActorFile(string filename);
-<span class="lineNum">      60 </span>                :            : };
-<span class="lineNum">      61 </span>                :            : 
-<span class="lineNum">      62 </span>                :            : #endif  // ACTORGRAPH_HPP
+<span class="lineNum">      59 </span>                :            :     /**
+<span class="lineNum">      60 </span>                :            :      * @name:   writeFile
+<span class="lineNum">      61 </span>                :            :      * @brief:  write result to the file in linkpredictor according to the
+<span class="lineNum">      62 </span>                :            :      * required format
+<span class="lineNum">      63 </span>                :            :      */
+<span class="lineNum">      64 </span>                :            :     void writeFile(vector&lt;vector&lt;string&gt;&gt;&amp; res1, vector&lt;vector&lt;string&gt;&gt;&amp; res2,
+<span class="lineNum">      65 </span>                :            :                    string filename1, string filename2);
+<span class="lineNum">      66 </span>                :            : 
+<span class="lineNum">      67 </span>                :            :     /**
+<span class="lineNum">      68 </span>                :            :      * @name:   writeTravelerFile
+<span class="lineNum">      69 </span>                :            :      * @brief:  write result to the file in movietraveler according to the
+<span class="lineNum">      70 </span>                :            :      * required format
+<span class="lineNum">      71 </span>                :            :      */
+<span class="lineNum">      72 </span>                :            :     void writeTravelerFile(string filename, vector&lt;Edge&gt;&amp; edge,
+<span class="lineNum">      73 </span>                :            :                            int totalWeight);
+<span class="lineNum">      74 </span>                :            : 
+<span class="lineNum">      75 </span>                :            :     /**
+<span class="lineNum">      76 </span>                :            :      * @name:   readFile
+<span class="lineNum">      77 </span>                :            :      * @brief:  read input file for pathfinder according to the required format
+<span class="lineNum">      78 </span>                :            :      * @return: Return true if file was loaded sucessfully
+<span class="lineNum">      79 </span>                :            :      */
+<span class="lineNum">      80 </span>                :            :     bool readFile(string filename);
+<span class="lineNum">      81 </span>                :            : 
+<span class="lineNum">      82 </span>                :            :     /**
+<span class="lineNum">      83 </span>                :            :      * @name:   readFile
+<span class="lineNum">      84 </span>                :            :      * @brief:  read input file for linkpredictor according to the required
+<span class="lineNum">      85 </span>                :            :      * format
+<span class="lineNum">      86 </span>                :            :      * @return: Return true if file was loaded sucessfully
+<span class="lineNum">      87 </span>                :            :      */
+<span class="lineNum">      88 </span>                :            :     bool readActorFile(string filename);
+<span class="lineNum">      89 </span>                :            : };
+<span class="lineNum">      90 </span>                :            : 
+<span class="lineNum">      91 </span>                :            : #endif  // ACTORGRAPH_HPP
 </pre>
       </td>
     </tr>

@@ -13,6 +13,7 @@
 #include "MovieNode.hpp"
 #include "cxxopts.hpp"
 using namespace std;
+
 /* Main program that runs the pathfinder */
 int main(int argc, char** argv) {
     cxxopts::Options options("./pathfinder", "pathfinder files");

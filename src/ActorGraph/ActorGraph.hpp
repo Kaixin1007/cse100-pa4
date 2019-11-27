@@ -32,7 +32,7 @@ class ActorGraph {
      * Constuctor of the Actor graph
      */
     ActorGraph(void);
-
+    // store input data
     vector<pair<string, string>> input;
     vector<string> actor_input;
     /** You can modify this method definition as you wish
@@ -48,14 +48,43 @@ class ActorGraph {
     bool loadFromFile(const char* in_filename, bool use_weighted_edges,
                       Actor& ac);
 
+    /**
+     * @name:   writeFile
+     * @brief:  write result to the file in pathfinder according to the required
+     * format
+     */
     void writeFile(vector<pair<string, stack<pair<string, string>>>>& result,
                    string filename);
 
+    /**
+     * @name:   writeFile
+     * @brief:  write result to the file in linkpredictor according to the
+     * required format
+     */
     void writeFile(vector<vector<string>>& res1, vector<vector<string>>& res2,
                    string filename1, string filename2);
-    void writeTravelerFile(string filename,vector<Edge>& edge,int totalWeight);
+
+    /**
+     * @name:   writeTravelerFile
+     * @brief:  write result to the file in movietraveler according to the
+     * required format
+     */
+    void writeTravelerFile(string filename, vector<Edge>& edge,
+                           int totalWeight);
+
+    /**
+     * @name:   readFile
+     * @brief:  read input file for pathfinder according to the required format
+     * @return: Return true if file was loaded sucessfully
+     */
     bool readFile(string filename);
 
+    /**
+     * @name:   readFile
+     * @brief:  read input file for linkpredictor according to the required
+     * format
+     * @return: Return true if file was loaded sucessfully
+     */
     bool readActorFile(string filename);
 };
 

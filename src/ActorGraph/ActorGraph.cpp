@@ -73,28 +73,36 @@ bool ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges,
         string actor(record[0]);
         string movie_title(record[1]);
         int year = stoi(record[2]);
+
         string str = movie_title + "#@" + record[2];
+        // if the actor isn't in actor_map, update
         if (ac.actor_map.find(actor) == ac.actor_map.end()) {
             ActorNode* node = new ActorNode(actor);
             ac.actor_map.insert(make_pair(actor, node));
         }
+        // if the movie isn't in movie_map, update
         if (ac.movie_map.find(str) == ac.movie_map.end()) {
             MovieNode* node = new MovieNode(str, year);
             ac.movie_map.insert(make_pair(str, node));
         }
+
         auto curActor = ac.actor_map.find(actor);
         auto curMovie = ac.movie_map.find(str);
-        int weight = 1 + 2019 - year;
 
+        int weight = 1 + 2019 - year;
+        // initialize the actor_set and actor_rank for MST
         ac.actor_set.insert(make_pair(curActor->second, nullptr));
         ac.actor_rank.insert(make_pair(curActor->second, 0));
+
         for (ActorNode* nodeInMovie : curMovie->second->actors) {
+            // undirected graph, let the weight = 1
             if (!use_weighted_edges) {
                 Edge e =
                     Edge(curActor->second, nodeInMovie, curMovie->second, 1);
                 nodeInMovie->edges.push_back(e);
                 curActor->second->edges.push_back(e);
             } else {
+                // directed graph
                 Edge e = Edge(curActor->second, nodeInMovie, curMovie->second,
                               weight);
                 nodeInMovie->edges.push_back(e);
@@ -112,6 +120,12 @@ bool ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges,
 
     return true;
 }
+
+/**
+ * @name:   writeFile
+ * @brief:  write result to the file in pathfinder according to the required
+ * format
+ */
 void ActorGraph::writeFile(
     vector<pair<string, stack<pair<string, string>>>>& result,
     string filename) {
@@ -138,6 +152,11 @@ void ActorGraph::writeFile(
 
     out.close();
 }
+/**
+ * @name:   writeFile
+ * @brief:  write result to the file in linkpredictor according to the
+ * required format
+ */
 void ActorGraph::writeFile(vector<vector<string>>& res1,
                            vector<vector<string>>& res2, string filename1,
                            string filename2) {
@@ -163,6 +182,11 @@ void ActorGraph::writeFile(vector<vector<string>>& res1,
     }
     out.close();
 }
+/**
+ * @name:   writeTravelerFile
+ * @brief:  write result to the file in movietraveler according to the
+ * required format
+ */
 void ActorGraph::writeTravelerFile(string filename, vector<Edge>& edge,
                                    int totalWeight) {
     ofstream out;
@@ -177,6 +201,11 @@ void ActorGraph::writeTravelerFile(string filename, vector<Edge>& edge,
     out << "TOTAL EDGE WEIGHTS: " << totalWeight << endl;
     out.close();
 }
+/**
+ * @name:   readFile
+ * @brief:  read input file for pathfinder according to the required format
+ * @return: Return true if file was loaded sucessfully
+ */
 bool ActorGraph::readFile(string filename) {
     ifstream infile(filename);
     bool have_header = false;
@@ -216,7 +245,11 @@ bool ActorGraph::readFile(string filename) {
 
     return true;
 }
-
+/**
+ * @name:   readFile
+ * @brief:  read input file for linkpredictor according to the required format
+ * @return: Return true if file was loaded sucessfully
+ */
 bool ActorGraph::readActorFile(string filename) {
     ifstream infile(filename);
     bool have_header = false;

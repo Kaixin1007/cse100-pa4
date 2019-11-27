@@ -20,6 +20,11 @@ Actor::~Actor() {
         delete (j->second);
     }
 }
+
+/**
+ * @name:   weightedPathfinder
+ * @brief:  BFS for weighted graph to achieve pathfinder
+ */
 void Actor::weightedPathfinder(string& source, string& target) {
     if (actor_map.find(source) == actor_map.end() ||
         actor_map.find(target) == actor_map.end())
@@ -62,6 +67,11 @@ void Actor::weightedPathfinder(string& source, string& target) {
         }
     }
 }
+
+/**
+ * @name:   unweightedPathfinder
+ * @brief:  BFS for unweighted graph to achieve pathfinder
+ */
 void Actor::unweightedPathfinder(string& source, string& target) {
     if (actor_map.find(source) == actor_map.end() ||
         actor_map.find(target) == actor_map.end())
@@ -101,6 +111,11 @@ void Actor::unweightedPathfinder(string& source, string& target) {
         }
     }
 }
+
+/**
+ * @name:   clear
+ * @brief:  clear all the variable's distance,isDone,priority and pre pointer
+ */
 void Actor::clear() {
     for (auto it : actor_map) {
         ActorNode* temp = it.second;
@@ -116,6 +131,12 @@ void Actor::clear() {
         result.pop();
     }
 }
+
+/**
+ * @name:   levelBFS
+ * @brief:  help function for linkprdictor that achieve first level BFS and
+ * second level BFS
+ */
 void Actor::levelBFS(string& source,
                      unordered_map<string, ActorNode*>& firstlevel,
                      unordered_map<string, ActorNode*>& secondlevel) {
@@ -143,6 +164,10 @@ void Actor::levelBFS(string& source,
     }
 }
 
+/**
+ * @name:   outputHelper
+ * @brief:  get the top 4th actor in priority queue in linkpredictor
+ */
 void Actor::outputHelper(my_quene& quene_res, vector<vector<string>>& result) {
     vector<string> collaborated;
     int size = quene_res.size();
@@ -157,6 +182,11 @@ void Actor::outputHelper(my_quene& quene_res, vector<vector<string>>& result) {
     }
     result.push_back(collaborated);
 }
+
+/**
+ * @name:   updatePQ
+ * @brief:  update priority Queue in linkpredictor
+ */
 void Actor::updatePQ(ActorNode*& candiate, my_quene& quene_res) {
     bool update = false;
     if (quene_res.size() < OUTPUT_NUMBER) {
@@ -174,23 +204,31 @@ void Actor::updatePQ(ActorNode*& candiate, my_quene& quene_res) {
         }
     }
 }
+
+/**
+ * @name:   linkpredictor
+ * @brief:  acheieve linkpredictor based on the input data and undirected graph
+ */
 void Actor::linkpredictor(vector<string>& input, vector<vector<string>>& res1,
                           vector<vector<string>>& res2) {
     string source;
     my_quene collaborated_res, uncollaborated_res;
     int commonCast = 0;
     queue<ActorNode*> toExplore;
+    // for collaborated actor
     for (auto it : input) {
         source = it;
+        // get first level and second level
         unordered_map<string, ActorNode*> firstlevel;
         unordered_map<string, ActorNode*> secondlevel;
         levelBFS(source, firstlevel, secondlevel);
+
         if (actor_map.find(source) == actor_map.end()) continue;
+
         ActorNode* src = actor_map.find(source)->second;
 
         for (auto it : firstlevel) {  // node == candiate
             ActorNode* candiate = it.second;
-            // collaboratedlinkpredictor(firstlevel, candiate, src);
 
             for (Edge CandiateEdge : candiate->edges) {
                 // cast point
@@ -198,14 +236,13 @@ void Actor::linkpredictor(vector<string>& input, vector<vector<string>>& res1,
                                          ? CandiateEdge.actor2
                                          : CandiateEdge.actor1;
 
-                //在同一层
+                // if it can build up triangluar
                 if (firstlevel.find(another->name) != firstlevel.end()) {
                     ActorNode* castPoint =
                         firstlevel.find(another->name)->second;
                     for (Edge e : castPoint->edges) {
                         ActorNode* anothercastPoint =
                             (castPoint == e.actor1) ? e.actor2 : e.actor1;
-                        // 另一个是source 则说明有一个邻居
                         if (anothercastPoint == src) {
                             commonCast++;
                         }
@@ -214,10 +251,12 @@ void Actor::linkpredictor(vector<string>& input, vector<vector<string>>& res1,
                 }
                 commonCast = 0;
             }
+            // update priority queue
             updatePQ(candiate, collaborated_res);
         }
+        // get the top 4 actor
         outputHelper(collaborated_res, res1);
-        //------------------------
+        // clear the variable in first level
         src->dis = INT_MAX;
         for (Edge edge : src->edges) {
             ActorNode* another =
@@ -226,7 +265,7 @@ void Actor::linkpredictor(vector<string>& input, vector<vector<string>>& res1,
             toExplore.push(another);
             another->dis = INT_MAX;
         }
-        //--------------------------
+        // for uncollaborated actor
         for (auto it : secondlevel) {
             ActorNode* candiate = it.second;
             for (Edge CandiateEdge : candiate->edges) {
@@ -234,14 +273,14 @@ void Actor::linkpredictor(vector<string>& input, vector<vector<string>>& res1,
                 ActorNode* another = (candiate == CandiateEdge.actor1)
                                          ? CandiateEdge.actor2
                                          : CandiateEdge.actor1;
-                //在 1st level
+                // in 1st level
                 if (firstlevel.find(another->name) != firstlevel.end()) {
                     ActorNode* castPoint =
                         firstlevel.find(another->name)->second;
                     for (Edge e : castPoint->edges) {
                         ActorNode* anothercastPoint =
                             (castPoint == e.actor1) ? e.actor2 : e.actor1;
-                        // 另一个是source 则说明有一个邻居
+
                         if (anothercastPoint == src) commonCast++;
                     }
                     candiate->priority += commonCast;
@@ -264,24 +303,3 @@ void Actor::linkpredictor(vector<string>& input, vector<vector<string>>& res1,
         }
     }
 }
-
-// void Actor::clearPriority(string source) {
-//     ActorNode* src = actor_map.find(source)->second;
-//     src->dis = INT_MAX;
-//     queue<ActorNode*> toExplore;
-//     for (Edge edge : src->edges) {
-//         ActorNode* another = (src == edge.actor1) ? edge.actor2 :
-//         edge.actor1; another->priority = 0; toExplore.push(another);
-//         another->dis = INT_MAX;
-//     }
-//     while (!toExplore.empty()) {
-//         ActorNode* cur = toExplore.front();
-//         toExplore.pop();
-//         for (Edge edge : cur->edges) {
-//             ActorNode* another =
-//                 (cur == edge.actor1) ? edge.actor2 : edge.actor1;
-//             if (another->dis != INT_MAX) another->dis = INT_MAX;
-//             another->priority = 0;
-//         }
-//     }
-// }

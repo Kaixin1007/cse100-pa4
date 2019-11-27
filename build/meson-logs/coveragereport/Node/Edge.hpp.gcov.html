@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-27 07:56:24</td>
+            <td class="headerValue">2019-11-27 23:47:25</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -99,19 +99,21 @@
 <span class="lineNum">      21 </span>                :            :     ActorNode* actor1;
 <span class="lineNum">      22 </span>                :            :     ActorNode* actor2;
 <span class="lineNum">      23 </span>                :            :     MovieNode* movie;
-<span class="lineNum">      24 </span>                :            :     int weight;  // in wnweighted graph, weight = 1
+<span class="lineNum">      24 </span>                :            :     int weight;  // in wnweighted graph, weight = 1,in weighted graph, weight = 1+2019-year
 <a name="25"><span class="lineNum">      25 </span>                :            : </a>
 <span class="lineNum">      26 </span>                :            :     /* Constructor that initialize a Edge */
 <span class="lineNum">      27 </span>                :<span class="lineCov">       4475 :     Edge(ActorNode* actor1, ActorNode* actor2, MovieNode* movie, int weight)</span>
 <span class="lineNum">      28 </span>                :<span class="lineCov">       4475 :         : actor1(actor1), actor2(actor2), movie(movie), weight(weight) {}</span>
 <span class="lineNum">      29 </span>                :            : };
-<a name="30"><span class="lineNum">      30 </span>                :            : // 最小堆</a>
-<span class="lineNum">      31 </span>                :            : struct EdgeComp {
-<span class="lineNum">      32 </span>                :<span class="lineCov">         45 :     bool operator()(Edge&amp; lhs, Edge&amp; rhs) const {</span>
-<span class="lineNum">      33 </span>                :<span class="lineCov">         45 :         return lhs.weight &gt; rhs.weight;</span>
-<span class="lineNum">      34 </span>                :            :     }
-<span class="lineNum">      35 </span>                :            : };
-<span class="lineNum">      36 </span>                :            : #endif  // EDGE_HPP
+<span class="lineNum">      30 </span>                :            : /* Comparator of Edge for Edge.In priority queue,
+<span class="lineNum">      31 </span>                :            :  * Edge with less weight has higher priority
+<a name="32"><span class="lineNum">      32 </span>                :            :  */</a>
+<span class="lineNum">      33 </span>                :            : struct EdgeComp {
+<span class="lineNum">      34 </span>                :<span class="lineCov">         45 :     bool operator()(Edge&amp; lhs, Edge&amp; rhs) const {</span>
+<span class="lineNum">      35 </span>                :<span class="lineCov">         45 :         return lhs.weight &gt; rhs.weight;</span>
+<span class="lineNum">      36 </span>                :            :     }
+<span class="lineNum">      37 </span>                :            : };
+<span class="lineNum">      38 </span>                :            : #endif  // EDGE_HPP
 </pre>
       </td>
     </tr>

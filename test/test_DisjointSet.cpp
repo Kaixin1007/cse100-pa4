@@ -16,8 +16,6 @@ TEST(DISJOINTSET_TEST, SIMPLE_TEST) {
     ASSERT_EQ(ag.loadFromFile("../test/data/imdb_small_sample.tsv", true, at),
               true);
     DisjointSet ds;
-    ActorNode* node1;
-    ActorNode* node2;
     vector<Edge> e;
     int total = ds.MST(at, e);
     ASSERT_EQ(total, 20);

@@ -17,6 +17,7 @@
 #include "MovieNode.hpp"
 #include "cxxopts.hpp"
 using namespace std;
+
 /* Main program that runs the linkpredictor */
 int main(int argc, char** argv) {
     cxxopts::Options options("./linkpredictor", "linkpredictor files");

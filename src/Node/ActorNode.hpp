@@ -18,6 +18,7 @@
 using namespace std;
 class MovieNode;
 class Edge;
+
 /**
  * @name: ActorNode
  * @msg:  the class of Actor node for graph operation
@@ -29,8 +30,8 @@ class ActorNode {
     bool isDone;
     int priority;
     vector<Edge> edges;
-    ActorNode* preActor;
-    MovieNode* preMovie;
+    ActorNode* preActor;  // pre pointer to actorNode
+    MovieNode* preMovie;  // pre pointer to movieNode
     stack<string, string> result;
     /* Constructor that initialize a MovieNode */
     ActorNode(string name) : name(name), dis(INT_MAX), priority(0) {}

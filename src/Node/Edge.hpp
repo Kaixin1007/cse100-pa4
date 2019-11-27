@@ -21,13 +21,15 @@ class Edge {
     ActorNode* actor1;
     ActorNode* actor2;
     MovieNode* movie;
-    int weight;  // in wnweighted graph, weight = 1
+    int weight;  // in wnweighted graph, weight = 1,in weighted graph, weight = 1+2019-year
 
     /* Constructor that initialize a Edge */
     Edge(ActorNode* actor1, ActorNode* actor2, MovieNode* movie, int weight)
         : actor1(actor1), actor2(actor2), movie(movie), weight(weight) {}
 };
-// 最小堆
+/* Comparator of Edge for Edge.In priority queue,
+ * Edge with less weight has higher priority
+ */
 struct EdgeComp {
     bool operator()(Edge& lhs, Edge& rhs) const {
         return lhs.weight > rhs.weight;

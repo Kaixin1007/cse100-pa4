@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-27 07:56:24</td>
+            <td class="headerValue">2019-11-27 23:47:25</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -76,48 +76,99 @@
       <td>
 <pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>                :            : #ifndef Actor_HPP</a>
-<span class="lineNum">       2 </span>                :            : #define Actor_HPP
-<span class="lineNum">       3 </span>                :            : #include &lt;algorithm&gt;
-<span class="lineNum">       4 </span>                :            : #include &lt;queue&gt;
-<span class="lineNum">       5 </span>                :            : #include &lt;string&gt;
-<span class="lineNum">       6 </span>                :            : #include &lt;unordered_map&gt;
-<span class="lineNum">       7 </span>                :            : #include &lt;utility&gt;
-<span class="lineNum">       8 </span>                :            : #include &lt;vector&gt;
-<span class="lineNum">       9 </span>                :            : #include &quot;ActorNode.hpp&quot;
-<span class="lineNum">      10 </span>                :            : #include &quot;Edge.hpp&quot;
-<span class="lineNum">      11 </span>                :            : #include &quot;MovieNode.hpp&quot;
-<span class="lineNum">      12 </span>                :            : using namespace std;
-<span class="lineNum">      13 </span>                :            : #define OUTPUT_NUMBER 4
-<span class="lineNum">      14 </span>                :            : class Actor {
-<span class="lineNum">      15 </span>                :            :   public:
-<span class="lineNum">      16 </span>                :            :     unordered_map&lt;string, ActorNode*&gt; actor_map;
-<span class="lineNum">      17 </span>                :            :     unordered_map&lt;string, MovieNode*&gt; movie_map;
-<span class="lineNum">      18 </span>                :            :     stack&lt;pair&lt;string, string&gt;&gt; result;  // actor -- movie||year
-<span class="lineNum">      19 </span>                :            :     unordered_map&lt;ActorNode*, ActorNode*&gt; actor_set;
-<span class="lineNum">      20 </span>                :            :     unordered_map&lt;ActorNode*, int&gt; actor_rank;
-<span class="lineNum">      21 </span>                :            :     priority_queue&lt;Edge, vector&lt;Edge&gt;, EdgeComp&gt; edge;
-<span class="lineNum">      22 </span>                :            :     typedef priority_queue&lt;ActorNode*, vector&lt;ActorNode*&gt;, ActorNodeComp&gt;
-<a name="23"><span class="lineNum">      23 </span>                :            :         my_quene;</a>
-<span class="lineNum">      24 </span>                :            :     /* Constructor that initialize a Actor */
-<span class="lineNum">      25 </span>        [<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          5 :     Actor() {}</span>
-<span class="lineNum">      26 </span>                :            :     /* deconstructor for Actor */
-<span class="lineNum">      27 </span>                :            :     ~Actor();
-<span class="lineNum">      28 </span>                :            :     void unweightedPathfinder(string&amp; source, string&amp; target);
-<span class="lineNum">      29 </span>                :            :     void weightedPathfinder(string&amp; source, string&amp; target);
-<span class="lineNum">      30 </span>                :            :     void levelBFS(string&amp; source, unordered_map&lt;string, ActorNode*&gt;&amp; firstlevel,
-<span class="lineNum">      31 </span>                :            :                   unordered_map&lt;string, ActorNode*&gt;&amp; secondlevel);
-<span class="lineNum">      32 </span>                :            :     void linkpredictor(vector&lt;string&gt;&amp; input, vector&lt;vector&lt;string&gt;&gt;&amp; res1,
-<span class="lineNum">      33 </span>                :            :                        vector&lt;vector&lt;string&gt;&gt;&amp; res2);
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * @Descripttion: Actor file to finish Pathfinder, linkpredictor for PA4
+<span class="lineNum">       3 </span>                :            :  * @version: 1.0
+<span class="lineNum">       4 </span>                :            :  * @Author: Kaixin Lin
+<span class="lineNum">       5 </span>                :            :  */
+<span class="lineNum">       6 </span>                :            : #ifndef Actor_HPP
+<span class="lineNum">       7 </span>                :            : #define Actor_HPP
+<span class="lineNum">       8 </span>                :            : #include &lt;algorithm&gt;
+<span class="lineNum">       9 </span>                :            : #include &lt;queue&gt;
+<span class="lineNum">      10 </span>                :            : #include &lt;string&gt;
+<span class="lineNum">      11 </span>                :            : #include &lt;unordered_map&gt;
+<span class="lineNum">      12 </span>                :            : #include &lt;utility&gt;
+<span class="lineNum">      13 </span>                :            : #include &lt;vector&gt;
+<span class="lineNum">      14 </span>                :            : #include &quot;ActorNode.hpp&quot;
+<span class="lineNum">      15 </span>                :            : #include &quot;Edge.hpp&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;MovieNode.hpp&quot;
+<span class="lineNum">      17 </span>                :            : using namespace std;
+<span class="lineNum">      18 </span>                :            : #define OUTPUT_NUMBER 4  // print top 4th actor
+<span class="lineNum">      19 </span>                :            : 
+<span class="lineNum">      20 </span>                :            : /**
+<span class="lineNum">      21 </span>                :            :  * @name: Actor
+<span class="lineNum">      22 </span>                :            :  * @msg:  the class of Actor for graph operation
+<span class="lineNum">      23 </span>                :            :  */
+<span class="lineNum">      24 </span>                :            : class Actor {
+<span class="lineNum">      25 </span>                :            :   private:
+<span class="lineNum">      26 </span>                :            :     typedef priority_queue&lt;ActorNode*, vector&lt;ActorNode*&gt;, ActorNodeComp&gt;
+<span class="lineNum">      27 </span>                :            :         my_quene;
+<span class="lineNum">      28 </span>                :            : 
+<span class="lineNum">      29 </span>                :            :     /**
+<span class="lineNum">      30 </span>                :            :      * @name:   outputHelper
+<span class="lineNum">      31 </span>                :            :      * @brief:  get the top 4th actor in priority queue in linkpredictor
+<span class="lineNum">      32 </span>                :            :      */
+<span class="lineNum">      33 </span>                :            :     void outputHelper(my_quene&amp; quene_res, vector&lt;vector&lt;string&gt;&gt;&amp; result);
 <span class="lineNum">      34 </span>                :            : 
-<span class="lineNum">      35 </span>                :            :     void outputHelper(my_quene&amp; quene_res, vector&lt;vector&lt;string&gt;&gt;&amp; result);
-<span class="lineNum">      36 </span>                :            :     void updatePQ(ActorNode*&amp; candiate, my_quene&amp; quene_res);
-<span class="lineNum">      37 </span>                :            :     void clear();
-<span class="lineNum">      38 </span>                :            : 
-<span class="lineNum">      39 </span>                :            :     // void clearPriority(string source);
-<span class="lineNum">      40 </span>                :            : };
-<span class="lineNum">      41 </span>                :            : 
-<span class="lineNum">      42 </span>                :            : #endif
+<span class="lineNum">      35 </span>                :            :     /**
+<span class="lineNum">      36 </span>                :            :      * @name:   updatePQ
+<span class="lineNum">      37 </span>                :            :      * @brief:  update priority Queue in linkpredictor
+<span class="lineNum">      38 </span>                :            :      */
+<span class="lineNum">      39 </span>                :            :     void updatePQ(ActorNode*&amp; candiate, my_quene&amp; quene_res);
+<span class="lineNum">      40 </span>                :            :     
+<span class="lineNum">      41 </span>                :            :     /**
+<span class="lineNum">      42 </span>                :            :      * @name:   levelBFS
+<span class="lineNum">      43 </span>                :            :      * @brief:  help function for linkprdictor that achieve first level BFS and
+<span class="lineNum">      44 </span>                :            :      * second level BFS
+<span class="lineNum">      45 </span>                :            :      */
+<span class="lineNum">      46 </span>                :            :     void levelBFS(string&amp; source, unordered_map&lt;string, ActorNode*&gt;&amp; firstlevel,
+<span class="lineNum">      47 </span>                :            :                   unordered_map&lt;string, ActorNode*&gt;&amp; secondlevel);
+<span class="lineNum">      48 </span>                :            : 
+<span class="lineNum">      49 </span>                :            :   public:
+<span class="lineNum">      50 </span>                :            :     // all the actor and movie
+<span class="lineNum">      51 </span>                :            :     unordered_map&lt;string, ActorNode*&gt; actor_map;
+<span class="lineNum">      52 </span>                :            :     unordered_map&lt;string, MovieNode*&gt; movie_map;
+<span class="lineNum">      53 </span>                :            : 
+<span class="lineNum">      54 </span>                :            :     stack&lt;pair&lt;string, string&gt;&gt; result;  // store result : actor -- movie
+<span class="lineNum">      55 </span>                :            :     unordered_map&lt;ActorNode*, ActorNode*&gt; actor_set;  // store actor_set for MST
+<span class="lineNum">      56 </span>                :            :     unordered_map&lt;ActorNode*, int&gt; actor_rank;  // store actor_rank for MST
+<span class="lineNum">      57 </span>                :            :     priority_queue&lt;Edge, vector&lt;Edge&gt;, EdgeComp&gt; edge;  // store all the edge
+<a name="58"><span class="lineNum">      58 </span>                :            : </a>
+<span class="lineNum">      59 </span>                :            :     /* Constructor that initialize a Actor */
+<span class="lineNum">      60 </span>        [<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          5 :     Actor() {}</span>
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            :     /* deconstructor for Actor */
+<span class="lineNum">      63 </span>                :            :     ~Actor();
+<span class="lineNum">      64 </span>                :            : 
+<span class="lineNum">      65 </span>                :            :     /**
+<span class="lineNum">      66 </span>                :            :      * @name:   unweightedPathfinder
+<span class="lineNum">      67 </span>                :            :      * @brief:  BFS for unweighted graph to achieve pathfinder
+<span class="lineNum">      68 </span>                :            :      */
+<span class="lineNum">      69 </span>                :            :     void unweightedPathfinder(string&amp; source, string&amp; target);
+<span class="lineNum">      70 </span>                :            : 
+<span class="lineNum">      71 </span>                :            :     /**
+<span class="lineNum">      72 </span>                :            :      * @name:   weightedPathfinder
+<span class="lineNum">      73 </span>                :            :      * @brief:  BFS for weighted graph to achieve pathfinder
+<span class="lineNum">      74 </span>                :            :      */
+<span class="lineNum">      75 </span>                :            :     void weightedPathfinder(string&amp; source, string&amp; target);
+<span class="lineNum">      76 </span>                :            : 
+<span class="lineNum">      77 </span>                :            :     /**
+<span class="lineNum">      78 </span>                :            :      * @name:   linkpredictor
+<span class="lineNum">      79 </span>                :            :      * @brief:  acheieve linkpredictor based on the input data and undirected
+<span class="lineNum">      80 </span>                :            :      * graph
+<span class="lineNum">      81 </span>                :            :      */
+<span class="lineNum">      82 </span>                :            :     void linkpredictor(vector&lt;string&gt;&amp; input, vector&lt;vector&lt;string&gt;&gt;&amp; res1,
+<span class="lineNum">      83 </span>                :            :                        vector&lt;vector&lt;string&gt;&gt;&amp; res2);
+<span class="lineNum">      84 </span>                :            : 
+<span class="lineNum">      85 </span>                :            :     /**
+<span class="lineNum">      86 </span>                :            :      * @name:   clear
+<span class="lineNum">      87 </span>                :            :      * @brief:  clear all the variable's distance,isDone,priority and pre
+<span class="lineNum">      88 </span>                :            :      * pointer
+<span class="lineNum">      89 </span>                :            :      */
+<span class="lineNum">      90 </span>                :            :     void clear();
+<span class="lineNum">      91 </span>                :            : };
+<span class="lineNum">      92 </span>                :            : 
+<span class="lineNum">      93 </span>                :            : #endif
 </pre>
       </td>
     </tr>

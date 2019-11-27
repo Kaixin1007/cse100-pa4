@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-27 07:56:24</td>
+            <td class="headerValue">2019-11-27 23:47:25</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -94,38 +94,39 @@
 <span class="lineNum">      16 </span>                :            : #include &quot;ActorNode.hpp&quot;
 <span class="lineNum">      17 </span>                :            : #include &quot;MovieNode.hpp&quot;
 <span class="lineNum">      18 </span>                :            : #include &quot;cxxopts.hpp&quot;
-<a name="19"><span class="lineNum">      19 </span>                :            : using namespace std;</a>
-<span class="lineNum">      20 </span>                :            : /* Main program that runs the linkpredictor */
-<span class="lineNum">      21 </span>                :<span class="lineNoCov">          0 : int main(int argc, char** argv) {</span>
-<span class="lineNum">      22 </span>                :<span class="lineNoCov">          0 :     cxxopts::Options options(&quot;./linkpredictor&quot;, &quot;linkpredictor files&quot;);</span>
-<span class="lineNum">      23 </span>                :<span class="lineNoCov">          0 :     options.positional_help(</span>
-<span class="lineNum">      24 </span>                :            :         &quot;./source_file ./path_to_input_file ./path_to_output_collaborated_file &quot;
-<span class="lineNum">      25 </span>                :<span class="lineNoCov">          0 :         &quot;./path_to_output_uncollaborated_file&quot;);</span>
-<span class="lineNum">      26 </span>                :<span class="lineNoCov">          0 :     string sourceFileName, inFileName, outFileName1, outFileName2;</span>
-<span class="lineNum">      27 </span>                :<span class="lineNoCov">          0 :     options.allow_unrecognised_options().add_options()(</span>
-<span class="lineNum">      28 </span>                :<span class="lineNoCov">          0 :         &quot;source&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(sourceFileName))(</span>
-<span class="lineNum">      29 </span>                :<span class="lineNoCov">          0 :         &quot;input&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(inFileName))(</span>
-<span class="lineNum">      30 </span>                :<span class="lineNoCov">          0 :         &quot;output_collaborated&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(outFileName1))(</span>
-<span class="lineNum">      31 </span>                :<span class="lineNoCov">          0 :         &quot;output_uncollaborated&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(outFileName2))(</span>
-<span class="lineNum">      32 </span>                :<span class="lineNoCov">          0 :         &quot;h,help&quot;, &quot;Print help and exit&quot;);</span>
-<span class="lineNum">      33 </span>                :<span class="lineNoCov">          0 :     options.parse_positional(</span>
-<span class="lineNum">      34 </span>                :<span class="lineNoCov">          0 :         {&quot;source&quot;, &quot;input&quot;, &quot;output_collaborated&quot;, &quot;output_uncollaborated&quot;});</span>
-<span class="lineNum">      35 </span>                :<span class="lineNoCov">          0 :     auto userOptions = options.parse(argc, argv);</span>
-<span class="lineNum">      36 </span>                :            : 
-<span class="lineNum">      37 </span>                :<span class="lineNoCov">          0 :     ActorGraph ag;</span>
-<span class="lineNum">      38 </span>                :<span class="lineNoCov">          0 :     Actor at;</span>
-<span class="lineNum">      39 </span>                :<span class="lineNoCov">          0 :     vector&lt;vector&lt;string&gt;&gt; result, result1;</span>
-<span class="lineNum">      40 </span>                :            :     // load file from dataset
-<span class="lineNum">      41 </span>                :<span class="lineNoCov">          0 :     ag.loadFromFile(sourceFileName.c_str(), false, at);</span>
-<span class="lineNum">      42 </span>                :            :     // load file from input Actor data
-<span class="lineNum">      43 </span>                :<span class="lineNoCov">          0 :     ag.readActorFile(inFileName);</span>
-<span class="lineNum">      44 </span>                :            :     // linkpredictor
-<span class="lineNum">      45 </span>                :<span class="lineNoCov">          0 :     at.linkpredictor(ag.actor_input, result, result1);</span>
-<span class="lineNum">      46 </span>                :            :     // write result to the file
-<span class="lineNum">      47 </span>                :<span class="lineNoCov">          0 :     ag.writeFile(result, result1, outFileName1, outFileName2);</span>
-<a name="48"><span class="lineNum">      48 </span>                :            : </a>
-<span class="lineNum">      49 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
-<span class="lineNum">      50 </span>                :<span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      19 </span>                :            : using namespace std;
+<a name="20"><span class="lineNum">      20 </span>                :            : </a>
+<span class="lineNum">      21 </span>                :            : /* Main program that runs the linkpredictor */
+<span class="lineNum">      22 </span>                :<span class="lineNoCov">          0 : int main(int argc, char** argv) {</span>
+<span class="lineNum">      23 </span>                :<span class="lineNoCov">          0 :     cxxopts::Options options(&quot;./linkpredictor&quot;, &quot;linkpredictor files&quot;);</span>
+<span class="lineNum">      24 </span>                :<span class="lineNoCov">          0 :     options.positional_help(</span>
+<span class="lineNum">      25 </span>                :            :         &quot;./source_file ./path_to_input_file ./path_to_output_collaborated_file &quot;
+<span class="lineNum">      26 </span>                :<span class="lineNoCov">          0 :         &quot;./path_to_output_uncollaborated_file&quot;);</span>
+<span class="lineNum">      27 </span>                :<span class="lineNoCov">          0 :     string sourceFileName, inFileName, outFileName1, outFileName2;</span>
+<span class="lineNum">      28 </span>                :<span class="lineNoCov">          0 :     options.allow_unrecognised_options().add_options()(</span>
+<span class="lineNum">      29 </span>                :<span class="lineNoCov">          0 :         &quot;source&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(sourceFileName))(</span>
+<span class="lineNum">      30 </span>                :<span class="lineNoCov">          0 :         &quot;input&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(inFileName))(</span>
+<span class="lineNum">      31 </span>                :<span class="lineNoCov">          0 :         &quot;output_collaborated&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(outFileName1))(</span>
+<span class="lineNum">      32 </span>                :<span class="lineNoCov">          0 :         &quot;output_uncollaborated&quot;, &quot;&quot;, cxxopts::value&lt;string&gt;(outFileName2))(</span>
+<span class="lineNum">      33 </span>                :<span class="lineNoCov">          0 :         &quot;h,help&quot;, &quot;Print help and exit&quot;);</span>
+<span class="lineNum">      34 </span>                :<span class="lineNoCov">          0 :     options.parse_positional(</span>
+<span class="lineNum">      35 </span>                :<span class="lineNoCov">          0 :         {&quot;source&quot;, &quot;input&quot;, &quot;output_collaborated&quot;, &quot;output_uncollaborated&quot;});</span>
+<span class="lineNum">      36 </span>                :<span class="lineNoCov">          0 :     auto userOptions = options.parse(argc, argv);</span>
+<span class="lineNum">      37 </span>                :            : 
+<span class="lineNum">      38 </span>                :<span class="lineNoCov">          0 :     ActorGraph ag;</span>
+<span class="lineNum">      39 </span>                :<span class="lineNoCov">          0 :     Actor at;</span>
+<span class="lineNum">      40 </span>                :<span class="lineNoCov">          0 :     vector&lt;vector&lt;string&gt;&gt; result, result1;</span>
+<span class="lineNum">      41 </span>                :            :     // load file from dataset
+<span class="lineNum">      42 </span>                :<span class="lineNoCov">          0 :     ag.loadFromFile(sourceFileName.c_str(), false, at);</span>
+<span class="lineNum">      43 </span>                :            :     // load file from input Actor data
+<span class="lineNum">      44 </span>                :<span class="lineNoCov">          0 :     ag.readActorFile(inFileName);</span>
+<span class="lineNum">      45 </span>                :            :     // linkpredictor
+<span class="lineNum">      46 </span>                :<span class="lineNoCov">          0 :     at.linkpredictor(ag.actor_input, result, result1);</span>
+<span class="lineNum">      47 </span>                :            :     // write result to the file
+<span class="lineNum">      48 </span>                :<span class="lineNoCov">          0 :     ag.writeFile(result, result1, outFileName1, outFileName2);</span>
+<a name="49"><span class="lineNum">      49 </span>                :            : </a>
+<span class="lineNum">      50 </span>                :<span class="lineNoCov">          0 :     return 0;</span>
+<span class="lineNum">      51 </span>                :<span class="lineNoCov">          0 : }</span>
 </pre>
       </td>
     </tr>

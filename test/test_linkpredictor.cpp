@@ -26,8 +26,4 @@ TEST(LINKPREDICTOR_TEST, simple_TEST) {
     in.open("../test/data/out1.tsv", ios::binary);
     ASSERT_EQ(in.is_open(), true);
     in.close();
-    // ASSERT_EQ(res, "James McAvoy");
-    // input.push_back("Michael Fassbender");
-    // at.linkpredictor(input, result, result1);
-    // ASSERT_EQ(result[1][0], "James McAvoy");
 }
