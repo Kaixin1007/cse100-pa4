@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 23:52:37</td>
+            <td class="headerValue">2019-11-27 07:56:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -103,7 +103,7 @@
 <span class="lineNum">      25 </span>                :            :  * @name: ActorGraph
 <a name="26"><span class="lineNum">      26 </span>                :            :  * @msg:  the class of ActorGraph for read and write data</a>
 <span class="lineNum">      27 </span>                :            :  */
-<span class="lineNum">      28 </span>                :<span class="lineCov">          8 : class ActorGraph {</span>
+<span class="lineNum">      28 </span>                :<span class="lineCov">         10 : class ActorGraph {</span>
 <span class="lineNum">      29 </span>                :            :   protected:
 <span class="lineNum">      30 </span>                :            :   public:
 <span class="lineNum">      31 </span>                :            :     /**
@@ -131,7 +131,7 @@
 <span class="lineNum">      53 </span>                :            : 
 <span class="lineNum">      54 </span>                :            :     void writeFile(vector&lt;vector&lt;string&gt;&gt;&amp; res1, vector&lt;vector&lt;string&gt;&gt;&amp; res2,
 <span class="lineNum">      55 </span>                :            :                    string filename1, string filename2);
-<span class="lineNum">      56 </span>                :            : 
+<span class="lineNum">      56 </span>                :            :     void writeTravelerFile(string filename,vector&lt;Edge&gt;&amp; edge,int totalWeight);
 <span class="lineNum">      57 </span>                :            :     bool readFile(string filename);
 <span class="lineNum">      58 </span>                :            : 
 <span class="lineNum">      59 </span>                :            :     bool readActorFile(string filename);

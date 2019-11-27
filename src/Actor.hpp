@@ -16,6 +16,9 @@ class Actor {
     unordered_map<string, ActorNode*> actor_map;
     unordered_map<string, MovieNode*> movie_map;
     stack<pair<string, string>> result;  // actor -- movie||year
+    unordered_map<ActorNode*, ActorNode*> actor_set;
+    unordered_map<ActorNode*, int> actor_rank;
+    priority_queue<Edge, vector<Edge>, EdgeComp> edge;
     typedef priority_queue<ActorNode*, vector<ActorNode*>, ActorNodeComp>
         my_quene;
     /* Constructor that initialize a Actor */

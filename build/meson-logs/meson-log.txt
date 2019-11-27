@@ -1,4 +1,4 @@
-Build started at 2019-11-26T18:13:06.289826
+Build started at 2019-11-27T06:02:48.192841
 Main binary: /usr/bin/python3
 Python system: Linux
 The Meson build system
@@ -30,18 +30,19 @@ Dependency threads found: YES (cached)
 Dependency threads found: YES (cached)
 Dependency threads found: YES (cached)
 Dependency threads found: YES (cached)
-Build targets in project: 7
+Build targets in project: 9
 Subproject gtest finished.
 
 Adding test "my ActorGraph test"
 Adding test "my pathfinder test"
 Adding test "my Actor test"
 Adding test "my linkpredictor test"
-Build targets in project: 15
+Adding test "my DisjointSet test"
+Build targets in project: 18
 Found ninja-1.9.0.git.kitware.dyndep-1.jobserver-1 at /usr/local/bin/ninja
 Running compile:
-Working directory:  /tmp/tmppn2l_443
-Command line:  c++ /tmp/tmppn2l_443/testfile.cpp -o /tmp/tmppn2l_443/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
+Working directory:  /tmp/tmp40xq_nca
+Command line:  c++ /tmp/tmp40xq_nca/testfile.cpp -o /tmp/tmp40xq_nca/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
 
 Code:
  
@@ -53,8 +54,8 @@ libraries: =/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/:/opt/rh
 Compiler stderr:
  
 Running compile:
-Working directory:  /tmp/tmprgiwlblo
-Command line:  c++ /tmp/tmprgiwlblo/testfile.cpp -o /tmp/tmprgiwlblo/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++14 
+Working directory:  /tmp/tmpjrxeroul
+Command line:  c++ /tmp/tmpjrxeroul/testfile.cpp -o /tmp/tmpjrxeroul/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++14 
 
 Code:
  int i = static_cast<int>(0);

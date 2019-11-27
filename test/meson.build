@@ -18,3 +18,8 @@ test_linkpredictor_exe = executable('test_linkpredictor.cpp.executable',
     sources: ['test_linkpredictor.cpp'], 
     dependencies : [ActorNode_dep, MovieNode_dep,ActorGraph_dep, Actor_dep,gtest_dep])
 test('my linkpredictor test', test_linkpredictor_exe)
+
+test_DisjointSet_exe = executable('test_DisjointSet.cpp.executable', 
+    sources: ['test_DisjointSet.cpp'], 
+    dependencies : [ActorNode_dep, MovieNode_dep,ActorGraph_dep, Actor_dep,gtest_dep,DisjointSet_dep])
+test('my DisjointSet test', test_DisjointSet_exe)

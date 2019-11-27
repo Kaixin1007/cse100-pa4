@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-11-26 23:52:37</td>
+            <td class="headerValue">2019-11-27 07:56:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">10</td>
@@ -90,14 +90,14 @@
 <span class="lineNum">      12 </span>                :            : #include &lt;vector&gt;
 <a name="13"><span class="lineNum">      13 </span>                :            : using namespace std;</a>
 <span class="lineNum">      14 </span>                :            : /* deconstructor for Actor */
-<span class="lineNum">      15 </span>                :<span class="lineCov">          8 : Actor::~Actor() {</span>
-<span class="lineNum">      16 </span>        [<span class="branchCov" title="Branch 3 was taken 1913 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]:<span class="lineCov">       1917 :     for (auto i = actor_map.begin(); i != actor_map.end(); ++i) {</span>
-<span class="lineNum">      17 </span>        [<span class="branchCov" title="Branch 1 was taken 1913 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       1913 :         delete (i-&gt;second);</span>
+<span class="lineNum">      15 </span>                :<span class="lineCov">         10 : Actor::~Actor() {</span>
+<span class="lineNum">      16 </span>        [<span class="branchCov" title="Branch 3 was taken 1920 times"> + </span><span class="branchCov" title="Branch 4 was taken 5 times"> + </span>]:<span class="lineCov">       1925 :     for (auto i = actor_map.begin(); i != actor_map.end(); ++i) {</span>
+<span class="lineNum">      17 </span>        [<span class="branchCov" title="Branch 1 was taken 1920 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       1920 :         delete (i-&gt;second);</span>
 <span class="lineNum">      18 </span>                :            :     }
-<span class="lineNum">      19 </span>        [<span class="branchCov" title="Branch 3 was taken 898 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]:<span class="lineCov">        902 :     for (auto j = movie_map.begin(); j != movie_map.end(); ++j) {</span>
-<span class="lineNum">      20 </span>        [<span class="branchCov" title="Branch 1 was taken 898 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        898 :         delete (j-&gt;second);</span>
+<span class="lineNum">      19 </span>        [<span class="branchCov" title="Branch 3 was taken 905 times"> + </span><span class="branchCov" title="Branch 4 was taken 5 times"> + </span>]:<span class="lineCov">        910 :     for (auto j = movie_map.begin(); j != movie_map.end(); ++j) {</span>
+<span class="lineNum">      20 </span>        [<span class="branchCov" title="Branch 1 was taken 905 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        905 :         delete (j-&gt;second);</span>
 <a name="21"><span class="lineNum">      21 </span>                :            :     }</a>
-<span class="lineNum">      22 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">      22 </span>                :<span class="lineCov">          5 : }</span>
 <span class="lineNum">      23 </span>                :<span class="lineCov">          1 : void Actor::weightedPathfinder(string&amp; source, string&amp; target) {</span>
 <span class="lineNum">      24 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :     if (actor_map.find(source) == actor_map.end() ||</span>
 <span class="lineNum">         </span>  [<span class="branchCov" title="Branch 5 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span><span class="branchCov" title="Branch 8 was taken 1 time"> + </span>]
@@ -345,7 +345,7 @@
 <span class="lineNum">     263 </span>                :            :             }
 <a name="264"><span class="lineNum">     264 </span>                :            :         }</a>
 <span class="lineNum">     265 </span>                :            :     }
-<span class="lineNum">     266 </span>[<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         17 : }</span>
+<span class="lineNum">     266 </span>[<span class="branchCov" title="Branch 1 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         21 : }</span>
 <span class="lineNum">     267 </span>                :            : 
 <span class="lineNum">     268 </span>                :            : // void Actor::clearPriority(string source) {
 <span class="lineNum">     269 </span>                :            : //     ActorNode* src = actor_map.find(source)-&gt;second;

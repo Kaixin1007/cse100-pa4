@@ -53,7 +53,7 @@ class ActorGraph {
 
     void writeFile(vector<vector<string>>& res1, vector<vector<string>>& res2,
                    string filename1, string filename2);
-
+    void writeTravelerFile(string filename,vector<Edge>& edge,int totalWeight);
     bool readFile(string filename);
 
     bool readActorFile(string filename);

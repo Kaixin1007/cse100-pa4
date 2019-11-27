@@ -74,12 +74,21 @@ build src/25a6634@@ActorGraph@sha/libActorGraph.so.symbols: SHSYM src/libActorGr
 build src/libActorGraph.so: cpp_LINKER src/25a6634@@ActorGraph@sha/ActorGraph_ActorGraph.cpp.o | src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols src/25a6634@@Actor@sha/libActor.so.symbols src/Node/2576e22@@Edge@sha/libEdge.so.symbols
  LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -shared -fPIC -Wl,--start-group -Wl,-soname,libActorGraph.so src/Node/libActorNode.so src/Node/libMovieNode.so src/libActor.so src/Node/libEdge.so -Wl,--end-group '-Wl,-rpath,$$ORIGIN/Node:$$ORIGIN/' -Wl,-rpath-link,/Code/cse100_pa4/build/src/Node -Wl,-rpath-link,/Code/cse100_pa4/build/src
 
+build src/25a6634@@DisjointSet@sha/DisjointSet.cpp.o: cpp_COMPILER ../src/DisjointSet.cpp
+ DEPFILE = src/25a6634@@DisjointSet@sha/DisjointSet.cpp.o.d
+ ARGS = -Isrc/25a6634@@DisjointSet@sha -Isrc -I../src -Isrc/Node -I../src/Node -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -fPIC
+
+build src/25a6634@@DisjointSet@sha/libDisjointSet.so.symbols: SHSYM src/libDisjointSet.so
+
+build src/libDisjointSet.so: cpp_LINKER src/25a6634@@DisjointSet@sha/DisjointSet.cpp.o | src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols src/Node/2576e22@@Edge@sha/libEdge.so.symbols src/25a6634@@Actor@sha/libActor.so.symbols
+ LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -shared -fPIC -Wl,--start-group -Wl,-soname,libDisjointSet.so src/Node/libActorNode.so src/Node/libMovieNode.so src/Node/libEdge.so src/libActor.so -Wl,--end-group '-Wl,-rpath,$$ORIGIN/Node:$$ORIGIN/' -Wl,-rpath-link,/Code/cse100_pa4/build/src/Node -Wl,-rpath-link,/Code/cse100_pa4/build/src
+
 build src/25a6634@@pathfinder.cpp.executable@exe/pathfinder.cpp.o: cpp_COMPILER ../src/pathfinder.cpp
  DEPFILE = src/25a6634@@pathfinder.cpp.executable@exe/pathfinder.cpp.o.d
  ARGS = -Isrc/25a6634@@pathfinder.cpp.executable@exe -Isrc -I../src -Isrc/Node -I../src/Node -Isrc/ActorGraph -I../src/ActorGraph -Isubprojects/cxxopts -I../subprojects/cxxopts -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
 
-build src/pathfinder.cpp.executable: cpp_LINKER src/25a6634@@pathfinder.cpp.executable@exe/pathfinder.cpp.o | src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols src/25a6634@@ActorGraph@sha/libActorGraph.so.symbols src/25a6634@@Actor@sha/libActor.so.symbols src/Node/2576e22@@Edge@sha/libEdge.so.symbols
- LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -Wl,--start-group src/Node/libActorNode.so src/Node/libMovieNode.so src/libActorGraph.so src/libActor.so src/Node/libEdge.so -Wl,--end-group '-Wl,-rpath,$$ORIGIN/Node:$$ORIGIN/' -Wl,-rpath-link,/Code/cse100_pa4/build/src/Node -Wl,-rpath-link,/Code/cse100_pa4/build/src
+build src/pathfinder.cpp.executable: cpp_LINKER src/25a6634@@pathfinder.cpp.executable@exe/pathfinder.cpp.o | src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols src/25a6634@@ActorGraph@sha/libActorGraph.so.symbols src/25a6634@@Actor@sha/libActor.so.symbols src/Node/2576e22@@Edge@sha/libEdge.so.symbols src/25a6634@@DisjointSet@sha/libDisjointSet.so.symbols
+ LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -Wl,--start-group src/Node/libActorNode.so src/Node/libMovieNode.so src/libActorGraph.so src/libActor.so src/Node/libEdge.so src/libDisjointSet.so -Wl,--end-group '-Wl,-rpath,$$ORIGIN/Node:$$ORIGIN/' -Wl,-rpath-link,/Code/cse100_pa4/build/src/Node -Wl,-rpath-link,/Code/cse100_pa4/build/src
 
 build src/25a6634@@linkpredictor.cpp.executable@exe/linkpredictor.cpp.o: cpp_COMPILER ../src/linkpredictor.cpp
  DEPFILE = src/25a6634@@linkpredictor.cpp.executable@exe/linkpredictor.cpp.o.d
@@ -87,6 +96,13 @@ build src/25a6634@@linkpredictor.cpp.executable@exe/linkpredictor.cpp.o: cpp_COM
 
 build src/linkpredictor.cpp.executable: cpp_LINKER src/25a6634@@linkpredictor.cpp.executable@exe/linkpredictor.cpp.o | src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols src/25a6634@@ActorGraph@sha/libActorGraph.so.symbols src/25a6634@@Actor@sha/libActor.so.symbols src/Node/2576e22@@Edge@sha/libEdge.so.symbols
  LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -Wl,--start-group src/Node/libActorNode.so src/Node/libMovieNode.so src/libActorGraph.so src/libActor.so src/Node/libEdge.so -Wl,--end-group '-Wl,-rpath,$$ORIGIN/Node:$$ORIGIN/' -Wl,-rpath-link,/Code/cse100_pa4/build/src/Node -Wl,-rpath-link,/Code/cse100_pa4/build/src
+
+build src/25a6634@@movietraveler.cpp.executable@exe/movietraveler.cpp.o: cpp_COMPILER ../src/movietraveler.cpp
+ DEPFILE = src/25a6634@@movietraveler.cpp.executable@exe/movietraveler.cpp.o.d
+ ARGS = -Isrc/25a6634@@movietraveler.cpp.executable@exe -Isrc -I../src -Isrc/Node -I../src/Node -Isrc/ActorGraph -I../src/ActorGraph -Isubprojects/cxxopts -I../subprojects/cxxopts -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g
+
+build src/movietraveler.cpp.executable: cpp_LINKER src/25a6634@@movietraveler.cpp.executable@exe/movietraveler.cpp.o | src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols src/25a6634@@ActorGraph@sha/libActorGraph.so.symbols src/25a6634@@Actor@sha/libActor.so.symbols src/Node/2576e22@@Edge@sha/libEdge.so.symbols src/25a6634@@DisjointSet@sha/libDisjointSet.so.symbols
+ LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -Wl,--start-group src/Node/libActorNode.so src/Node/libMovieNode.so src/libActorGraph.so src/libActor.so src/Node/libEdge.so src/libDisjointSet.so -Wl,--end-group '-Wl,-rpath,$$ORIGIN/Node:$$ORIGIN/' -Wl,-rpath-link,/Code/cse100_pa4/build/src/Node -Wl,-rpath-link,/Code/cse100_pa4/build/src
 
 build test/9f86d08@@test_ActorGraph.cpp.executable@exe/test_ActorGraph.cpp.o: cpp_COMPILER ../test/test_ActorGraph.cpp
  DEPFILE = test/9f86d08@@test_ActorGraph.cpp.executable@exe/test_ActorGraph.cpp.o.d
@@ -147,6 +163,21 @@ build test/9f86d08@@test_linkpredictor.cpp.executable@exe/.._subprojects_googlet
 
 build test/test_linkpredictor.cpp.executable: cpp_LINKER test/9f86d08@@test_linkpredictor.cpp.executable@exe/test_linkpredictor.cpp.o test/9f86d08@@test_linkpredictor.cpp.executable@exe/.._subprojects_googletest-release-1.8.1_googletest_src_gtest-all.cc.o test/9f86d08@@test_linkpredictor.cpp.executable@exe/.._subprojects_googletest-release-1.8.1_googletest_src_gtest_main.cc.o | src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols src/25a6634@@ActorGraph@sha/libActorGraph.so.symbols src/25a6634@@Actor@sha/libActor.so.symbols
  LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -Wl,--start-group src/Node/libActorNode.so src/Node/libMovieNode.so src/libActorGraph.so src/libActor.so -Wl,--end-group -pthread '-Wl,-rpath,$$ORIGIN/../src/Node:$$ORIGIN/../src' -Wl,-rpath-link,/Code/cse100_pa4/build/src/Node -Wl,-rpath-link,/Code/cse100_pa4/build/src
+
+build test/9f86d08@@test_DisjointSet.cpp.executable@exe/test_DisjointSet.cpp.o: cpp_COMPILER ../test/test_DisjointSet.cpp
+ DEPFILE = test/9f86d08@@test_DisjointSet.cpp.executable@exe/test_DisjointSet.cpp.o.d
+ ARGS = -Itest/9f86d08@@test_DisjointSet.cpp.executable@exe -Itest -I../test -Isrc/Node -I../src/Node -Isrc/ActorGraph -I../src/ActorGraph -Isrc -I../src -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -pthread -isystem ../subprojects/googletest-release-1.8.1/googletest -isystem subprojects/googletest-release-1.8.1/googletest -isystem ../subprojects/googletest-release-1.8.1/googletest/include
+
+build test/9f86d08@@test_DisjointSet.cpp.executable@exe/.._subprojects_googletest-release-1.8.1_googletest_src_gtest-all.cc.o: cpp_COMPILER ../subprojects/googletest-release-1.8.1/googletest/src/gtest-all.cc
+ DEPFILE = test/9f86d08@@test_DisjointSet.cpp.executable@exe/.._subprojects_googletest-release-1.8.1_googletest_src_gtest-all.cc.o.d
+ ARGS = -Itest/9f86d08@@test_DisjointSet.cpp.executable@exe -Itest -I../test -Isrc/Node -I../src/Node -Isrc/ActorGraph -I../src/ActorGraph -Isrc -I../src -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -pthread -isystem ../subprojects/googletest-release-1.8.1/googletest -isystem subprojects/googletest-release-1.8.1/googletest -isystem ../subprojects/googletest-release-1.8.1/googletest/include
+
+build test/9f86d08@@test_DisjointSet.cpp.executable@exe/.._subprojects_googletest-release-1.8.1_googletest_src_gtest_main.cc.o: cpp_COMPILER ../subprojects/googletest-release-1.8.1/googletest/src/gtest_main.cc
+ DEPFILE = test/9f86d08@@test_DisjointSet.cpp.executable@exe/.._subprojects_googletest-release-1.8.1_googletest_src_gtest_main.cc.o.d
+ ARGS = -Itest/9f86d08@@test_DisjointSet.cpp.executable@exe -Itest -I../test -Isrc/Node -I../src/Node -Isrc/ActorGraph -I../src/ActorGraph -Isrc -I../src -fdiagnostics-color=always --coverage -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++14 -g -pthread -isystem ../subprojects/googletest-release-1.8.1/googletest -isystem subprojects/googletest-release-1.8.1/googletest -isystem ../subprojects/googletest-release-1.8.1/googletest/include
+
+build test/test_DisjointSet.cpp.executable: cpp_LINKER test/9f86d08@@test_DisjointSet.cpp.executable@exe/test_DisjointSet.cpp.o test/9f86d08@@test_DisjointSet.cpp.executable@exe/.._subprojects_googletest-release-1.8.1_googletest_src_gtest-all.cc.o test/9f86d08@@test_DisjointSet.cpp.executable@exe/.._subprojects_googletest-release-1.8.1_googletest_src_gtest_main.cc.o | src/Node/2576e22@@ActorNode@sha/libActorNode.so.symbols src/Node/2576e22@@MovieNode@sha/libMovieNode.so.symbols src/25a6634@@ActorGraph@sha/libActorGraph.so.symbols src/25a6634@@Actor@sha/libActor.so.symbols src/25a6634@@DisjointSet@sha/libDisjointSet.so.symbols
+ LINK_ARGS = --coverage -Wl,--no-undefined -Wl,--as-needed -Wl,--start-group src/Node/libActorNode.so src/Node/libMovieNode.so src/libActorGraph.so src/libActor.so src/libDisjointSet.so -Wl,--end-group -pthread '-Wl,-rpath,$$ORIGIN/../src/Node:$$ORIGIN/../src' -Wl,-rpath-link,/Code/cse100_pa4/build/src/Node -Wl,-rpath-link,/Code/cse100_pa4/build/src
 
 build meson-cov: CUSTOM_COMMAND 
  COMMAND = /usr/local/bin/meson --internal commandrunner /Code/cse100_pa4 /Code/cse100_pa4/build '' /usr/local/bin/meson ./build_scripts/generate_coverage_report
@@ -242,19 +273,13 @@ build meson-scan-build: CUSTOM_COMMAND PHONY
 
 build scan-build: phony meson-scan-build
 
-build meson-clang-format: CUSTOM_COMMAND PHONY
- COMMAND = /usr/local/bin/meson --internal clangformat /Code/cse100_pa4 /Code/cse100_pa4/build
- pool = console
-
-build clang-format: phony meson-clang-format
-
 build meson-uninstall: CUSTOM_COMMAND PHONY
  COMMAND = /usr/local/bin/meson --internal uninstall
  pool = console
 
 build uninstall: phony meson-uninstall
 
-build all: phony src/Node/libActorNode.so src/Node/libMovieNode.so src/Node/libEdge.so src/libActor.so src/libActorGraph.so src/pathfinder.cpp.executable src/linkpredictor.cpp.executable test/test_ActorGraph.cpp.executable test/test_pathfinder.cpp.executable test/test_Actor.cpp.executable test/test_linkpredictor.cpp.executable
+build all: phony src/Node/libActorNode.so src/Node/libMovieNode.so src/Node/libEdge.so src/libActor.so src/libActorGraph.so src/libDisjointSet.so src/pathfinder.cpp.executable src/linkpredictor.cpp.executable src/movietraveler.cpp.executable test/test_ActorGraph.cpp.executable test/test_pathfinder.cpp.executable test/test_Actor.cpp.executable test/test_linkpredictor.cpp.executable test/test_DisjointSet.cpp.executable
 
 build clean: phony meson-clean
 
@@ -274,13 +299,13 @@ build meson-clean: CUSTOM_COMMAND PHONY | clean-gcda clean-gcno
  COMMAND = /usr/local/bin/ninja -t clean
  description = Cleaning.
 
-build build.ninja: REGENERATE_BUILD ../meson.build ../src/ActorGraph/meson.build ../subprojects/cxxopts/meson.build ../src/Node/meson.build ../subprojects/googletest-release-1.8.1/googletest/meson.build ../src/meson.build ../subprojects/googletest-release-1.8.1/googlemock/meson.build ../subprojects/googletest-release-1.8.1/meson.build ../test/meson.build meson-private/coredata.dat
+build build.ninja: REGENERATE_BUILD ../src/ActorGraph/meson.build ../src/meson.build ../meson.build ../subprojects/googletest-release-1.8.1/googletest/meson.build ../subprojects/googletest-release-1.8.1/googlemock/meson.build ../src/Node/meson.build ../subprojects/cxxopts/meson.build ../subprojects/googletest-release-1.8.1/meson.build ../test/meson.build meson-private/coredata.dat
  pool = console
 
 build reconfigure: REGENERATE_BUILD PHONY
  pool = console
 
-build ../meson.build ../src/ActorGraph/meson.build ../subprojects/cxxopts/meson.build ../src/Node/meson.build ../subprojects/googletest-release-1.8.1/googletest/meson.build ../src/meson.build ../subprojects/googletest-release-1.8.1/googlemock/meson.build ../subprojects/googletest-release-1.8.1/meson.build ../test/meson.build meson-private/coredata.dat: phony 
+build ../src/ActorGraph/meson.build ../src/meson.build ../meson.build ../subprojects/googletest-release-1.8.1/googletest/meson.build ../subprojects/googletest-release-1.8.1/googlemock/meson.build ../src/Node/meson.build ../subprojects/cxxopts/meson.build ../subprojects/googletest-release-1.8.1/meson.build ../test/meson.build meson-private/coredata.dat: phony 
 
 default all
 

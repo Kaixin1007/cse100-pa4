@@ -85,6 +85,9 @@ bool ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges,
         auto curActor = ac.actor_map.find(actor);
         auto curMovie = ac.movie_map.find(str);
         int weight = 1 + 2019 - year;
+
+        ac.actor_set.insert(make_pair(curActor->second, nullptr));
+        ac.actor_rank.insert(make_pair(curActor->second, 0));
         for (ActorNode* nodeInMovie : curMovie->second->actors) {
             if (!use_weighted_edges) {
                 Edge e =
@@ -96,6 +99,7 @@ bool ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges,
                               weight);
                 nodeInMovie->edges.push_back(e);
                 curActor->second->edges.push_back(e);
+                ac.edge.push(e);
             }
         }
         curMovie->second->actors.push_back(curActor->second);
@@ -157,6 +161,20 @@ void ActorGraph::writeFile(vector<vector<string>>& res1,
         }
         out << endl;
     }
+    out.close();
+}
+void ActorGraph::writeTravelerFile(string filename, vector<Edge>& edge,
+                                   int totalWeight) {
+    ofstream out;
+    out.open(filename, ios::binary);
+    out << "(actor)<--[movie#@year]-->(actor)" << endl;
+    for (int i = 0; i < edge.size(); i++) {
+        out << "(" << edge[i].actor1->name << ")<--[" << edge[i].movie->name
+            << "]-->(" << edge[i].actor2->name << ")" << endl;
+    }
+    out << "#NODE CONNECTED: " << edge.size() + 1 << endl;
+    out << "#EDGE CHOSEN: " << edge.size() << endl;
+    out << "TOTAL EDGE WEIGHTS: " << totalWeight << endl;
     out.close();
 }
 bool ActorGraph::readFile(string filename) {

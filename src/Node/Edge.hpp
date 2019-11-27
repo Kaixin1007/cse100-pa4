@@ -27,4 +27,10 @@ class Edge {
     Edge(ActorNode* actor1, ActorNode* actor2, MovieNode* movie, int weight)
         : actor1(actor1), actor2(actor2), movie(movie), weight(weight) {}
 };
+// 最小堆
+struct EdgeComp {
+    bool operator()(Edge& lhs, Edge& rhs) const {
+        return lhs.weight > rhs.weight;
+    }
+};
 #endif  // EDGE_HPP
